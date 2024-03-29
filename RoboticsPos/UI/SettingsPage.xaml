@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="RoboticsPos.UI.SettingsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:RoboticsPos.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Controls.xaml"/>
+        <!-- Button style ishlmayapdi-->
+    </UserControl.Resources>
+    <Grid Background="Snow">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Column="0" Background="Blue">
+            <StackPanel>
+               <Grid>
+                   <md:PackIcon Kind="ArrowLeft" Foreground="Snow" Margin="8 10 0 0"></md:PackIcon>
+                   <Button Click="Button_Back1" BorderThickness="0" Width="40" HorizontalAlignment="Left" Background="Transparent"/>
+               </Grid>
+                <TextBlock Text="Settings" HorizontalAlignment="Center"
+                           Foreground="Snow"
+                           FontSize="30"
+                           Margin="0 0 0 0"
+                />
+                <Button  Click="ButtonBase_OnClick" Foreground="Snow" Background="Transparent" Content="Xodimlar" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Chek sozlamalar" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Chegirma berish" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Mijozlar" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Kassa" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Til" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Theme" Width="180" Height="30" Margin="0 20 0 0"/>
+            </StackPanel>
+        </Grid>
+        <Grid Column="1">
+          <DockPanel Height="Auto" Width="Auto" x:Name="Employee_doc" Visibility="Collapsed">
+              <local:XodimCrudPage x:Name="EmployeeControl"></local:XodimCrudPage>
+          </DockPanel>
+            <DockPanel x:Name="Create_doc"  Height="Auto" Width="Auto" Visibility="Collapsed" >
+                <local:XodimCreatePage x:Name="CreatePage"></local:XodimCreatePage>
+            </DockPanel>
+           
+        </Grid>
+    </Grid>
+</UserControl>

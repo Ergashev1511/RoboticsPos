@@ -1,0 +1,224 @@
+﻿<UserControl x:Class="RoboticsPos.UI.MenyuPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RoboticsPos.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Controls.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="Snow">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Row="0" Column="0" Margin="-4,-1,4,1">
+            <StackPanel>
+                <DockPanel>
+                    <TextBlock  Text="Login:"
+                       FontSize="15"
+                       Margin="10 10  0 0"
+                       Foreground="DodgerBlue"
+                       />
+                    <TextBlock  x:Name="usernametxt"
+                       FontSize="15"
+                       Foreground="DodgerBlue"
+                       Margin="10 10  0 0"
+           />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="ID:"
+                       FontSize="15"
+                       Margin="10 10  0 0"
+                       Foreground="DodgerBlue"
+                       />
+                    <TextBlock x:Name="txtId" 
+                       FontSize="15"
+                       Margin="10 10  0 0"
+                       Foreground="DodgerBlue"
+            />
+                </DockPanel>
+
+            </StackPanel>
+        </Grid>
+        <Grid Row="1" Column="0">
+            <StackPanel >
+                <Button 
+                    Click="Button_Kassa"
+            Foreground="Snow"
+            FontSize="40"
+            Background="DodgerBlue"
+            Style="{DynamicResource RoundButton}"
+          Margin="10 0 0 0"
+            Height="250">
+                    <StackPanel>
+                        <!--  <md:PackIcon Kind="CartVariant" Width="150" Height="150" /> -->
+                        <Image Width="150" Height="150" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\kassa.png"/>
+                        <TextBlock Text="Kassa" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Row="2" Column="0">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button 
+          Background="DodgerBlue"
+          Foreground="Snow"
+          FontSize="25"
+          Style="{DynamicResource RoundButton}"
+          Width="210"
+          Height="67"
+          Margin="0 0 10 0">
+                    <DockPanel>
+                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\refresh.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <TextBlock Text="Yangilash" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Row="1" Column="1">
+            <StackPanel>
+                <Button Background="DodgerBlue"
+                Style="{DynamicResource RoundButton}"
+                Width="210"
+                Click="Button_ShaxsiyMal"
+                Foreground="Snow"
+                FontSize="15"
+                Height="67">
+                    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Margin="0 0 20 0" Width="40" Height="40" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\person.png"/>
+                        <StackPanel>
+                            <TextBlock Margin="20 0 0 0" Foreground="Snow" FontWeight="DemiBold" FontSize="16" Text="Shaxsiy"/>
+                            <TextBlock Margin="20 0 0 0" Foreground="Snow" FontWeight="DemiBold" FontSize="16" Text="Ma'lumotlar"/>
+                        </StackPanel>
+                    </DockPanel>
+                </Button>
+                <Button 
+            Background="DodgerBlue"
+                Style="{DynamicResource RoundButton}"
+            Foreground="Snow"
+            FontSize="15"
+            Width="210"
+                Height="67"
+                Margin="0 20 0 0">
+                    <DockPanel>
+                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\qaytuv.png" Margin="0 0 20 0" Width="40" Height="40"/>
+                        <TextBlock Text="Qaytarish" Foreground="Snow" FontWeight="DemiBold" FontSize="18" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                    </DockPanel>
+                </Button>
+                <Button 
+            Background="DodgerBlue"
+            Style="{DynamicResource RoundButton}"
+            Foreground="Snow"
+            FontSize="15"
+            Width="210"
+                Height="67"
+                Margin="0 20 0 0"
+             Click="Button_Sozlama"
+            >
+                    <DockPanel>
+                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\sozlama.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <TextBlock Text="Sozlamalar" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Row="1" Column="2">
+            <StackPanel>
+                <Button Background="DodgerBlue"
+                Style="{DynamicResource RoundButton}"
+                Width="210"
+                Foreground="Snow"
+                FontSize="15"
+                Height="67" 
+                >
+                    <DockPanel>
+                        <Image Width="40" Height="40" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\hisobot.png" Margin="0 0 20 0"/>
+                        <TextBlock Text="Hisobot" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                    </DockPanel>
+                </Button>
+                <Button 
+            Background="DodgerBlue"
+            Style="{DynamicResource RoundButton}"
+            Foreground="Snow"
+            FontSize="15"
+            Width="210"
+            Height="67"
+            Margin="0 20 0 0">
+                    <DockPanel>
+                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\omborxona.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <TextBlock Text="Omborxona" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                    </DockPanel>
+                </Button>
+                <Button 
+            Background="DodgerBlue"
+            Style="{DynamicResource RoundButton}"
+            Foreground="Snow"
+            FontSize="15"
+            Width="210"
+            Height="67"
+            Margin="0 20 0 0">
+                    <DockPanel>
+                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\help.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <TextBlock Text="Yo'riqnoma" Foreground="Snow" FontWeight="DemiBold" FontSize="18" VerticalAlignment="Center"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Row="2" Column="1">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button 
+            Background="DodgerBlue"
+            Foreground="Snow"
+            FontSize="25"
+            Style="{DynamicResource RoundButton}"
+            Width="210"
+            Height="67"
+            Margin="0 0 0 0">
+                    <DockPanel>
+                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\x_icon.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <TextBlock Text="Reports" Foreground="Snow" FontWeight="DemiBold" FontSize="18" VerticalAlignment="Center"/>
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Row="2" Column="3">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button 
+            Background="DodgerBlue"
+            Foreground="Snow"
+            FontSize="25"
+            Style="{DynamicResource RoundButton}"
+            Width="210"
+            Height="67">
+                    <DockPanel>
+                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\z_icon.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <TextBlock Text="Reports" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center" />
+                    </DockPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Row="0" Column="2">
+            <StackPanel VerticalAlignment="Top">
+                <Button 
+                    Click="Button_Logout"
+           Margin="120 0 0 40"
+           Height="45"
+               Content="Log out"
+               FontSize="25"
+               Foreground="DodgerBlue"
+               Background="Transparent"
+               BorderThickness="0"
+       />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

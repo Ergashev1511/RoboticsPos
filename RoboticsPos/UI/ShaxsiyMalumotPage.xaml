@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="RoboticsPos.UI.ShaxsiyMalumotPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RoboticsPos.UI"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Column="0" Background="Blue">
+            <StackPanel HorizontalAlignment="Left">
+               <Grid>
+                   <md:PackIcon   Kind="ArrowLeft" Foreground="Snow" Margin="12 18 0 0"></md:PackIcon>
+                   <Button Click="Button_Back" Margin="0 10 0 0" HorizontalAlignment="Left" BorderThickness="0" Width="40" Background="Transparent"  >
+                   </Button>
+               </Grid>
+                <TextBlock Text="Shaxsiy ma'lumotlar" Foreground="Snow" FontSize="18" FontWeight="DemiBold" Margin="10 10 0 0" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

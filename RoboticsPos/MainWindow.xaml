@@ -1,0 +1,72 @@
+﻿<Window x:Class="RoboticsPos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RoboticsPos"
+        xmlns:pin="clr-namespace:RoboticsPos.UI"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Viewbox x:Name="KirishViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Visible">
+            <pin:KirishPage x:Name="Kirishpage" Width="800" Height="450"></pin:KirishPage>
+        </Viewbox>
+        
+        <Viewbox x:Name="LoginViewbox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Hidden">
+            <pin:LoginPage x:Name="loginpage" Width="800" Height="450"></pin:LoginPage>
+        </Viewbox>
+        
+        <Viewbox x:Name="PinKodViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Hidden">
+            <pin:PinKodPage x:Name="pinkodpage" Width="800" Height="450"></pin:PinKodPage>
+        </Viewbox>
+        
+        <Viewbox x:Name="MenyuViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Hidden">
+            <pin:MenyuPage x:Name="menyupage" Width="800" Height="450"></pin:MenyuPage>
+        </Viewbox>
+        
+        <Viewbox x:Name="KassaViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Hidden">
+            <pin:KassaPage x:Name="kassapage" Width="800" Height="450"></pin:KassaPage>
+        </Viewbox>
+
+
+        <Viewbox x:Name="SettingsViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Hidden">
+            <pin:SettingsPage x:Name="settingspage" Width="800" Height="450"></pin:SettingsPage>
+        </Viewbox>
+
+        <Viewbox x:Name="XodimCrudViewBox" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" Grid.ColumnSpan="6" Visibility="Hidden">
+            <pin:XodimCrudPage x:Name="xodimcrudpage" Width="600" Height="450"></pin:XodimCrudPage>
+        </Viewbox>
+
+        <Viewbox x:Name="XodimCreateViewBox" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" Grid.ColumnSpan="6" Visibility="Hidden">
+            <pin:XodimCreatePage x:Name="xodimcreatepage" Width="600" Height="450"></pin:XodimCreatePage>
+        </Viewbox>
+         
+        <Viewbox x:Name="Shaxsiy_kabinetViewBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Collapsed">
+            <pin:ShaxsiyMalumotPage x:Name="shaxsiy_malPage" Width="800" Height="450"></pin:ShaxsiyMalumotPage>
+        </Viewbox>
+        
+    </Grid> 
+</Window>

@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="RoboticsPos.UI.LoginPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RoboticsPos.UI"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+   <UserControl.Resources>
+      <ResourceDictionary Source="/Controls.xaml"/>
+  </UserControl.Resources>
+    <Grid Background="Snow">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid Row="1">
+            <DockPanel HorizontalAlignment="Center">
+                <TextBlock Text="ROBOTICS" VerticalAlignment="Center"
+                           FontSize="40"
+                           Foreground="Red"
+                           FontWeight="DemiBold"
+                           Margin="0 0 10 0"
+                           />
+                <TextBlock Text="POS"
+                           VerticalAlignment="Center"
+                           FontSize="40" 
+                           Foreground="Blue"
+                           FontWeight="DemiBold"
+                           Margin="10 0 0 0"/>
+            </DockPanel>
+        </Grid>
+        <Grid Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="2">
+                <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\robo.jpg"/>
+            </Grid>
+        </Grid>
+       
+        <Grid Row="3">
+            <StackPanel>
+                <DockPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Login:" Foreground="Blue"
+                               FontSize="25"
+                               Margin="0 20 0 0"
+                               />
+                    <TextBox x:Name="txtlogin" FontSize="20" Padding="0 3 0 0" Foreground="Blue" Margin="10 20 0 0" 
+                             BorderThickness="0"
+                             Width="200" Height="40"/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Center">
+                    <TextBlock Text="Parol:" Foreground="Blue"
+                               FontSize="25"
+                               Margin="0 20 0 0"
+                    />
+                    <PasswordBox x:Name="txtPassword" FontSize="20" Padding="0 3 0 0" Foreground="Blue" Margin="10 20 0 0" 
+                             BorderThickness="0"
+                             Width="200" Height="40"/>
+                </DockPanel>
+               <DockPanel HorizontalAlignment="Center">
+                   <Button 
+                    Background="Blue"
+                    Content="Kirish"
+                    Foreground="Snow"
+                    FontSize="20"
+                    Style="{DynamicResource RoundButton}"
+                    Margin="0 20 20 0"
+                    Width="120"
+                    Height="35"
+                    Click="Button_Kirish"
+                    />
+                   <Button 
+                       Background="Red"
+                       Content="Bekor qilish"
+                       Foreground="Snow"
+                       FontSize="17"
+                       Style="{DynamicResource RoundButton}"
+                       Margin="20 20 0 0"
+                       Width="120"
+                       Height="35"
+                       Click="Button_Back"
+                       />
+               </DockPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
