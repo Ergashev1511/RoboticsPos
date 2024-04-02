@@ -13,6 +13,9 @@ namespace RoboticsPos.UI
 
         public void SetMainWinndow(MainWindow mainWindow)
         { this.mainWindow = mainWindow; }
+
+
+
         public KassaPage()
         {
             InitializeComponent();

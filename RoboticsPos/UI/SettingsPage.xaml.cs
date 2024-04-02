@@ -40,6 +40,9 @@ namespace RoboticsPos.UI
             InitializeComponent();
         }
 
+
+
+
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Employee_doc.Visibility = Visibility.Visible;
@@ -52,6 +55,8 @@ namespace RoboticsPos.UI
             mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
             mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
         }
+
+
 
         private void Xodim_btn_OnClick(object sender, RoutedEventArgs e)
         {
