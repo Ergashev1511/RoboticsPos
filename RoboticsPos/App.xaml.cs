@@ -52,11 +52,13 @@ namespace RoboticsPos
                 services.AddScoped<IEmployeeRepository, EmployeeRepository>();
                 services.AddScoped<EmployeeService>();
                 services.AddAutoMapper(typeof(IMapper));
+                services.AddTransient<MainWindow>();
                 services.AddTransient<KirishPage>();
                 services.AddTransient<LoginPage>();
                 services.AddTransient<PinKodPage>();
                 services.AddTransient<MenyuPage>();
                 services.AddTransient<KassaPage>();
+                services.AddTransient<XodimCrudPage>();
             }
             ).Build();
 

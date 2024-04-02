@@ -9,84 +9,50 @@ namespace RoboticsPos.UI;
 public partial class LoginPage : UserControl
 {
     private MainWindow _mainWindow { get; set; }
-    private readonly UserService userService;
-    private readonly EmployeeRepository _repository;
+    private  IUserService userService { get; set; }
+   // private  EmployeeRepository _repository { get; set; }
     
-    public void SetMainWinndow(MainWindow mainWindow)
-    {
-        this._mainWindow = mainWindow;
-    }
+  
     public LoginPage()
     {
         InitializeComponent();
         
     }
 
-    public LoginPage(UserService userService,EmployeeRepository repository)
+    public void SetVariablies(IUserService userService,MainWindow mainWindow)
     {
         this.userService = userService;
-        this._repository = repository;
+        this._mainWindow = mainWindow;
+       
     }
 
     private async void Button_Kirish(object sender, RoutedEventArgs e)
     {
-        // var data = await _repository.GetAllEmployee();
-        //
-        // foreach (var i in data)
-        // {
-        //     if (i.User.UserName == txtlogin.Text && i.User.Password == txtPassword.Password)
-        //     {
-        //         _mainWindow.LoginViewbox.Visibility = Visibility.Hidden;
-        //         _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
-        //         
-        //     }
-        //     else
-        //     {
-        //         MessageBox.Show("Username not found!");
-        //         txtlogin.Text = "";
-        //         txtPassword.Password = "";
-        //     }
-        // }
-
-
-        if (txtlogin.Text == "ergashev1511" && txtPassword.Password == "151103")
+        if (txtlogin.Text == "" || txtPassword.Password == "")
         {
-            _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
-            _mainWindow.LoginViewbox.Visibility = Visibility.Hidden;
-
+            MessageBox.Show("Username yoki parol kirtilmagan!");
         }
         else
         {
-            MessageBox.Show(" Username yoki parol xato!");
-            txtlogin.Text = "";
-            txtPassword.Password = "";
+            try
+            {
+                if (await userService.LoginByUsername(txtlogin.Text, txtPassword.Password))
+                {
+                    _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
+                    _mainWindow.LoginViewbox.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    MessageBox.Show("Username yoki parol xato!");
+                }
+            }
+            catch (NullReferenceException exception)
+            {
+                MessageBox.Show(exception.Message);
+                txtlogin.Text = "";
+                txtPassword.Password = "";
+            }
         }
-
-        //  try
-        //  {
-        //  var data = userService.LoginByUsername(txtlogin.Text, txtPassword.Password);
-
-        ////  if (data == null) throw new Exception("This Username not found!");
-        //if (data == null)
-        //{
-        //    MessageBox.Show("Bazada malumot yoq");
-        //}
-
-        //  if (data.Result == true )
-        //  {
-        //      _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
-        //      _mainWindow.LoginViewbox.Visibility = Visibility.Hidden;
-        //  }
-        //  else
-        //  {
-        //      MessageBox.Show(" Username yoki parol xato!");
-        //  }
-        //  }
-        //  catch (NullReferenceException exception)
-        //  {
-        //      MessageBox.Show("xdxskjdejfejcbdn jcvfndjkvfb");
-        //  }
-
     }
 
     private void Button_Back(object sender, RoutedEventArgs e)

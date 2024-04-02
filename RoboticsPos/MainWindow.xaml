@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RoboticsPos"
         xmlns:pin="clr-namespace:RoboticsPos.UI"
         mc:Ignorable="d"
-        WindowStyle="None"
+      
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -31,9 +31,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Viewbox x:Name="KirishViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Visible">
-            <pin:KirishPage x:Name="Kirishpage" Width="800" Height="450"></pin:KirishPage>
-        </Viewbox>
+        <DockPanel x:Name="KirishViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Visible">
+            <pin:KirishPage x:Name="Kirishpage" Width="Auto" Height="Auto"></pin:KirishPage>
+        </DockPanel>
         
         <Viewbox x:Name="LoginViewbox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Hidden">
             <pin:LoginPage x:Name="loginpage" Width="800" Height="450"></pin:LoginPage>
@@ -52,9 +52,9 @@
         </Viewbox>
 
 
-        <Viewbox x:Name="SettingsViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Hidden">
-            <pin:SettingsPage x:Name="settingspage" Width="800" Height="450"></pin:SettingsPage>
-        </Viewbox>
+        <DockPanel x:Name="SettingsViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Hidden">
+            <pin:SettingsPage x:Name="settingspage" Width="Auto" Height="Auto"></pin:SettingsPage>
+        </DockPanel>
 
         <Viewbox x:Name="XodimCrudViewBox" Grid.Row="0" Grid.Column="2" Grid.RowSpan="9" Grid.ColumnSpan="6" Visibility="Hidden">
             <pin:XodimCrudPage x:Name="xodimcrudpage" Width="600" Height="450"></pin:XodimCrudPage>

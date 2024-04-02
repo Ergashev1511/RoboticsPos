@@ -24,23 +24,20 @@ namespace RoboticsPos.UI
     {
 
         MainWindow mainWindow { get; set; }
-        private readonly UserService userService;
+        private  IUserService userService { get; set; }
 
-        public void SetMainWinndow(MainWindow mainWindow)
-        { this.mainWindow = mainWindow; }
+        public void SetMainWinndow(MainWindow mainWindow, IUserService userService)
+        {
+            this.mainWindow = mainWindow;
+            this.userService = userService;
+        }
 
 
         public PinKodPage()
         {
             InitializeComponent();
-          
-            
         }
-
-        public PinKodPage(UserService userService)
-        {
-             this.userService = userService;
-        }
+        
 
         private void Button_number(object sender, RoutedEventArgs e)
         {
@@ -48,36 +45,30 @@ namespace RoboticsPos.UI
             passwordbox.Password = passwordbox.Password + button.Content;
         }
 
-        private void Passwordbox_OnPasswordChanged(object sender, RoutedEventArgs e)
+        private async void Passwordbox_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
 
             if (passwordbox.Password.Length == 4)
             {
-                if(passwordbox.Password=="1511")
+                try
                 {
-                    mainWindow.KassaViewBox.Visibility = Visibility.Visible;
-                    mainWindow.PinKodViewBox.Visibility = Visibility.Hidden;
+                    if (await userService.LoginByPini(passwordbox.Password))
+                    {
+                        mainWindow.PinKodViewBox.Visibility = Visibility.Collapsed;
+                        mainWindow.KassaViewBox.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pin kod xato!");
+                        passwordbox.Password = "";
+                    }
                 }
-                else
+                catch (NullReferenceException exception)
                 {
-                    MessageBox.Show("Parol xato!");
-                    passwordbox.Password = "";
+                    MessageBox.Show(exception.Message);
                 }
             }
-           /* var data = userService.LoginByPini(passwordbox.Password);
-            if (passwordbox.Password.Length == 4)
-            {
-                if (data.Result == true)
-                {
-                    mainWindow.KassaViewBox.Visibility = Visibility.Visible;
-                    mainWindow.PinKodViewBox.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-
-                    MessageBox.Show("Incorrcet password");
-                }
-            }*/
+           
         }
 
         private void Button_Back(object sender, RoutedEventArgs e)

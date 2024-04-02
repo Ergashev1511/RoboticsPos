@@ -126,6 +126,38 @@ namespace RoboticsPos.Services
 
             await employeeRepository.DeleteEmployeeById(employee);
         }
+
+
+        public async Task<EmployeeDTO> GetEmployeeById(long Id)
+        {
+            var data = await employeeRepository.GetEmployeeById(Id);
+            if (data == null) throw new Exception("Employee not found!");
+
+            else
+            {
+                EmployeeDTO employeeDto = new EmployeeDTO()
+                {
+                    Id = data.Id,
+                    JobTitle = data.Title,
+                    HireDate = data.HireDate,
+                    EnrollNumber = data.EnrollNumber,
+                    EmployeeRole = data.EmployeeRole,
+                    
+                    Username = data.User.UserName,
+                    password = data.User.Password,
+                    PIN = data.User.PIN,
+                    
+                    Firstname = data.User.Person.FirstName,
+                    Lastname = data.User.Person.LastName,
+                    Fathername = data.User.Person.FathersName,
+                    BornDate = data.User.Person.BornDate,
+                    Address = data.User.Person.Address,
+                    PhoneNumber = data.User.Person.PhoneNumber,
+                    Fullname = $"{data.User.Person.LastName} {data.User.Person.FirstName} {data.User.Person.FirstName} {data.User.Person.FathersName}"
+                };
+                return employeeDto;
+            }
+        }
         
     }
 

@@ -11,7 +11,18 @@ namespace RoboticsPos.Data.Models
     {
         public string Name { get; set; }
 
-        public long DiscountId { get; set; }
+        public long? DiscountId { get; set; }
         public virtual Discount Discount { get; set; }
+        
+        //Bugun qo'shilgan model
+        
+        public string BarCode { get; set; }
+        public int  AmountInPackage { get; set; }
+        public int CompanyId { get; set; }
+        public int Amount { get; set; }
+        public int ActualPrice { get; set; }
+        public int Price { get; set; }
+        public int PriceOfPiece { get; set; }
+        public bool Selected { get; set; }
     }
 }

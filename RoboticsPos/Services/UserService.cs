@@ -61,10 +61,11 @@ namespace RoboticsPos.Services
 
         public async Task<bool> LoginByUsername(string username, string password)
         {
-            var data = await _repository.GetAll(a => a.UserName == username && a.Password == password).FirstOrDefaultAsync() != null;
-            var access = userrepository.LogoutByUsername(username, password);
-            var alluser = context.Users.ToList();
-            return data;
+            //var data = await _repository.GetAll(a => a.UserName == username && a.Password == password).FirstOrDefaultAsync() != null;
+            var access = await userrepository.LogoutByUsername(username, password);
+          //  var alluser = context.Users.ToList();
+         Variablies.StaticVariablies.CurrentUsername = access.UserName;
+            return access!=null;
         }
     }
 

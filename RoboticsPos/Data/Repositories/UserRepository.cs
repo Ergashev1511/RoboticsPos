@@ -23,23 +23,23 @@ namespace RoboticsPos.Data.Repositories
             return users;
         }
 
-        public async Task<bool> LoginByPini(string Pin)
+        public async Task<User> LoginByPini(string Pin)
         {
-            var user = _context.Users.Any(p => p.PIN == Pin);
-            return user != null;         
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.PIN == Pin);
+            return user ;         
         }
 
-        public async Task<bool> LogoutByUsername(string username, string password)
+        public async Task<User> LogoutByUsername(string username, string password)
         {
-            var user = _context.Users.FirstOrDefaultAsync(p => p.UserName == username && p.PIN == password);
-            return user != null;
+            var users = await _context.Users.FirstOrDefaultAsync(a => a.UserName == username && a.Password == password);
+            return users;
         }
     }
 
     public interface IUserRepository
     {
-        Task<bool> LoginByPini(string Pin);
-        Task<bool> LogoutByUsername(string username, string password);
+        Task<User> LoginByPini(string Pin);
+        Task<User> LogoutByUsername(string username, string password);
         Task<List<Employee>> GetAllUsers();
 
     }
