@@ -11,6 +11,6 @@ public class ProductDTO : BaseDTO
     public int ActualPrice { get; set; }
     public int Price { get; set; }
     public int PriceOfPiece { get; set; }
-    public bool Selected { get; set; }
+    public bool Selected { get; set; } = false;
     public long? DiscountId { get; set; }
 }

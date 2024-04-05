@@ -11,22 +11,31 @@
         <ResourceDictionary Source="/Controls.xaml"/>
         <!-- Button style ishlmayapdi-->
     </UserControl.Resources>
-    <Grid Background="Snow">
+    
+    <Grid Background="Snow" x:Name="grid_Settings">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Column="0" Background="Blue">
+        <Grid Column="0" Background="Blue" x:Name="grid_col0">
             <StackPanel>
-               <Grid>
-                   <!-- <md:PackIcon Kind="ArrowLeft" Foreground="Snow" Margin="8 10 0 0"></md:PackIcon> -->
-                   <Button Click="ButtonBase_OnClick1"  FontSize="8" BorderThickness="0" Width="40" HorizontalAlignment="Left" Background="Transparent"/>
-               </Grid>
-                <TextBlock Text="Settings" HorizontalAlignment="Center"
-                           Foreground="Snow"
-                           FontSize="30"
-                           Margin="0 0 0 0"
-                />
+                  <StackPanel>
+                      <Button x:Name="back_btn" Click="Back_btn_OnClick" Width="50" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0">
+                          <md:PackIcon Kind="ArrowLeft"></md:PackIcon>
+                      </Button>
+                  </StackPanel>
+                 <DockPanel>
+                     <Button x:Name="set_btn" Click="Set_btn_OnClick"  Background="Transparent" BorderThickness="0">
+                         <md:PackIcon Kind="Settings" Width="25" Height="25">
+                         </md:PackIcon>
+                     </Button>
+                    
+                     <TextBlock Text="Settings" HorizontalAlignment="Center"
+                                Foreground="Snow"
+                                FontSize="30"
+                                Margin="0 0 0 0"
+                     />
+                 </DockPanel>
                 <Button  x:Name="xodim_btn" Click="Xodim_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Xodimlar" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Chek sozlamalar" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Chegirma berish" Width="180" Height="30" Margin="0 20 0 0"/>
@@ -36,16 +45,13 @@
                 <Button  Foreground="Snow" Background="Transparent" Content="Theme" Width="180" Height="30" Margin="0 20 0 0"/>
             </StackPanel>
         </Grid>
-        <Grid Column="1">
+        <Grid Column="1" x:Name="grid_col1">
           <DockPanel Height="Auto" Width="Auto" x:Name="Employee_doc" Visibility="Visible">
-              <local:XodimCrudPage x:Name="EmployeeControl"></local:XodimCrudPage>
+              <local:XodimCrudPage x:Name="employeeControl"></local:XodimCrudPage>
           </DockPanel>
-            <DockPanel x:Name="Create_doc"  Height="Auto" Width="Auto" Visibility="Collapsed" >
-                <local:XodimCreatePage x:Name="CreatePage"></local:XodimCreatePage>
-            </DockPanel>
-           <DockPanel x:Name="Edit_doc" Height="Auto" Width="Auto" Visibility="Hidden" >
-               <local:EmployeeEditPage x:Name="EditPage"></local:EmployeeEditPage>
-           </DockPanel>
+            <Viewbox x:Name="Create_doc"  Height="Auto" Width="Auto" Visibility="Collapsed" >
+                <local:XodimCreatePage x:Name="createPage"></local:XodimCreatePage>
+            </Viewbox>
         </Grid>
     </Grid>
 </UserControl>

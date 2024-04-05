@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:RoboticsPos.UI"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
    <UserControl.Resources>
         <ResourceDictionary Source="/Controls.xaml"/>
-        <!-- Button style ishlmayapdi-->
     </UserControl.Resources>
+    
     <Grid Background="Snow">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -18,30 +19,34 @@
         <Grid Column="0" Background="Blue">
             <StackPanel>
                <Grid>
-                   <!-- <md:PackIcon Kind="ArrowLeft" Foreground="Snow" Margin="8 10 0 0"></md:PackIcon> -->
-                   <Button   FontSize="8" BorderThickness="0" Width="40" HorizontalAlignment="Left" Background="Transparent"/>
+                  <Button Width="45" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0"
+                         x:Name="bixos_btn" Click="Bixos_btn_OnClick">
+                      <md:PackIcon Kind="ArrowLeft"></md:PackIcon>
+                  </Button>
                </Grid>
-                <TextBlock Text="Settings" HorizontalAlignment="Center"
-                           Foreground="Snow"
-                           FontSize="30"
-                           Margin="0 0 0 0"
-                />
-                <Button   Foreground="Snow" Background="Transparent" Content="Productlar ro'yxati" Width="180" Height="30" Margin="0 20 0 0"/>
+               <DockPanel>
+                   <Button HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" >
+                       <md:PackIcon Kind="StoreCog" Width="20" Height="20"></md:PackIcon>
+                   </Button>
+                   <TextBlock Text="Store" HorizontalAlignment="Left"
+                              Foreground="Snow"
+                              FontSize="30"
+                              Margin="0 0 0 0"
+                   />
+               </DockPanel>
+                <Button  x:Name="Prolist_btn" Click="Prolist_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Productlar ro'yxati" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Mahsulot qabul qilish" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Mahsulot qaytarish" Width="180" Height="30" Margin="0 20 0 0"/>
                
             </StackPanel>
         </Grid>
         <Grid Column="1">
-          <DockPanel Height="Auto" Width="Auto" x:Name="Employee_doc" Visibility="Visible">
-              <local:XodimCrudPage x:Name="EmployeeControl"></local:XodimCrudPage>
+          <DockPanel Height="Auto" Width="Auto" x:Name="product_doc" Visibility="Visible">
+              <local:ProductListPage x:Name="product_control"></local:ProductListPage>
           </DockPanel>
-            <DockPanel x:Name="Create_doc"  Height="Auto" Width="Auto" Visibility="Collapsed" >
-                <local:XodimCreatePage x:Name="CreatePage"></local:XodimCreatePage>
-            </DockPanel>
-           <DockPanel x:Name="Edit_doc" Height="Auto" Width="Auto" Visibility="Hidden" >
-               <local:EmployeeEditPage x:Name="EditPage"></local:EmployeeEditPage>
-           </DockPanel>
+            <Viewbox x:Name="ProCreate_doc"  Height="Auto" Width="Auto" Visibility="Collapsed" >
+                <local:ProductCreatePage x:Name="ProCreatePage"></local:ProductCreatePage>
+            </Viewbox>
         </Grid>
     </Grid>
 </UserControl>

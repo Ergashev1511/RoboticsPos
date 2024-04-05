@@ -67,6 +67,14 @@
         <Viewbox x:Name="Shaxsiy_kabinetViewBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Collapsed">
             <pin:ShaxsiyMalumotPage x:Name="shaxsiy_malPage" Width="800" Height="450"></pin:ShaxsiyMalumotPage>
         </Viewbox>
-        
+         <DockPanel Grid.Column="0" Grid.Row="0 " Grid.ColumnSpan="8" Grid.RowSpan="9" x:Name="Store_doc" Visibility="Hidden">
+             <pin:StoreControl x:Name="store_control" Width="Auto" Height="Auto"></pin:StoreControl>
+         </DockPanel>
+        <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" x:Name="ProCreate_View" Visibility="Hidden">
+            <pin:ProductCreatePage x:Name="procreate_page" Width="Auto" Height="Auto"></pin:ProductCreatePage>
+        </Viewbox>
+        <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" x:Name="Prolist_View" Visibility="Hidden">
+            <pin:ProductListPage x:Name="Prolist_page" Width="Auto" Height="Auto"></pin:ProductListPage>
+        </Viewbox>
     </Grid> 
 </Window>

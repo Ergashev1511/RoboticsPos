@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using RoboticsPos.Common.DTOs;
+using RoboticsPos.Services;
 
 namespace RoboticsPos.UI
 {
@@ -9,10 +12,13 @@ namespace RoboticsPos.UI
     {
 
         MainWindow mainWindow { get; set; }
+        private IProductService _productService { get; set; }
 
-
-        public void SetMainWinndow(MainWindow mainWindow)
-        { this.mainWindow = mainWindow; }
+        public void SetMainWinndow(MainWindow mainWindow, IProductService productService)
+        {
+            this.mainWindow = mainWindow;
+            _productService = productService;
+        }
 
 
 
@@ -21,5 +27,18 @@ namespace RoboticsPos.UI
             InitializeComponent();
         }
 
+        private async void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SearchTextBox.Text.Length > 2)
+            {
+                var data = await _productService.GetAllSearchFOrProducts(SearchTextBox.Text);
+                product_datagrid.ItemsSource = data;
+            }
+            else
+            {
+                product_datagrid.ItemsSource = null;
+            }
+        }
+       
     }
 }

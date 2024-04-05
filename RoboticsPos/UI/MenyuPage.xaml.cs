@@ -63,5 +63,11 @@ namespace RoboticsPos.UI
             mainWindow.MenyuViewBox.Visibility = Visibility.Hidden;
             mainWindow.KirishViewBox.Visibility = Visibility.Visible;
         }
+
+        private void Store_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            mainWindow.Store_doc.Visibility = Visibility.Visible;
+            mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
+        }
     }
 }

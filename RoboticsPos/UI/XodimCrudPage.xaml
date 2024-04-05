@@ -24,7 +24,7 @@
                 <Button Style="{DynamicResource RoundButton1}" x:Name="edit_btn" Click="Edit_btn_OnClick" Height="25" Content="Edit" Background="#4D638C" Foreground="White"></Button>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 10 0" Height="25" Width="80">
-                <Button Style="{DynamicResource RoundButton1}" x:Name="delete_btn"  Height="25" Content="Delete" Background="#4D638C" Foreground="White"></Button>
+                <Button Style="{DynamicResource RoundButton1}" x:Name="delete_btn" Click="Delete_btn_OnClick"  Height="25" Content="Delete" Background="#4D638C" Foreground="White"></Button>
             </StackPanel>
         </DockPanel>
         <DockPanel Grid.Column="0" Grid.Row="1">
@@ -44,8 +44,10 @@
                    SelectionMode="Single"
                    AlternationCount="2"
                    HeadersVisibility="Column"
-                   ItemsSource="{Binding res, Mode=TwoWay}" SelectionChanged="users_datagrid_SelectionChanged">
-                <DataGrid.Columns>
+                   MouseDoubleClick="Users_datagrid_OnMouseDoubleClick"
+                   ItemsSource="{Binding res, Mode=TwoWay}"  
+                   SelectionChanged="users_datagrid_SelectionChanged">
+                <DataGrid.Columns >
                     <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="Fullname" Binding="{Binding Fullname}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="UserName" Binding="{Binding Username}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>

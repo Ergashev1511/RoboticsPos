@@ -48,6 +48,8 @@ namespace RoboticsPos
                 services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
                 services.AddScoped<IUserRepository, UserRepository>();
                 services.AddScoped<IUserService, UserService>();
+                services.AddScoped<IProductRepository, ProductRepository>();
+                services.AddScoped<IProductService, ProductService>();
 
                 services.AddScoped<IEmployeeRepository, EmployeeRepository>();
                 services.AddScoped<EmployeeService>();
@@ -59,6 +61,10 @@ namespace RoboticsPos
                 services.AddTransient<MenyuPage>();
                 services.AddTransient<KassaPage>();
                 services.AddTransient<XodimCrudPage>();
+                services.AddTransient<XodimCreatePage>();
+                services.AddTransient<StoreControl>();
+                services.AddTransient<ProductCreatePage>();
+                services.AddTransient<ProductListPage>();
             }
             ).Build();
 

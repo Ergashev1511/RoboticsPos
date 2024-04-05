@@ -24,6 +24,7 @@ namespace RoboticsPos.UI
     {
         MainWindow mainWindow { get; set; }
         private SettingsPage _settingsPage { get; set; }
+        private XodimCreatePage _xodimCreatePage { get; set; }
         private EmployeeService _employeeService { get; set; }
 
         private List<UserDTO> users = new List<UserDTO>();
@@ -32,11 +33,12 @@ namespace RoboticsPos.UI
         private IUserService _userService { get; set; }
          EmployeeDTO selectuserDto { get; set; }
        // private IUserService _userService { get; set; }
-        public async void SetMainWinndow(MainWindow mainWindow, SettingsPage settingsPage, EmployeeService employeeService)
+        public async void SetMainWinndow(MainWindow mainWindow, SettingsPage settingsPage, EmployeeService employeeService,XodimCreatePage xodimCreatePage)
         {
             this.mainWindow = mainWindow;
             _settingsPage = settingsPage;
             _employeeService = employeeService;
+            _xodimCreatePage = xodimCreatePage;
             await GetAllUsers();
         }
 
@@ -65,8 +67,6 @@ namespace RoboticsPos.UI
         private void Button_Create(object sender, RoutedEventArgs e)
         {
             _settingsPage.Employee_doc.Visibility = Visibility.Collapsed;
-           // _settingsPage.CreatePage.SetMainWinndow(mainWindow,_employeeService);
-           
             _settingsPage.Create_doc.Visibility = Visibility.Visible;
             
         }
@@ -75,16 +75,11 @@ namespace RoboticsPos.UI
         {
             if (selectuserDto != null)
             {
-                _settingsPage.Edit_doc.Visibility = Visibility.Collapsed;
+                _settingsPage.createPage.SetMainWinndow(mainWindow,_employeeService,this,_settingsPage);
+                _settingsPage.createPage.SetEmployeeData(selectuserDto.Id);
+                 
                 _settingsPage.Create_doc.Visibility = Visibility.Visible;
-                
-                
-                 XodimCreatePage xodimCreatePage=new XodimCreatePage();
-               //  xodimCreatePage.SetMainWinndow(this,_employeeService);
-                // xodimCreatePage.SetEmployeeData(selectuserDto.Id);
-                 xodimCreatePage.Visibility=Visibility.Visible;
-                  
-
+                _settingsPage.Employee_doc.Visibility = System.Windows.Visibility.Hidden;
             }
             else
             {
@@ -92,20 +87,47 @@ namespace RoboticsPos.UI
             }
         }
 
-
-        public async void SetEmployeeData(long Id)
+        private async void Delete_btn_OnClick(object sender, RoutedEventArgs e)
         {
-            var employee = await _employeeService.GetEmployeeById(Id);
-            if (Id > 0)
+            try
             {
-                /*
-                 firstnametxt=employee.FirstName;
-                 lasnametxt=employee.LastName;
-                 fathernametxt=employee.FatherName;
-                 borndatetxt=employee.BornDate;
-                 
-                 */
+                if(selectuserDto != null)
+                {
+                    
+                    var result = MessageBox.Show("Do you want delete this employee", "WARNING", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        await _employeeService.DeleteEmployee(selectuserDto.Id);
+                        await GetAllUsers();
+                    }
+                   
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Users_datagrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (selectuserDto != null)
+            {
+                
+                _settingsPage.createPage.SetMainWinndow(mainWindow,_employeeService,this,_settingsPage);
+                _settingsPage.createPage.SetEmployeeData(selectuserDto.Id,true);
+                
+                _settingsPage.Create_doc.Visibility = Visibility.Visible;
+                _settingsPage.Employee_doc.Visibility = Visibility.Hidden;
+                
+                _settingsPage.createPage.saqlash_btn.Visibility = Visibility.Collapsed;
+                _settingsPage.createPage.cansel_btn.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("Select any employee!");
+            }
+
         }
     }
 }

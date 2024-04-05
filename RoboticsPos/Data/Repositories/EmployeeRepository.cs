@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RoboticsPos.Data.Enum;
 
 namespace RoboticsPos.Data.Repositories
 {
@@ -18,7 +19,8 @@ namespace RoboticsPos.Data.Repositories
         }
         public async Task<Employee> CreateEmployee(Employee employee)
         {
-            var hasscopy = await context.Employees.AnyAsync(a => !a.IsDeleted && a.User.UserName == employee.User.UserName);
+            // Employee manager bo'lsa shunda tekshiradi chashier uchun tekshirmaydi oK? ok Ui ni to'g'irlab buni ham to'g'irlaymanOK bo'ldimi savol yo'qmiha bo'ldi rahamt  OK
+            var hasscopy = await context.Employees.AnyAsync(a => !a.IsDeleted && (employee.EmployeeRole == EmployeeRole.Manager ? a.User.UserName == employee.User.UserName : false));
 
             if (hasscopy) throw new Exception("Current username already exist!");
 

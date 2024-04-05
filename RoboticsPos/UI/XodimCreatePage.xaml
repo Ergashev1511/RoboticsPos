@@ -10,112 +10,75 @@
         <ResourceDictionary Source="/Controls.xaml"/>
     </UserControl.Resources>
 
-    <Grid Background="Snow">
-        <TabControl HorizontalAlignment="Left">
-            <TabItem  x:Name="ManageriteItem" Width="250" Header="Employee">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2.2*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Column="0">
-                        <StackPanel>
-                            <TextBlock Margin="0 30 0 0" Text="First Name" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="Last Name" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="Father Name" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="UserName" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="Password" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="EnrollNumber" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Column="1" >
-                        <StackPanel>
-                            <TextBox x:Name="firstnametxt" Width="150" Margin="0 25 0 0"/>
-                            <TextBox x:Name="lastnametxt" Width="150" Margin="0 25 0 0"/>
-                            <TextBox x:Name="fathernametxt" Width="150" Margin="0 25 0 0"/>
-                            <TextBox x:Name="usernametxt" Width="150" Margin="0 25 0 0"/>
-                            <TextBox x:Name="passwordtxt" Width="150" Margin="0 25 0 0"/> 
-                            <TextBox x:Name="enrollnumbertxt" Width="150" Margin="0 25 0 0"/>
-                            
-                            <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" Foreground="Snow" FontWeight="DemiBold" Style="{DynamicResource RoundButton}" Width="150" Content="Bekor qilish" Background="Red" FontSize="15" Height="40" Margin="0 30 0 0" />
-                        </StackPanel>
-                    </Grid>
-                    <Grid Column="2">
-                        <StackPanel>
-                            <TextBlock Margin="0 30 0 0" Text="Pin Kod" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="PhoneNumber" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="Address" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="Born Date" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="Hire Date" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                            <TextBlock Margin="0 30 0 0" Text="Job Title" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Column="3">
-                        <StackPanel>
-                            <TextBox x:Name="pinkodtxt" Width="150" Margin="0 25 0 0"/>
-                            <TextBox x:Name="phonenumbertxt" Width="150" Margin="0 25 0 0"/>
-                            <TextBox x:Name="addresstxt" Width="150" Margin="0 25 0 0"/>
-                            <DatePicker x:Name="borndatetxt" Width="150" Margin="0 25 0 0"/>
-                            <DatePicker x:Name="hiredatetxt" Width="150" Margin="0 25 0 0"/>
-                            <ComboBox x:Name="jobtitletxt" Width="150" Margin="0 25 0 0">
-                                <ComboBoxItem  Content="Manager"/>
-                                <ComboBoxItem Content="Cashier"/>
-                            </ComboBox>
-                            <Button x:Name="saqlash_btn" Click="Saqlash_btn_OnClick" Foreground="Snow" FontWeight="DemiBold" Style="{DynamicResource RoundButton}" Width="150" Content="Saqlash" Background="Green" FontSize="15" Height="40" Margin="0 30 0 0"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-            </TabItem>
-            <!-- <TabItem x:Name="CashierItem" Width="250" Header="Cashier" Foreground="Blue"> -->
-            <!--     <Grid> -->
-            <!--         <Grid.ColumnDefinitions> -->
-            <!--             <ColumnDefinition Width="*"/> -->
-            <!--             <ColumnDefinition Width="2.2*"/> -->
-            <!--             <ColumnDefinition Width="*"/> -->
-            <!--             <ColumnDefinition Width="2*"/> -->
-            <!--         </Grid.ColumnDefinitions> -->
-            <!--         <Grid Column="0"> -->
-            <!--             <StackPanel> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="First Name" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="Last Name" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="Father Name" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="Pin Kod" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="EnrollNumber" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!-- -->
-            <!--             </StackPanel> -->
-            <!--         </Grid> -->
-            <!--         <Grid Column="1" > -->
-            <!--             <StackPanel> -->
-            <!--                 <TextBox   Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <TextBox Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <TextBox Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <TextBox Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <TextBox Width="150" Margin="0 25 0 0"/> -->
-            <!-- -->
-            <!--                 <Button Style="{DynamicResource RoundButton}" Width="150" Content="Bekor qilish" Background="Red" FontSize="15" Height="40" Margin="0 60 0 0"/> -->
-            <!--             </StackPanel> -->
-            <!--         </Grid> -->
-            <!--         <Grid Column="2"> -->
-            <!--             <StackPanel> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="PhoneNumber" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="Address" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="Born Date" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--                 <TextBlock Margin="0 30 0 0" Text="Hire Date" Foreground="Blue" FontSize="15" HorizontalAlignment="Right"/> -->
-            <!--             </StackPanel> -->
-            <!--         </Grid> -->
-            <!--         <Grid Column="3"> -->
-            <!--             <StackPanel> -->
-            <!--                 <TextBox Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <TextBox Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <DatePicker Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <DatePicker Width="150" Margin="0 25 0 0"/> -->
-            <!--                 <Button  Style="{DynamicResource RoundButton}" Width="150" Content="Saqlash" Background="Green" FontSize="15" Height="40" Margin="0 110 0 0"/> -->
-            <!--             </StackPanel> -->
-            <!--         </Grid> -->
-            <!--     </Grid> -->
-            <!-- </TabItem> -->
-        </TabControl>
+  <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Column="0">
+            <StackPanel >
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="FirstName" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="firstnametxt" Width="170"  Foreground="Blue" FontSize="15" VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Last Name"  FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="lastnametxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Father Name" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="fathernametxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Username" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="usernametxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Password" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="passwordtxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Pin Kod" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="pinkodtxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Phone Number"  FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="phonenumbertxt" Foreground="Blue" Width="170" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/> 
+                </DockPanel>
+                <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" Foreground="White" Style="{DynamicResource RoundButton}" Background="Red" Content="Bekor qilish" FontSize="15" Width="150" Height="40" Margin="0 50 0 0"/>
+            </StackPanel>
+        </Grid>
+        <Grid Column="1">
+            <StackPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Address" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="addresstxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Job Title"  FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="jobtitletxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="EnrollNumber" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <TextBox x:Name="enrollnumbertxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Born Date" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <DatePicker x:Name="borndatetxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Hire Date" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <DatePicker x:Name="hiredatetxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 "/>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right">
+                    <TextBlock Text="EmployeeRole" FontSize="15" Margin="10 20 0 0" Foreground="Blue"/>
+                    <ComboBox x:Name="employeeroletxt" Width="170" Foreground="Blue" FontSize="15"  VerticalAlignment="Bottom" Margin="10 0 0 0 ">
+                        <ComboBoxItem Content="Cashier" Foreground="Blue"/>
+                        <ComboBoxItem Content="Manager" Foreground="Blue"/>
+                    </ComboBox>
+                </DockPanel>
+               <Button x:Name="saqlash_btn" Foreground="White" Click="Saqlash_btn_OnClick" Style="{DynamicResource RoundButton}" Background="Green" Content="Saqlash" FontSize="15" Width="150" Height="40" Margin="0 90 0 0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

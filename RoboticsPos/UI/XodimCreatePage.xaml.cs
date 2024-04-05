@@ -32,13 +32,15 @@ namespace RoboticsPos.UI
         long employeeId { get; set; } = 0;
 
         private XodimCrudPage _xodimCrudPage { get; set; }
+        private SettingsPage _settingsPage { get; set; }
 
        
-        public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService,XodimCrudPage xodimCrudPage)
+        public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService,XodimCrudPage xodimCrudPage,SettingsPage settingsPage)
         {
             this.mainWindow = mainWindow;
             Service = employeeService;
             _xodimCrudPage = xodimCrudPage;
+            _settingsPage = settingsPage;
         }
 
         public XodimCreatePage()
@@ -47,6 +49,39 @@ namespace RoboticsPos.UI
         }
 
 
+        public async void SetEmployeeData(long Id,bool isView=false)
+        {
+            
+            if (Id > 0)
+            {
+                DisableForm(isView);
+                employeeId = Id;
+                var employee = await Service.GetEmployeeById(Id);
+                if (employee != null)
+                {
+                    // employee details
+                    jobtitletxt.Text = employee.JobTitle;
+                    enrollnumbertxt.Text = employee.EnrollNumber.ToString();
+                    employeeroletxt.SelectedItem=employee.EmployeeRole == Data.Enum.EmployeeRole.Cashier ? employeeroletxt.Items[0] : employeeroletxt.Items[1]; 
+                    
+                    usernametxt.Text = employee.Username;
+                    passwordtxt.Text = employee.password;
+                    pinkodtxt.Text = employee.PIN;
+                    
+                    firstnametxt.Text = employee.Firstname;
+                    lastnametxt.Text = employee.Lastname;
+                    fathernametxt.Text = employee.Fathername;
+                    borndatetxt.SelectedDate = employee.BornDate;
+                    hiredatetxt.SelectedDate = employee.HireDate;
+                    addresstxt.Text = employee.Address;
+                    phonenumbertxt.Text = employee.PhoneNumber;
+                }
+            }
+        }
+        
+        
+        
+        
         private async void Saqlash_btn_OnClick(object sender, RoutedEventArgs e)
         {
            
@@ -55,15 +90,14 @@ namespace RoboticsPos.UI
                     EmployeeDTO newEmployee = new EmployeeDTO()
                     {
                         // employee details
-                        JobTitle = jobtitletxt.SelectedItem.ToString(),
+                        JobTitle = jobtitletxt.Text,
                         EnrollNumber = long.Parse(enrollnumbertxt.Text),
                         HireDate = hiredatetxt.SelectedDate.Value,
-                        //EmployeeRole = employeerole_combo.SelectedValue == "Cashier" ? Data.Enum.EmployeeRole.Cashier : Data.Enum.EmployeeRole.Manager,
-                        EmployeeRole = jobtitletxt.SelectedValue == "Manager" ? Data.Enum.EmployeeRole.Manager : Data.Enum.EmployeeRole.Cashier,
+                        EmployeeRole = employeeroletxt.SelectedValue == employeeroletxt.Items[1] ? Data.Enum.EmployeeRole.Manager : Data.Enum.EmployeeRole.Cashier,
                         // user details
                         
-                        Username = jobtitletxt.SelectedItem.ToString()=="Manager" ? usernametxt.Text : "",
-                        password = jobtitletxt.SelectedItem.ToString()=="Manager" ? passwordtxt.Text: "",
+                        Username = employeeroletxt.SelectedItem==employeeroletxt.Items[1] ? usernametxt.Text : "",  
+                        password = employeeroletxt.SelectedItem==employeeroletxt.Items[1] ? passwordtxt.Text: "",
                         PIN = pinkodtxt.Text,
 
                         // person details
@@ -77,6 +111,7 @@ namespace RoboticsPos.UI
                     };
                     if(employeeId == 0)
                     {
+                        //edit qilmoqchi bo'lsa yana creat ishlayapdi employeeId ni 0 deb olib
                         await Service.CreateEmployee(newEmployee);
                     }
                     else
@@ -85,6 +120,8 @@ namespace RoboticsPos.UI
                     }
                     ClearForm();
                     await _xodimCrudPage.GetAllUsers();
+                    _settingsPage.Employee_doc.Visibility = Visibility.Visible;
+                    _settingsPage.Create_doc.Visibility = Visibility.Collapsed;
                 }
                 catch (Exception ex)
                 {
@@ -97,7 +134,6 @@ namespace RoboticsPos.UI
             jobtitletxt.Text = "";
            enrollnumbertxt.Text = "";
             hiredatetxt.SelectedDate = DateTime.Today;
-           // emplo.SelectedItem = employeerole_combo.Items[0];
 
             usernametxt.Text = "";
             passwordtxt.Text = "";
@@ -107,17 +143,40 @@ namespace RoboticsPos.UI
             lastnametxt.Text = "";
             fathernametxt.Text = "";
             borndatetxt.SelectedDate = DateTime.Today;
-            addresstxt.Text = "";
+         
             phonenumbertxt.Text = "";
             borndatetxt.Text = "";
             addresstxt.Text = "";
             hiredatetxt.Text = "";
 
         }
+        public void DisableForm(bool isReadOnly)
+        {
+            jobtitletxt.IsReadOnly = isReadOnly;
+            enrollnumbertxt.IsReadOnly = isReadOnly;
+            employeeroletxt.IsEnabled = !isReadOnly;
+            
+           firstnametxt.IsEnabled = !isReadOnly; 
+           lastnametxt.IsEnabled = !isReadOnly;
+           fathernametxt.IsEnabled = !isReadOnly;
+           addresstxt.IsEnabled = !isReadOnly;
+           phonenumbertxt.IsEnabled =!isReadOnly;
+           
+            hiredatetxt.IsEnabled = !isReadOnly;
+            borndatetxt.IsEnabled = !isReadOnly;
+            usernametxt.IsReadOnly = isReadOnly;
+            passwordtxt.IsEnabled = !isReadOnly;
+            pinkodtxt.IsEnabled = !isReadOnly;
+            saqlash_btn.Visibility = isReadOnly ? Visibility.Hidden : Visibility.Visible;
+
+        }
+
 
         private void Cansel_btn_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            _settingsPage.Create_doc.Visibility = Visibility.Collapsed;
+            _settingsPage.Employee_doc.Visibility = Visibility.Visible;
         }
+      
     }
 }

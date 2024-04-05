@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="RoboticsPos.UI.ProductCreatePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RoboticsPos.UI"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Controls.xaml"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Column="0">
+            <StackPanel HorizontalAlignment="Right">
+                <TextBlock HorizontalAlignment="Right" Text="Name"              FontSize="20" Margin="0 15 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Bar Code"          FontSize="20" Margin="0 15 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Amount In Package" FontSize="20" Margin="5 10 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Amount"            FontSize="20" Margin="0 15 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="ActualPrice"       FontSize="20" Margin="0 15 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Price"             FontSize="20" Margin="0 15 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Price Of Piese"    FontSize="20" Margin="0 15 0  0 "></TextBlock>
+            
+            </StackPanel>
+        </Grid>
+        <Grid Column="1">
+            <StackPanel>
+                <TextBox x:Name="nametxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="barcodetxt" Margin="10 16 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="amountinpacakgetxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="amounttxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="actualpricetxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="pricetxt" Margin="10 18 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="priceofpiesetxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <DockPanel>
+                    <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" Width="150" Height="40" Margin="0 50  0 0" Style="{DynamicResource RoundButton}" Content="Bekor qilish" Background="Red" Foreground="White" FontSize="17"/>
+                    <Button x:Name="saqlash_btn"  Click="Saqlash_btn_OnClick"  Width="150" Height="40" Margin="0 50  0 0" Style="{DynamicResource RoundButton}" Content="Saqlash" Foreground="White" Background="Green" FontSize="17"/>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

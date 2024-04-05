@@ -36,7 +36,7 @@ public class ProductRepository  : IProductRepository
       return product;
    }
 
-   public async  Task DeleteProduct(int Id)
+   public async  Task DeleteProduct(long Id)
    {
       var product =await _context.Products.FirstOrDefaultAsync(a =>!a.IsDeleted && a.Id == Id);
       if (product == null) throw new Exception("");
@@ -55,7 +55,7 @@ public class ProductRepository  : IProductRepository
       return product;
    }
 
-   public async Task<Product> GetByIdProduct(int Id)
+   public async Task<Product> GetByIdProduct(long Id)
    {
       return await _context.Products.FirstOrDefaultAsync(a => !a.IsDeleted && a.Id == Id);
    }
@@ -78,8 +78,8 @@ public interface IProductRepository
 {
    public Task<List<Product>>  GetAllProducts();
    public Task<Product> CreateProduct(Product product);
-   public Task DeleteProduct(int Id);
+   public Task DeleteProduct(long Id);
    public Task<Product> UpdateProduct(Product product);
-   public Task<Product> GetByIdProduct(int Id);
+   public Task<Product> GetByIdProduct(long Id);
    public Task<List<ProductSearchDTO>> ProductByName(string Name);
 }

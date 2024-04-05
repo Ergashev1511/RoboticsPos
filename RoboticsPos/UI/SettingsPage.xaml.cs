@@ -24,14 +24,16 @@ namespace RoboticsPos.UI
         MainWindow mainWindow { get; set; }
         private EmployeeService _employeeService { get; set; }
         private XodimCrudPage _xodimCrudPage { get; set; }
-        public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService, XodimCrudPage xodimCrudPage)
+        private XodimCreatePage _xodimCreatePage { get; set; }
+        public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService, XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage
+        )
         {
             this.mainWindow = mainWindow;
             _employeeService = employeeService;
             _xodimCrudPage = xodimCrudPage;
-            
-            EmployeeControl.SetMainWinndow(mainWindow,this,  _employeeService);
-            CreatePage.SetMainWinndow(mainWindow,employeeService,_xodimCrudPage);
+            _xodimCreatePage = xodimCreatePage;  
+            employeeControl.SetMainWinndow(mainWindow,this,  _employeeService,xodimCreatePage);
+            createPage.SetMainWinndow(mainWindow,employeeService,_xodimCrudPage,this);
 
         }
 
@@ -61,8 +63,26 @@ namespace RoboticsPos.UI
         private void Xodim_btn_OnClick(object sender, RoutedEventArgs e)
         {
             Employee_doc.Visibility = Visibility.Visible;
-            EmployeeControl.SetMainWinndow(mainWindow,this,  _employeeService);
+            employeeControl.SetMainWinndow(mainWindow,this,  _employeeService,_xodimCreatePage);
             Create_doc.Visibility = Visibility.Hidden;
+        }
+
+        private void Back_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
+            mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
+        }
+
+        private void Set_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (grid_Settings.ColumnDefinitions.First().MaxWidth == 200)
+            {
+                grid_Settings.ColumnDefinitions.First().MaxWidth = 50;
+            }
+            else if(grid_Settings.ColumnDefinitions.First().MaxWidth==50)
+            {
+                grid_Settings.ColumnDefinitions.First().MaxWidth = 200;
+            }
         }
     }
 }

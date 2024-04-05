@@ -16,7 +16,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="2.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -152,7 +152,8 @@
             FontSize="15"
             Width="210"
             Height="67"
-            Margin="0 20 0 0">
+            Margin="0 20 0 0"
+            x:Name="store_btn" Click=" Store_btn_OnClick">
                     <DockPanel>
                         <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\omborxona.png" Width="40" Height="40" Margin="0 0 20 0"/>
                         <TextBlock Text="Omborxona" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center" Margin="0 0 0 0"/>
