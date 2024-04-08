@@ -32,7 +32,7 @@ namespace RoboticsPos.UI
 
         private IUserService _userService { get; set; }
          EmployeeDTO selectuserDto { get; set; }
-       // private IUserService _userService { get; set; }
+     
         public async void SetMainWinndow(MainWindow mainWindow, SettingsPage settingsPage, EmployeeService employeeService,XodimCreatePage xodimCreatePage)
         {
             this.mainWindow = mainWindow;

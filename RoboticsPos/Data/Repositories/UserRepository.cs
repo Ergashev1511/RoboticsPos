@@ -25,13 +25,13 @@ namespace RoboticsPos.Data.Repositories
 
         public async Task<User> LoginByPini(string Pin)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(p => p.PIN == Pin);
+            var user = await _context.Users.FirstOrDefaultAsync(p =>!p.IsDeleted && p.PIN == Pin );
             return user ;         
         }
 
         public async Task<User> LogoutByUsername(string username, string password)
         {
-            var users = await _context.Users.FirstOrDefaultAsync(a => a.UserName == username && a.Password == password);
+            var users = await _context.Users.FirstOrDefaultAsync(a=>!a.IsDeleted &&  a.UserName == username && a.Password == password);
             return users;
         }
     }

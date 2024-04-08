@@ -43,6 +43,7 @@ namespace RoboticsPos.UI
         {
             if (mainWindow.MenyuViewBox.Visibility == Visibility.Visible)
             {
+                
             }
         }
 

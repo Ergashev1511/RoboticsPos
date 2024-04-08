@@ -30,19 +30,17 @@
                            Width="250"
                            Height="40">
                         <DockPanel>
-                            <TextBox
-                            BorderThickness="0"
-                            Margin="5 3 0 0"
-                            x:Name="SearchTextBox"
-                            TextChanged="SearchTextBox_OnTextChanged"
-                            
-                            Foreground="Blue"
-                            FontSize="15"
-                          Width="200"
-                            Height="30"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                        />
+                           <ComboBox 
+                               Visibility="Visible"
+                               x:Name="searchcombo"
+                               IsTextSearchEnabled="False"
+                               Tag="Id"
+                               IsEditable="True"
+                               SelectionChanged="Searchcombo_OnSelectionChanged"
+                               KeyUp="Searchcombo_OnKeyUp"
+                               BorderThickness="0">
+                               
+                           </ComboBox>
                            
                         </DockPanel>
                     </Border>
@@ -82,9 +80,12 @@
                          Margin="5 20 0 0">
                         <DataGrid.Columns>
                             <DataGridTextColumn  Header="№" Binding="{Binding Id}"  Width="Auto" />
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="Auto"/>
-                            <DataGridTextColumn Header="BarCode" Binding="{Binding BarCode}" Width="Auto"/>
-                            
+                            <DataGridTextColumn Header="Shtrix kod" Binding="{Binding BarCode}" Width="Auto"/>
+                            <DataGridTextColumn Header="Nomi" Binding="{Binding Name}" Width="Auto"/>
+                            <DataGridTextColumn Header="Narxi" Binding="{Binding Price}" Width="Auto"/>
+                            <DataGridTextColumn Header="Soni" Binding="{Binding Quantity}" Width="Auto"/>
+                            <DataGridTextColumn Header="Chegirma %" Binding="{Binding Discount}" Width="100"/>
+                            <DataGridTextColumn Header="Summa" Binding="{Binding TotalPrice}" Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <!-- <Grid Width="530" Height="90" Margin="0 10 0 0"> -->
@@ -116,7 +117,7 @@
             </Grid>
             <Grid Column="1">
                 <WrapPanel>
-                    <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
+                    <Button x:Name="tahrir_btn" Click="Tahrir_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
                             <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\pencil.png"/>
                             <TextBlock HorizontalAlignment="Center" Text="Tahrirlash" FontSize="10" Foreground="DodgerBlue"/>
@@ -130,7 +131,7 @@
                             <TextBlock HorizontalAlignment="Center" Text="(F2)" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
-                    <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
+                    <Button x:Name="exit_btn1" Click="exit_btn1_OnClick"  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
                             <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\icons8-logout-100.png"/>
                             <WrapPanel Width="50">
@@ -139,7 +140,7 @@
                             </WrapPanel>
                         </StackPanel>
                     </Button>
-                    <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
+                    <Button x:Name="add_btn" Click="Add_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
                             <Image Margin="0 10 0 0" Width="30" Height="30" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\plus.jpg"/>
                         </StackPanel>
@@ -157,7 +158,7 @@
                             <TextBlock HorizontalAlignment="Center" Text="kartasi (F5)" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
-                    <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
+                    <Button  x:Name="remove_btn" Click="Remove_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
                             <Image Margin="0 10 0 0" Width="30" Height="30" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\minus.jpg"/>
                         </StackPanel>
@@ -177,7 +178,7 @@
                     <Border BorderBrush="Blue" BorderThickness="2" CornerRadius="10"  Width="250" Height="40" Margin="5 5 0 0">
                         <DockPanel VerticalAlignment="Center" >
                             <TextBlock Margin="5 0 0 0" Text="Barchasi:" Foreground="Blue" VerticalAlignment="Center" FontSize="15"/>
-                            <TextBlock Text="15 0000" HorizontalAlignment="Center" Foreground="Blue" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18"/>
+                            <TextBlock x:Name="summatxt" HorizontalAlignment="Center" Foreground="Blue" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18"/>
                             <TextBlock FontWeight="DemiBold" Margin="0 0 5 0" Text="UZS" Foreground="Blue" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Right"/>
                         </DockPanel>
                     </Border>

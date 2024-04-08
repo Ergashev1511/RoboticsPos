@@ -26,6 +26,7 @@ public partial class StoreControl : UserControl
 
     private void Prolist_btn_OnClick(object sender, RoutedEventArgs e)
     {
+        _productCreatePage.ClearForm();
         product_doc.Visibility = Visibility.Visible;
         product_control.SetVariablies(_mainWindow,this,_productCreatePage,_productService);
         ProCreate_doc.Visibility = Visibility.Collapsed;

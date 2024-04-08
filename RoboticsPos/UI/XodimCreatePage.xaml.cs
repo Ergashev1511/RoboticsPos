@@ -111,7 +111,7 @@ namespace RoboticsPos.UI
                     };
                     if(employeeId == 0)
                     {
-                        //edit qilmoqchi bo'lsa yana creat ishlayapdi employeeId ni 0 deb olib
+                        ClearForm();
                         await Service.CreateEmployee(newEmployee);
                     }
                     else
@@ -174,6 +174,7 @@ namespace RoboticsPos.UI
 
         private void Cansel_btn_OnClick(object sender, RoutedEventArgs e)
         {
+            ClearForm();
             _settingsPage.Create_doc.Visibility = Visibility.Collapsed;
             _settingsPage.Employee_doc.Visibility = Visibility.Visible;
         }

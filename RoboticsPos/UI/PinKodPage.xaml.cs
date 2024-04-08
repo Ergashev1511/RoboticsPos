@@ -56,6 +56,7 @@ namespace RoboticsPos.UI
                     {
                         mainWindow.PinKodViewBox.Visibility = Visibility.Collapsed;
                         mainWindow.KassaViewBox.Visibility = Visibility.Visible;
+                        passwordbox.Password = "";
                     }
                     else
                     {

@@ -85,6 +85,7 @@ public partial class ProductCreatePage : UserControl
 
     private void Cansel_btn_OnClick(object sender, RoutedEventArgs e)
     {
+        ClearForm();
         _storeControl.ProCreate_doc.Visibility = Visibility.Collapsed;
         _storeControl.product_doc.Visibility = Visibility.Visible;
     }

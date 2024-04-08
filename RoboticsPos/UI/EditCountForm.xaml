@@ -1,0 +1,38 @@
+﻿<Window x:Class="RoboticsPos.UI.EditCountForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:RoboticsPos.UI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        Title="EditCountForm" Height="300" Width="400">
+    <Window.Resources>
+        <ResourceDictionary Source="/Controls.xaml"/>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Background="Black">
+            <TextBlock Text="Tahrirlash" Foreground="Snow" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Margin="0 10 0 0">
+            <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" Style="{DynamicResource RoundButton}" Width="30" Height="30" HorizontalAlignment="Right" Background="Blue" Content="X" Foreground="Snow" 
+                    FontSize="25" Margin="0 0 10 0" Padding="0 0 0 2" BorderThickness="0"/>
+            <DockPanel HorizontalAlignment="Center">
+                <Label Content="Umumiy soni: " Foreground="Blue" FontSize="18" FontWeight="DemiBold" />
+                <Label x:Name="label_umumiysoni"  Foreground="Blue"   FontSize="18" FontWeight="DemiBold"  />
+            </DockPanel>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Margin="0 20 0 0" Text="Mahsulot soni..."
+                       HorizontalAlignment="Center" Foreground="Blue" FontSize="20"
+            />
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="7" Width="225" Height="50" Margin="0 10 25 0">
+                <TextBox x:Name="amount_txt" TextChanged="Amount_txt_OnTextChanged" FontSize="15" Padding="0 10 0 0" HorizontalAlignment="Center" BorderThickness="0"  Width="220" Height="45"
+                />
+            </Border>
+        </StackPanel>
+        <Button x:Name="tahrirlash_btn" Click="Tahrirlash_btn_OnClick" Background="Blue" Content="Tahrirlash" Foreground="Snow" FontSize="18" Style="{DynamicResource RoundButton1}" Width="150" Height="40" Margin="0 30 0 0"/>
+    </StackPanel>
+</Window>

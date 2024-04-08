@@ -67,12 +67,19 @@ public partial class ProductListPage : UserControl
 
     private void Edit_btn_OnClick(object sender, RoutedEventArgs e)
     { 
-        _storeControl.ProCreatePage.SetProductData(_productDto.Id,false);
+       
         if (_productDto != null)
         {
+            _storeControl.ProCreatePage.SetProductData(_productDto.Id);
             _storeControl.ProCreatePage.SetVariablies(_mainWindow,_storeControl,this,_productService);
+          
+            
             _storeControl.ProCreate_doc.Visibility = Visibility.Visible;
             _storeControl.product_doc.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            MessageBox.Show("Selact any product!");
         }
     }
 
