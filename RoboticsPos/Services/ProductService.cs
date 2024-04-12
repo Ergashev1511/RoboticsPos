@@ -49,7 +49,7 @@ public class ProductService : IProductService
         if (productDto == null) throw new Exception("Product is null!");
         Product products = new Product()
         {
-            Id = productDto.Id,
+         
             Name = productDto.Name,
             BarCode = productDto.BarCode,
             AmountInPackage = productDto.AmountInPackage,

@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="RoboticsPos.UI.CheckForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RoboticsPos.UI"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Controls.xaml"/>
+    </UserControl.Resources>
+   
+    <Grid Background="#ffffff">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 10 0" Height="25" Width="80">
+                <Button x:Name="btn_Creaate"  Click="Button_Create" Style="{DynamicResource RoundButton1}"  Height="25" Content="Create" Background="#4D638C" Foreground="White"></Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 10 0" Height="25" Width="80">
+                <Button Style="{DynamicResource RoundButton1}" x:Name="edit_btn" Click="Edit_btn_OnClick" Height="25" Content="Edit" Background="#4D638C" Foreground="White"></Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 10 0" Height="25" Width="80">
+                <Button Style="{DynamicResource RoundButton1}" x:Name="delete_btn" Click="Delete_btn_OnClick"  Height="25" Content="Delete" Background="#4D638C" Foreground="White"></Button>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Grid.Column="0" Grid.Row="1">
+            <DataGrid x:Name="checks_datagrid"
+                   AutoGenerateColumns="False"
+                   Width="Auto"
+                   GridLinesVisibility="Horizontal"
+                   CanUserAddRows="False"
+                   CanUserDeleteRows="False"
+                   IsReadOnly="True"
+                   CanUserReorderColumns="False"
+                   CanUserResizeColumns="False"
+                   CanUserResizeRows="False"
+                   Background="#ffffff"
+                   Margin="10"
+                   BorderThickness="1"
+                   SelectionMode="Single"
+                   AlternationCount="2"
+                   HeadersVisibility="Column"
+                   MouseDoubleClick="Users_datagrid_OnMouseDoubleClick"
+                   ItemsSource="{Binding res, Mode=TwoWay}"  
+                   SelectionChanged="users_datagrid_SelectionChanged">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Header" Binding="{Binding Header}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Footer" Binding="{Binding Footer}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tara" Binding="{Binding Tara}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Printer" Binding="{Binding Printer}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TIN" Binding="{Binding TIN}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+    
+</UserControl>

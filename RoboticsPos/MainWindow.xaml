@@ -31,9 +31,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel x:Name="KirishViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Visible">
+        <Viewbox x:Name="KirishViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Visible">
             <pin:KirishPage x:Name="Kirishpage" Width="Auto" Height="Auto"></pin:KirishPage>
-        </DockPanel>
+        </Viewbox>
         
         <Viewbox x:Name="LoginViewbox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Hidden">
             <pin:LoginPage x:Name="loginpage" Width="800" Height="450"></pin:LoginPage>

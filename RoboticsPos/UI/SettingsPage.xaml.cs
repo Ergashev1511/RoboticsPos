@@ -25,13 +25,18 @@ namespace RoboticsPos.UI
         private EmployeeService _employeeService { get; set; }
         private XodimCrudPage _xodimCrudPage { get; set; }
         private XodimCreatePage _xodimCreatePage { get; set; }
-        public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService, XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage
+        private CheckCreatePage _checkCreate { get; set; }
+        private CheckForm _checkForm { get; set; }
+        public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService, XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
+            CheckCreatePage checkCreatePage,CheckForm checkForm
         )
         {
             this.mainWindow = mainWindow;
             _employeeService = employeeService;
             _xodimCrudPage = xodimCrudPage;
-            _xodimCreatePage = xodimCreatePage;  
+            _xodimCreatePage = xodimCreatePage;
+            _checkCreate = checkCreatePage;
+            _checkForm = checkForm;
             employeeControl.SetMainWinndow(mainWindow,this,  _employeeService,xodimCreatePage);
             createPage.SetMainWinndow(mainWindow,employeeService,_xodimCrudPage,this);
 
@@ -65,6 +70,8 @@ namespace RoboticsPos.UI
             Employee_doc.Visibility = Visibility.Visible;
             employeeControl.SetMainWinndow(mainWindow,this,  _employeeService,_xodimCreatePage);
             Create_doc.Visibility = Visibility.Hidden;
+            check_doc.Visibility = Visibility.Collapsed;
+            check_creat.Visibility = Visibility.Collapsed;
         }
 
         private void Back_btn_OnClick(object sender, RoutedEventArgs e)
@@ -83,6 +90,18 @@ namespace RoboticsPos.UI
             {
                 grid_Settings.ColumnDefinitions.First().MaxWidth = 200;
             }
+        }
+
+        private void Discount_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            Employee_doc.Visibility = Visibility.Collapsed;
+            chekspage.SetValues(mainWindow,this,_checkCreate);
+            check_doc.Visibility = Visibility.Visible;
+        }
+
+        private void Client_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

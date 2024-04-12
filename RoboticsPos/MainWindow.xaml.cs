@@ -30,11 +30,12 @@ namespace RoboticsPos
         
         private ProductCreatePage _productCreatePage { get; set; }
         private ProductListPage _productListPage{get; set; }
-       
-     
+        private CheckForm _checkForm { get; set; }
+        private CheckCreatePage _checkCreate { get; set; }
         public MainWindow(IUserService userService,IRepository<User> userRepository,AppDbContext context,
             EmployeeService employeeService,XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
-            ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService)
+            ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService,
+            CheckForm checkForm,CheckCreatePage checkCreate)
         {
             this.userService = userService;
             this.userRepository = userRepository;
@@ -45,7 +46,8 @@ namespace RoboticsPos
             _xodimCreatePage = xodimCreatePage;
             _productCreatePage = productCreatePage;
             _productListPage = productListPage;
-            
+            _checkForm = checkForm;
+            _checkCreate = checkCreate;
             
             InitializeComponent();
             
@@ -61,7 +63,7 @@ namespace RoboticsPos
             
             
             
-            settingspage.SetMainWinndow(this,_employeeService,_xodimCrudPage,xodimCreatePage);
+            settingspage.SetMainWinndow(this,_employeeService,_xodimCrudPage,xodimCreatePage,checkCreate,checkForm);
             _xodimCreatePage.SetMainWinndow(this,_employeeService,_xodimCrudPage,settingspage);
             _xodimCrudPage.SetMainWinndow(this,settingspage,_employeeService,_xodimCreatePage);
             

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RoboticsPos.Variablies;
 
 namespace RoboticsPos.UI
 {
@@ -63,12 +64,24 @@ namespace RoboticsPos.UI
         {
             mainWindow.MenyuViewBox.Visibility = Visibility.Hidden;
             mainWindow.KirishViewBox.Visibility = Visibility.Visible;
+            ClearForm();
         }
 
         private void Store_btn_OnClick(object sender, RoutedEventArgs e)
         {
             mainWindow.Store_doc.Visibility = Visibility.Visible;
             mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
+        }
+
+        private void Usernametxt_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            usernametxt.Text = StaticVariablies.CurrentUsername;
+        }
+
+        public void ClearForm()
+        {
+            usernametxt.Text = "";
+            txtId.Text = "";
         }
     }
 }

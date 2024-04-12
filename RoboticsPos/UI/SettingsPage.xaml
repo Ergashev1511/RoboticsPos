@@ -9,7 +9,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary Source="/Controls.xaml"/>
-        <!-- Button style ishlmayapdi-->
     </UserControl.Resources>
     
     <Grid Background="Snow" x:Name="grid_Settings">
@@ -37,9 +36,9 @@
                      />
                  </DockPanel>
                 <Button  x:Name="xodim_btn" Click="Xodim_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Xodimlar" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button  Foreground="Snow" Background="Transparent" Content="Chek sozlamalar" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button x:Name="discount_btn" Click="Discount_btn_OnClick"  Foreground="Snow" Background="Transparent" Content="Chek sozlamalar" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Chegirma berish" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button  Foreground="Snow" Background="Transparent" Content="Mijozlar" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button x:Name="client_btn" Click="Client_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Mijozlar" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Kassa" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Til" Width="180" Height="30" Margin="0 20 0 0"/>
                 <Button  Foreground="Snow" Background="Transparent" Content="Theme" Width="180" Height="30" Margin="0 20 0 0"/>
@@ -51,6 +50,20 @@
           </DockPanel>
             <Viewbox x:Name="Create_doc"  Height="Auto" Width="Auto" Visibility="Collapsed" >
                 <local:XodimCreatePage x:Name="createPage"></local:XodimCreatePage>
+            </Viewbox>
+            
+            <DockPanel Height="Auto" Width="Auto" x:Name="client_doc" Visibility="Hidden">
+                <local:ClientForm x:Name="clientpage"></local:ClientForm>
+            </DockPanel>
+            <Viewbox x:Name="client_creat" Height="Auto" Width="Auto" Visibility="Hidden">
+                <local:ClientCreatePagae x:Name="client_createPage"></local:ClientCreatePagae>
+            </Viewbox>
+            
+            <DockPanel Height="Auto" Width="Auto" x:Name="check_doc" Visibility="Hidden">
+                <local:CheckForm x:Name="chekspage"></local:CheckForm>
+            </DockPanel>
+            <Viewbox x:Name="check_creat" Height="Auto" Width="Auto" Visibility="Hidden">
+                <local:CheckCreatePage x:Name="checks_createPage"></local:CheckCreatePage>
             </Viewbox>
         </Grid>
     </Grid>

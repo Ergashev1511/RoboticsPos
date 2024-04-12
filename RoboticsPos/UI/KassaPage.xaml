@@ -16,7 +16,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Row="0">
-            <TextBlock Text="Kassa" HorizontalAlignment="Center" Foreground="Black" FontSize="15" VerticalAlignment="Center"/>
+            <TextBlock Text="Kassa" HorizontalAlignment="Center" Foreground="Black" FontWeight="Heavy" FontSize="15" VerticalAlignment="Center"/>
         </Grid>
         <Grid Row="1">
             <Grid.ColumnDefinitions>
@@ -39,9 +39,7 @@
                                SelectionChanged="Searchcombo_OnSelectionChanged"
                                KeyUp="Searchcombo_OnKeyUp"
                                BorderThickness="0">
-                               
                            </ComboBox>
-                           
                         </DockPanel>
                     </Border>
                     <TextBlock Text="Client:"
@@ -54,7 +52,7 @@
                         <Button Content="Page2" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 10 0 0"/>
                         <Button Content="Page3" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 10 0 0"/>
                         <Button Content="Page4" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 10 0 0"/>
-                       <!--Bitta Buttonga  dizayn berdim ishlatib ko'rish kerak ishlasa qolgan Buttonlarga ham shu dizaynnni beramiz -->
+                        
                         <Button Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 10 0 0">
                             <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center"> 
                                 <TextBlock VerticalAlignment="Center" Text="Page 5"/>
@@ -62,6 +60,7 @@
                             </DockPanel>
                         </Button>
                     </DockPanel>
+                    
                     <DataGrid
                         x:Name="product_datagrid"
                         AutoGenerateColumns="False"
@@ -88,18 +87,6 @@
                             <DataGridTextColumn Header="Summa" Binding="{Binding TotalPrice}" Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <!-- <Grid Width="530" Height="90" Margin="0 10 0 0"> -->
-                    <!--     <Grid.ColumnDefinitions> -->
-                    <!--         <ColumnDefinition Width="30"/> -->
-                    <!--         <ColumnDefinition Width="*"/> -->
-                    <!--         <ColumnDefinition Width="30"/> -->
-                    <!--     </Grid.ColumnDefinitions> -->
-                    <!--     <Grid Grid.Column="0"> -->
-                    <!--         <Button Background="Snow" BorderThickness="0"> -->
-                    <!--             <Image Margin="0 0 0 0" Width="30" Height="25"  Source="Images/icons8-less-than-100.png"/> -->
-                    <!--         </Button> -->
-                    <!--     </Grid> -->
-                    <!-- </Grid> -->
 
                     <WrapPanel Height="100">
                         <Button  Content="Tag1" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 5 0 0"/>
@@ -115,25 +102,27 @@
                     </WrapPanel>
                 </StackPanel>
             </Grid>
+            
+            
             <Grid Column="1">
                 <WrapPanel>
                     <Button x:Name="tahrir_btn" Click="Tahrir_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\pencil.png"/>
+                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\pencil.png"/>
                             <TextBlock HorizontalAlignment="Center" Text="Tahrirlash" FontSize="10" Foreground="DodgerBlue"/>
                             <TextBlock HorizontalAlignment="Center" Text="(F10)" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
                     <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\icons8-tags-50.png"/>
+                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\icons8-tags-50.png"/>
                             <TextBlock Text="Kategoriyalar" FontSize="10" Foreground="DodgerBlue"/>
                             <TextBlock HorizontalAlignment="Center" Text="(F2)" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
                     <Button x:Name="exit_btn1" Click="exit_btn1_OnClick"  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\icons8-logout-100.png"/>
+                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\icons8-logout-100.png"/>
                             <WrapPanel Width="50">
                                 <TextBlock Text="Tizimdan " FontSize="10" Foreground="DodgerBlue"/>
                                 <TextBlock Text="chiqish (F3)" FontSize="10" Foreground="DodgerBlue"/>
@@ -142,36 +131,36 @@
                     </Button>
                     <Button x:Name="add_btn" Click="Add_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="30" Height="30" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\plus.jpg"/>
+                            <Image Margin="0 10 0 0" Width="30" Height="30" Source="D:\RoboticsPos\RoboticsPos\Images\plus.jpg"/>
                         </StackPanel>
                     </Button>
                     <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\customer-2.png"/>
+                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\customer-2.png"/>
                             <TextBlock Text="Mijozlar (F4)" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
                     <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\credit-card.png"/>
+                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\credit-card.png"/>
                             <TextBlock HorizontalAlignment="Center" Text="Mijozlar" FontSize="10" Foreground="DodgerBlue"/>
                             <TextBlock HorizontalAlignment="Center" Text="kartasi (F5)" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
                     <Button  x:Name="remove_btn" Click="Remove_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="30" Height="30" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\minus.jpg"/>
+                            <Image Margin="0 10 0 0" Width="30" Height="30" Source="D:\RoboticsPos\RoboticsPos\Images\minus.jpg"/>
                         </StackPanel>
                     </Button>
                     <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\back.png"/>
+                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\back.png"/>
                             <TextBlock Text="Qaytarish (F6)" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
-                    <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
+                    <Button x:Name="chegirma_btn" Click="Chegirma_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\discount.png"/>
+                            <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\discount.png"/>
                             <TextBlock Text="Chegirma F7" FontSize="10" Foreground="DodgerBlue"/>
                         </StackPanel>
                     </Button>
@@ -191,7 +180,7 @@
                     </Border>
                     <Button Background="Transparent" Style="{DynamicResource RoundButton}" Width="250" Height="40" Margin="5 5 0 0">
                         <DockPanel HorizontalAlignment="Center">
-                            <Image Width="30" Height="30" Margin="0 0 40 0" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\credit-card-3.png"/>
+                            <Image Width="30" Height="30" Margin="0 0 40 0" Source="D:\RoboticsPos\RoboticsPos\Images\credit-card-3.png"/>
                             <TextBlock Text="To'lovni tanlash (F10)" Foreground="Blue" FontSize="15" VerticalAlignment="Center" Margin="0 0 20 0"/>
                         </DockPanel>
                     </Button>

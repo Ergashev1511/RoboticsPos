@@ -52,7 +52,7 @@
                     <Button Click="Button_number"  Height="50" Width="60" Content="9" FontSize="20" Background="Transparent" BorderThickness="0" Foreground="DarkBlue"/>
                     <Button Click="Button_Back" Height="50" Width="60" Content="←" FontSize="20" Background="Transparent" BorderThickness="0" Foreground="DarkBlue"/>
                     <Button Click="Button_number"  Height="50" Width="60" Content="0" FontSize="20" Background="Transparent" BorderThickness="0" Foreground="DarkBlue"/>
-                    <Button Click="Button_Cansel" Height="50" Width="60" HorizontalAlignment="Left" Content="Cansel" FontSize="12" Background="Transparent" BorderThickness="0" Foreground="DarkBlue"/>
+                    <Button Click="Button_Cansel" Height="50" Width="60"  Content="Cansel" FontSize="10"   Background="Transparent" BorderThickness="0" Foreground="DarkBlue"/>
                 </WrapPanel>
             </Grid>
         </Grid>

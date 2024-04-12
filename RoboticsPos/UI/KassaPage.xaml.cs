@@ -42,18 +42,7 @@ namespace RoboticsPos.UI
             summatxt.Text = productsCash.Sum(a => a.TotalPrice).ToString();
         }
 
-        // private async void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
-        // {
-        //     if (SearchTextBox.Text.Length > 2)
-        //     {
-        //         var data = await _productService.GetAllSearchFOrProducts(SearchTextBox.Text);
-        //         product_datagrid.ItemsSource = data;
-        //     }
-        //     else
-        //     {
-        //         product_datagrid.ItemsSource = null;
-        //     }
-        // }
+     
 
         private async void Searchcombo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -181,7 +170,21 @@ namespace RoboticsPos.UI
             searchcombo.ItemsSource= null;
             summatxt.Text = string.Empty;
          //   final_sum_lbl.Content =string.Empty;
-        } 
-        
+        }
+
+        private void Chegirma_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            var product = product_datagrid.SelectedItem as ProductForKassaDTO;
+            if (product != null)
+            {
+                 ChegirmaPage chegirmaPage = new ChegirmaPage();
+                 chegirmaPage.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Kechirasiz savdo qilmadiz!");
+            }
+           
+        }
     }
 }

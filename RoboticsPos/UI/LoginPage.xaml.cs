@@ -40,6 +40,8 @@ public partial class LoginPage : UserControl
                 {
                     _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
                     _mainWindow.LoginViewbox.Visibility = Visibility.Hidden;
+                    txtlogin.Text = "";
+                    txtPassword.Password = "";
                 }
                 else
                 {

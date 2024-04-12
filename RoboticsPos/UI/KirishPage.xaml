@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="/Controls.xaml"/>
     </UserControl.Resources>
-    <StackPanel Background="Snow">
+    <StackPanel>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -17,9 +17,9 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Grid Row="0" Background="#303030">
+            <Grid Row="0" >
                 <Label Content="Kirish"
-               Foreground="Snow"
+                       FontWeight="Heavy"
                FontSize="25"
                HorizontalAlignment="Center"
                />
@@ -48,7 +48,7 @@
                     Height="100"
                     Width="100"
                     Margin="0 0 0 20">
-                    <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\robo.jpg" Stretch="Fill"/>
+                    <Image Source="D:\RoboticsPos\RoboticsPos\Images\robo.jpg" Stretch="Fill"/>
                 </StackPanel>
             </Grid>
             <Grid Row="3">

@@ -65,6 +65,9 @@ namespace RoboticsPos
                 services.AddTransient<StoreControl>();
                 services.AddTransient<ProductCreatePage>();
                 services.AddTransient<ProductListPage>();
+                services.AddTransient<CheckForm>();
+                services.AddTransient<CheckCreatePage>();
+
             }
             ).Build();
 

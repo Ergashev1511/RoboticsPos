@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="/Controls.xaml"/>
     </UserControl.Resources>
-    <Grid Background="Snow">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.2*"/>
             <ColumnDefinition Width="*"/>
@@ -28,7 +28,7 @@
                        Margin="10 10  0 0"
                        Foreground="DodgerBlue"
                        />
-                    <TextBlock  x:Name="usernametxt"
+                    <TextBlock MouseDown="Usernametxt_OnMouseDown" x:Name="usernametxt"
                        FontSize="15"
                        Foreground="DodgerBlue"
                        Margin="10 10  0 0"
@@ -61,7 +61,7 @@
             Height="250">
                     <StackPanel>
                         <!--  <md:PackIcon Kind="CartVariant" Width="150" Height="150" /> -->
-                        <Image Width="150" Height="150" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\kassa.png"/>
+                        <Image Width="150" Height="150" Source="D:\RoboticsPos\RoboticsPos\Images\kassa.png"/>
                         <TextBlock Text="Kassa" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
@@ -78,7 +78,7 @@
           Height="67"
           Margin="0 0 10 0">
                     <DockPanel>
-                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\refresh.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <Image Source="D:\RoboticsPos\RoboticsPos\Images\refresh.png" Width="40" Height="40" Margin="0 0 20 0"/>
                         <TextBlock Text="Yangilash" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center"/>
                     </DockPanel>
                 </Button>
@@ -94,7 +94,7 @@
                 FontSize="15"
                 Height="67">
                     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Image Margin="0 0 20 0" Width="40" Height="40" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\person.png"/>
+                        <Image Margin="0 0 20 0" Width="40" Height="40" Source="D:\RoboticsPos\RoboticsPos\Images\person.png"/>
                         <StackPanel>
                             <TextBlock Margin="20 0 0 0" Foreground="Snow" FontWeight="DemiBold" FontSize="16" Text="Shaxsiy"/>
                             <TextBlock Margin="20 0 0 0" Foreground="Snow" FontWeight="DemiBold" FontSize="16" Text="Ma'lumotlar"/>
@@ -110,7 +110,7 @@
                 Height="67"
                 Margin="0 20 0 0">
                     <DockPanel>
-                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\qaytuv.png" Margin="0 0 20 0" Width="40" Height="40"/>
+                        <Image Source="D:\RoboticsPos\RoboticsPos\Images\qaytuv.png" Margin="0 0 20 0" Width="40" Height="40"/>
                         <TextBlock Text="Qaytarish" Foreground="Snow" FontWeight="DemiBold" FontSize="18" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </DockPanel>
                 </Button>
@@ -125,7 +125,7 @@
              Click="Button_Sozlama"
             >
                     <DockPanel>
-                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\sozlama.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <Image Source="D:\RoboticsPos\RoboticsPos\Images\sozlama.png" Width="40" Height="40" Margin="0 0 20 0"/>
                         <TextBlock Text="Sozlamalar" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center"/>
                     </DockPanel>
                 </Button>
@@ -141,7 +141,7 @@
                 Height="67" 
                 >
                     <DockPanel>
-                        <Image Width="40" Height="40" Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\hisobot.png" Margin="0 0 20 0"/>
+                        <Image Width="40" Height="40" Source="D:\RoboticsPos\RoboticsPos\Images\hisobot.png" Margin="0 0 20 0"/>
                         <TextBlock Text="Hisobot" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </DockPanel>
                 </Button>
@@ -155,7 +155,7 @@
             Margin="0 20 0 0"
             x:Name="store_btn" Click=" Store_btn_OnClick">
                     <DockPanel>
-                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\omborxona.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <Image Source="D:\RoboticsPos\RoboticsPos\Images\omborxona.png" Width="40" Height="40" Margin="0 0 20 0"/>
                         <TextBlock Text="Omborxona" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center" Margin="0 0 0 0"/>
                     </DockPanel>
                 </Button>
@@ -168,7 +168,7 @@
             Height="67"
             Margin="0 20 0 0">
                     <DockPanel>
-                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\help.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <Image Source="D:\RoboticsPos\RoboticsPos\Images\help.png" Width="40" Height="40" Margin="0 0 20 0"/>
                         <TextBlock Text="Yo'riqnoma" Foreground="Snow" FontWeight="DemiBold" FontSize="18" VerticalAlignment="Center"/>
                     </DockPanel>
                 </Button>
@@ -185,7 +185,7 @@
             Height="67"
             Margin="0 0 0 0">
                     <DockPanel>
-                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\x_icon.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <Image Source="D:\RoboticsPos\RoboticsPos\Images\x_icon.png" Width="40" Height="40" Margin="0 0 20 0"/>
                         <TextBlock Text="Reports" Foreground="Snow" FontWeight="DemiBold" FontSize="18" VerticalAlignment="Center"/>
                     </DockPanel>
                 </Button>
@@ -201,7 +201,7 @@
             Width="210"
             Height="67">
                     <DockPanel>
-                        <Image Source="C:\Users\Shahobiddin Salimov\Desktop\C#  Projects\RoboticsPos\RoboticsPos\Images\z_icon.png" Width="40" Height="40" Margin="0 0 20 0"/>
+                        <Image Source="D:\RoboticsPos\RoboticsPos\Images\z_icon.png" Width="40" Height="40" Margin="0 0 20 0"/>
                         <TextBlock Text="Reports" Foreground="Snow" FontSize="18" FontWeight="DemiBold" VerticalAlignment="Center" />
                     </DockPanel>
                 </Button>
