@@ -4,7 +4,7 @@ namespace RoboticsPos.Common.DTOs;
  
 public class ClientDTO : BaseDTO
 {
-  // public long PersonId { get; set; }
+     public long PersonId { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string FathersName { get; set; }

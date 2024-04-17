@@ -28,7 +28,7 @@
             </StackPanel>
         </DockPanel>
           <DockPanel Grid.Column="0" Grid.Row="1">
-              <DataGrid x:Name="users_datagrid"
+              <DataGrid x:Name="client_datagrid"
                         AutoGenerateColumns="False"
                         Width="Auto"
                         GridLinesVisibility="Horizontal"

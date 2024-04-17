@@ -28,7 +28,7 @@
                        Margin="10 10  0 0"
                        Foreground="DodgerBlue"
                        />
-                    <TextBlock MouseDown="Usernametxt_OnMouseDown" x:Name="usernametxt"
+                    <TextBlock x:Name="usernametxt"
                        FontSize="15"
                        Foreground="DodgerBlue"
                        Margin="10 10  0 0"

@@ -12,8 +12,7 @@ public class CheckPrinterService : ICheckPrinterService
     {
         _repository = repository;
     }
-    
-    
+
     public async Task<CheckPrinterDataDTO> Create(CheckPrinterDataDTO checkPrinterDataDto)
     {
         if (checkPrinterDataDto == null) throw new Exception("CheckPrinter is null");
@@ -28,7 +27,6 @@ public class CheckPrinterService : ICheckPrinterService
         await _repository.CreateCheckprinter(checkPrintingData);
         return checkPrinterDataDto;
     }
-    
 
     public async Task<CheckPrinterDataDTO> Update(long Id, CheckPrinterDataDTO checkPrinterDataDto)
     {
@@ -76,6 +74,7 @@ public class CheckPrinterService : ICheckPrinterService
         {
             var checkprint = checkprinter.Select(a => new CheckPrinterDataDTO()
             {
+                Id = a.Id,
                 Header = a.Header,
                 Footer = a.Footer,
                 Tara = a.Tara,

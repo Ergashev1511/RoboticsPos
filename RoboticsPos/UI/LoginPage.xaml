@@ -9,7 +9,7 @@
    <UserControl.Resources>
       <ResourceDictionary Source="/Controls.xaml"/>
   </UserControl.Resources>
-    <Grid Background="Snow">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="2*"/>
@@ -52,18 +52,20 @@
                                FontSize="25"
                                Margin="0 20 0 0"
                                />
-                    <TextBox x:Name="txtlogin" FontSize="20" Padding="0 3 0 0" Foreground="Blue" Margin="10 20 0 0" 
-                             BorderThickness="0"
-                             Width="200" Height="40"/>
+                    <Border CornerRadius="8" Width="200" Height="40" Margin="10 20 0 0" BorderBrush="Blue" BorderThickness="1">
+                        <TextBox x:Name="txtlogin" FontSize="20" Padding="5 3 0 0" Foreground="Blue"  
+                               BorderThickness="0" /></Border>
                 </DockPanel>
                 <DockPanel HorizontalAlignment="Center">
                     <TextBlock Text="Parol:" Foreground="Blue"
                                FontSize="25"
                                Margin="0 20 0 0"
                     />
-                    <PasswordBox x:Name="txtPassword" FontSize="20" Padding="0 3 0 0" Foreground="Blue" Margin="10 20 0 0" 
-                             BorderThickness="0"
-                             Width="200" Height="40"/>
+                   <Border  Width="200" Height="40"  Margin="10 20 0 0"  CornerRadius="8" BorderBrush="Blue " BorderThickness="1">
+                       <PasswordBox x:Name="txtPassword" FontSize="20" Padding="5 3 0 0" Foreground="Blue" 
+                                    BorderThickness="0"
+                                    Width="200" Height="40"/>
+                   </Border>
                 </DockPanel>
                <DockPanel HorizontalAlignment="Center">
                    <Button 

@@ -48,23 +48,25 @@ public class ClientService : IClientService
 
     public async Task<List<ClientDTO>> GetAll()
     {
-        var clientAll = await _repository.GetAllClient();
-        if (clientAll.Any())
+        var clients = await _repository.GetAllClient();
+        if (clients.Any())
         {
-            var client = clientAll.Select(a => new ClientDTO()
+            var client = clients.Select(p => new ClientDTO()
             {
-                FirstName = a.Person.FirstName,
-                LastName = a.Person.LastName,
-                FathersName = a.Person.FathersName,
-                BornDate = a.Person.BornDate,
-                PhoneNumber = a.Person.PhoneNumber,
-                Address = a.Person.Address
-
+                Id = p.Id,
+                PersonId = p.PersonId,
+                FirstName = p.Person.FirstName,
+                LastName = p.Person.LastName,
+                FathersName = p.Person.FathersName,
+                PhoneNumber = p.Person.PhoneNumber,
+                Address = p.Person.Address,
+                BornDate = p.Person.BornDate
             }).ToList();
             return client;
         }
 
         return new List<ClientDTO>();
+
     }
 
     public async Task Delete(long Id)

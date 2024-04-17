@@ -48,7 +48,7 @@
                    ItemsSource="{Binding res, Mode=TwoWay}"  
                    SelectionChanged="users_datagrid_SelectionChanged">
                 <DataGrid.Columns >
-                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="Header" Binding="{Binding Header}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="Footer" Binding="{Binding Footer}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="Tara" Binding="{Binding Tara}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>

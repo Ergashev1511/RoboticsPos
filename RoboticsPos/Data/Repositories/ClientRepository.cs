@@ -17,6 +17,7 @@ public class ClientRepository : IClientRepository
         var hascopy = await _context.Clients.AnyAsync(a => !a.IsDeleted);
         if (hascopy == null) throw new Exception("Current Client already exist!");
         await _context.Clients.AddAsync(client);
+         await _context.SaveChangesAsync();
         return client;
     }
 
@@ -29,7 +30,7 @@ public class ClientRepository : IClientRepository
 
     public async Task<List<Client>> GetAllClient()
     {
-        return await _context.Clients.Where(a => !a.IsDeleted).ToListAsync();
+        return await _context.Clients.Where(a => !a.IsDeleted).Include(s=>s.Person).ToListAsync();
     }
 
     public async Task DeleteClient(Client client)

@@ -7,7 +7,7 @@
         xmlns:pin="clr-namespace:RoboticsPos.UI"
         mc:Ignorable="d"
       
-        Title="MainWindow" Height="450" Width="800">
+        Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -64,9 +64,9 @@
             <pin:XodimCreatePage x:Name="xodimcreatepage" Width="600" Height="450"></pin:XodimCreatePage>
         </Viewbox>
          
-        <Viewbox x:Name="Shaxsiy_kabinetViewBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Collapsed">
-            <pin:ShaxsiyMalumotPage x:Name="shaxsiy_malPage" Width="800" Height="450"></pin:ShaxsiyMalumotPage>
-        </Viewbox>
+        <DockPanel x:Name="Shaxsiy_kabinetViewBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Collapsed">
+            <pin:ShaxsiyMalumotPage x:Name="shaxsiy_malPage" Width="Auto" Height="Auto"></pin:ShaxsiyMalumotPage>
+        </DockPanel>
          <DockPanel Grid.Column="0" Grid.Row="0 " Grid.ColumnSpan="8" Grid.RowSpan="9" x:Name="Store_doc" Visibility="Hidden">
              <pin:StoreControl x:Name="store_control" Width="Auto" Height="Auto"></pin:StoreControl>
          </DockPanel>

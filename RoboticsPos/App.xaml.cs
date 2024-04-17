@@ -46,13 +46,22 @@ namespace RoboticsPos
                 services.AddDbContext<AppDbContext>();
                 services.AddTransient<MainWindow>();
                 services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+                
                 services.AddScoped<IUserRepository, UserRepository>();
                 services.AddScoped<IUserService, UserService>();
+                
                 services.AddScoped<IProductRepository, ProductRepository>();
                 services.AddScoped<IProductService, ProductService>();
+                
+                services.AddScoped<ICheckPrinterRepository, CheckPrinterRepository>();
+                services.AddScoped<ICheckPrinterService, CheckPrinterService>();
+              
+                services.AddScoped<IClientRepository, ClientRepository>();
+                services.AddScoped<IClientService, ClientService>();
 
                 services.AddScoped<IEmployeeRepository, EmployeeRepository>();
                 services.AddScoped<EmployeeService>();
+                
                 services.AddAutoMapper(typeof(IMapper));
                 services.AddTransient<MainWindow>();
                 services.AddTransient<KirishPage>();
@@ -67,6 +76,8 @@ namespace RoboticsPos
                 services.AddTransient<ProductListPage>();
                 services.AddTransient<CheckForm>();
                 services.AddTransient<CheckCreatePage>();
+                services.AddTransient<ClientForm>();
+                services.AddTransient<ClientCreatePagae>();
 
             }
             ).Build();

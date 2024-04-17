@@ -7,6 +7,7 @@ namespace RoboticsPos.UI;
 
 public partial class ChegirmaPage : Window
 {
+    private decimal lastsumma;
     private KassaPage _kassaPage { get; set; }
   
     public void SetValue(KassaPage kassaPage)
@@ -20,28 +21,27 @@ public partial class ChegirmaPage : Window
         InitializeComponent();
     }
 
-    private void Chegback_btn_OnClick(object sender, RoutedEventArgs e)
+    public void Chegback_btn_OnClick(object sender, RoutedEventArgs e)
     {
         this.Close();
     }
 
-    // private void Chegnatijasum_txt_OnTextChanged(object sender, TextChangedEventArgs e)
-    // {
-    //     decimal a = decimal.Parse(chegirmasum_txt.Text);
-    //     decimal b = decimal.Parse(chegirmafoiz_txt.Text);
-    //     chegnatijasum_txt.Text = (a + (a / 100) * b).ToString();
-    // }
+    public void SetSumma(decimal totalsum)
+    {
+        chegirmasum_txt.Text = totalsum.ToString();
+    }
 
-
-
-
-    private void Chegnatijasum_txt_OnMouseUp(object sender, MouseButtonEventArgs e)
+    private void Chegirmafoiz_txt_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         decimal a = decimal.Parse(chegirmasum_txt.Text);
         decimal b = decimal.Parse(chegirmafoiz_txt.Text);
-        chegnatijasum_txt.Text = (a + (a / 100) * b).ToString();
+        lastsumma = a - (a / 100) * b;
+        chegnatijasum_txt.Text = lastsumma.ToString(); 
     }
 
-
-   
+    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+        _kassaPage.SetSum(lastsumma);
+    }
 }

@@ -21,25 +21,37 @@ namespace RoboticsPos.UI
     /// </summary>
     public partial class SettingsPage : UserControl
     {
-        MainWindow mainWindow { get; set; }
+        MainWindow _mainWindow { get; set; }
         private EmployeeService _employeeService { get; set; }
         private XodimCrudPage _xodimCrudPage { get; set; }
         private XodimCreatePage _xodimCreatePage { get; set; }
         private CheckCreatePage _checkCreate { get; set; }
         private CheckForm _checkForm { get; set; }
+        private ClientForm _clientForm { get; set; }
+        private ClientCreatePagae _clientCreatePagae { get; set; }
+        private ICheckPrinterService _service { get; set; }
+        private IClientService _clientService { get; set; }
         public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService, XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
-            CheckCreatePage checkCreatePage,CheckForm checkForm
+            CheckCreatePage checkCreatePage,CheckForm checkForm,ICheckPrinterService service,ClientForm clientForm,ClientCreatePagae clientCreatePagae,
+            IClientService clientService
         )
         {
-            this.mainWindow = mainWindow;
+            _mainWindow = mainWindow;
             _employeeService = employeeService;
+            _service = service;
             _xodimCrudPage = xodimCrudPage;
             _xodimCreatePage = xodimCreatePage;
             _checkCreate = checkCreatePage;
             _checkForm = checkForm;
+            _clientForm = clientForm;
+            _clientCreatePagae = clientCreatePagae;
+            _clientService = clientService;
             employeeControl.SetMainWinndow(mainWindow,this,  _employeeService,xodimCreatePage);
             createPage.SetMainWinndow(mainWindow,employeeService,_xodimCrudPage,this);
-
+            checks_createPage.SetValues(mainWindow,this,checkForm,_service);
+            chekspage.SetValues(mainWindow,this,checkCreatePage,_service);
+            clientpage.SetValues(mainWindow,this,clientCreatePagae,clientService);
+            client_createPage.SetValues(mainWindow,this,clientForm,clientService);
         }
 
         public SettingsPage()
@@ -59,8 +71,8 @@ namespace RoboticsPos.UI
 
         private void ButtonBase_OnClick1(object sender, RoutedEventArgs e)
         {
-            mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
-            mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
+            _mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
+            _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
         }
 
 
@@ -68,16 +80,18 @@ namespace RoboticsPos.UI
         private void Xodim_btn_OnClick(object sender, RoutedEventArgs e)
         {
             Employee_doc.Visibility = Visibility.Visible;
-            employeeControl.SetMainWinndow(mainWindow,this,  _employeeService,_xodimCreatePage);
+            employeeControl.SetMainWinndow(_mainWindow,this,  _employeeService,_xodimCreatePage);
             Create_doc.Visibility = Visibility.Hidden;
             check_doc.Visibility = Visibility.Collapsed;
             check_creat.Visibility = Visibility.Collapsed;
+            client_doc.Visibility = Visibility.Hidden;
+            client_creat.Visibility = Visibility.Hidden;
         }
 
         private void Back_btn_OnClick(object sender, RoutedEventArgs e)
         {
-            mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
-            mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
+           _mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
+            _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
         }
 
         private void Set_btn_OnClick(object sender, RoutedEventArgs e)
@@ -95,13 +109,24 @@ namespace RoboticsPos.UI
         private void Discount_btn_OnClick(object sender, RoutedEventArgs e)
         {
             Employee_doc.Visibility = Visibility.Collapsed;
-            chekspage.SetValues(mainWindow,this,_checkCreate);
+            chekspage.SetValues(_mainWindow,this,_checkCreate,_service);
             check_doc.Visibility = Visibility.Visible;
+            client_doc.Visibility = Visibility.Hidden;
+            client_creat.Visibility = Visibility.Hidden;
+            check_creat.Visibility = Visibility.Collapsed;
+            Create_doc.Visibility = Visibility.Hidden;
         }
 
         private void Client_btn_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            client_doc.Visibility = Visibility.Visible;
+            client_creat.Visibility = Visibility.Hidden;
+            clientpage.SetValues(_mainWindow,this,_clientCreatePagae,_clientService);
+            
+            Employee_doc.Visibility = Visibility.Hidden;
+            Create_doc.Visibility = Visibility.Hidden;
+            check_doc.Visibility = Visibility.Collapsed;
+            check_creat.Visibility = Visibility.Collapsed;
         }
     }
 }

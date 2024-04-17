@@ -129,10 +129,9 @@
                             </WrapPanel>
                         </StackPanel>
                     </Button>
+                    
                     <Button x:Name="add_btn" Click="Add_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
-                        <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="30" Height="30" Source="D:\RoboticsPos\RoboticsPos\Images\plus.jpg"/>
-                        </StackPanel>
+                            <md:PackIcon Kind="Plus" Width="40" Height="40" Foreground="Blue"></md:PackIcon>
                     </Button>
                     <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
@@ -148,9 +147,7 @@
                         </StackPanel>
                     </Button>
                     <Button  x:Name="remove_btn" Click="Remove_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
-                        <StackPanel Width="60" Height="60">
-                            <Image Margin="0 10 0 0" Width="30" Height="30" Source="D:\RoboticsPos\RoboticsPos\Images\minus.jpg"/>
-                        </StackPanel>
+                        <md:PackIcon Kind="Minus" Width="40" Height="40" Foreground="Blue"></md:PackIcon>
                     </Button>
                     <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
@@ -174,7 +171,7 @@
                     <Border BorderBrush="Blue" BorderThickness="2" CornerRadius="10"  Width="250" Height="40" Margin="5 5 5 0">
                         <DockPanel VerticalAlignment="Center" >
                             <TextBlock Margin="5 0 0 0" Text="Chegirma b-n:" Foreground="Blue" VerticalAlignment="Center" FontSize="15"/>
-                            <TextBlock Text="5 000" HorizontalAlignment="Center" Foreground="Blue" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18"/>
+                            <TextBlock  x:Name="chegirmabn_txt" HorizontalAlignment="Center" Foreground="Blue" VerticalAlignment="Center" Margin="20 0 0 0" FontSize="18"/>
                             <TextBlock FontWeight="DemiBold" Margin="0 0 5 0" Text="UZS" Foreground="Blue" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Right"/>
                         </DockPanel>
                     </Border>

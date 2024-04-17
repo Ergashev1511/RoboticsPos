@@ -73,15 +73,16 @@ namespace RoboticsPos.UI
             mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
         }
 
-        private void Usernametxt_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            usernametxt.Text = StaticVariablies.CurrentUsername;
-        }
-
+       
         public void ClearForm()
         {
             usernametxt.Text = "";
             txtId.Text = "";
         }
+
+        // private void MenyuPage_OnLoaded(object sender, RoutedEventArgs e)
+        // {
+        //     usernametxt.Text = StaticVariablies.CurrentUsername;
+        // }
     }
 }

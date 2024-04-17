@@ -13,8 +13,8 @@
     
     <Grid Background="Snow">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid Column="0" Background="Blue">
             <StackPanel>

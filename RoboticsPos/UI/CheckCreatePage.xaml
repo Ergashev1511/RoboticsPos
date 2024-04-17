@@ -13,7 +13,7 @@
        <DockPanel HorizontalAlignment="Center" >
            <TextBlock Text="Header" Width="50" Margin="20 55 30 0" FontSize="15"/>
            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="7" Width="280" Height="40" Margin="0 50 25 0">
-               <TextBox   FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
+               <TextBox x:Name="headertxt"  FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
                />
            </Border>
        </DockPanel>
@@ -21,7 +21,7 @@
        <DockPanel  HorizontalAlignment="Center" >
            <TextBlock Text="Footer" Width="50" Margin="20 35 30 0" FontSize="15"/>
            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="7" Width="280" Height="40" Margin="0 30 25 0">
-               <TextBox FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
+               <TextBox x:Name="footertxt" FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
                />
            </Border>
        </DockPanel>
@@ -29,7 +29,7 @@
        <DockPanel   HorizontalAlignment="Center">
            <TextBlock Text="Tara" Width="50" Margin="20 35 30 0" FontSize="15"/>
            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="7" Width="280" Height="40" Margin="0 30 25 0">
-               <TextBox FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
+               <TextBox x:Name="taratxt" FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
                />
            </Border>
        </DockPanel>
@@ -37,25 +37,25 @@
        <DockPanel  HorizontalAlignment="Center" >
            <TextBlock Text="Printer" Width="50" Margin="20 35 30 0" FontSize="15"/>
            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="7" Width="280" Height="40" Margin="0 30 25 0">
-               <TextBox FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
+               <TextBox x:Name="printertxt" FontSize="17" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
                />
            </Border>
        </DockPanel>
         
        <DockPanel  HorizontalAlignment="Center">
-           <TextBlock Text="INN" Width="50" Margin="20 35 30 0" FontSize="17"/>
+           <TextBlock Text="Tin" Width="50" Margin="20 35 30 0" FontSize="17"/>
            <!--bu yerda border ichiga textbox ni size kichikroq qilib berdim -->
            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="7" Width="280" Height="40" Margin="0 30 25 0">
-               <TextBox FontSize="15" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
+               <TextBox x:Name="tintxt" FontSize="15" Padding="0 5 0 0" BorderThickness="0"  Width="270" Height="35"
                />
            </Border>
        </DockPanel>
        <DockPanel HorizontalAlignment="Center">
-           <Button Height=" 40" Width="120" Margin="0 20 30 0" Background="Red" Content="Bekor qilish"
+           <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" Height=" 40" Width="120" Margin="0 20 30 0" Background="Red" Content="Bekor qilish"
                    FontSize="20"
                    Style="{DynamicResource RoundButton}"
                    Foreground="White"/>
-           <Button Height=" 40" Width="120" Margin="30 20 0 0" Background="Green" Content="Saqlash"
+           <Button x:Name="save_btn" Click="Save_btn_OnClick" Height=" 40" Width="120" Margin="30 20 0 0" Background="Green" Content="Saqlash"
                    FontSize="20"
                    Style="{DynamicResource RoundButton}"
                    Foreground="White"/>

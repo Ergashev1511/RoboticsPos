@@ -24,5 +24,11 @@ namespace RoboticsPos.Data.Models
         public int Price { get; set; }
         public int PriceOfPiece { get; set; }
         public bool Selected { get; set; }
+        
+        public virtual List<ProductDiscount> ProductDiscounts { get; set; }
+        public virtual List<Discount> Discounts { get; set; }
+        
+        public long ProductCategoryId { get; set; }
+        public ProductCategory ProductCategory { get; set; }
     }
 }

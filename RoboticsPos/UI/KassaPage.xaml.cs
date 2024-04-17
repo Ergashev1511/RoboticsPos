@@ -174,10 +174,12 @@ namespace RoboticsPos.UI
 
         private void Chegirma_btn_OnClick(object sender, RoutedEventArgs e)
         {
-            var product = product_datagrid.SelectedItem as ProductForKassaDTO;
-            if (product != null)
+          
+            if (productsCash.Any())
             {
+                
                  ChegirmaPage chegirmaPage = new ChegirmaPage();
+                 chegirmaPage.SetSumma(productsCash.Sum(a=>a.TotalPrice));
                  chegirmaPage.ShowDialog();
             }
             else
@@ -185,6 +187,11 @@ namespace RoboticsPos.UI
                 MessageBox.Show("Kechirasiz savdo qilmadiz!");
             }
            
+        }
+
+        public void SetSum(decimal sum)
+        {
+            chegirmabn_txt.Text = sum.ToString();
         }
     }
 }
