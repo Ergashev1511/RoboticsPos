@@ -83,17 +83,18 @@ public partial class CheckCreatePage : UserControl
     private void Cansel_btn_OnClick(object sender, RoutedEventArgs e)
     {
         ClearForm();
+        Disable(false);
         _settingsPage.check_creat.Visibility = Visibility.Collapsed;
         _settingsPage.check_doc.Visibility = Visibility.Visible;
     }
 
     public void Disable(bool IsView)
     {
-        headertxt.IsEnabled = !IsEnabled;
-        footertxt.IsEnabled = !IsEnabled;
-        taratxt.IsEnabled =!IsEnabled;
-        tintxt.IsEnabled = !IsEnabled;
-        printertxt.IsEnabled = !IsEnabled;
+        headertxt.IsReadOnly = IsView;
+        footertxt.IsReadOnly = IsView;
+        taratxt.IsReadOnly =IsView;
+        tintxt.IsReadOnly = IsView;
+        printertxt.IsReadOnly = IsView;
     }
 
     public void ClearForm()

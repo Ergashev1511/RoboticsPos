@@ -16,9 +16,11 @@
                 <Button Style="{DynamicResource RoundButton}" Foreground="White" Width="150" HorizontalAlignment="Left" Margin="10 10 0 0" Background="Blue" Content="Chiqish" FontSize="15"/>
                 <Border CornerRadius="15" Width="300" Height="30" BorderBrush="Blue" BorderThickness="1" HorizontalAlignment="Right" Margin="0 10 30 0">
                     <DockPanel>
-                        <TextBox Text="Assalom"  BorderThickness="0"  Padding="15 0 0 0" VerticalAlignment="Center" FontSize="13">
+                        <TextBox md:HintAssist.Hint="search"  BorderThickness="0"  Padding="15 0 0 0" VerticalAlignment="Center" FontSize="13">
                             <!-- Materila designdan HintAssist metodini ishlatish kerak-->
+                            
                         </TextBox>
+                        
                         <md:PackIcon Width="20" Height="20" Kind="Search" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 15 0"></md:PackIcon>
                     </DockPanel>
                 </Border>

@@ -11,24 +11,28 @@ namespace RoboticsPos.Data.Models
     {
         public string Name { get; set; }
 
-        public long? DiscountId { get; set; }
-        public virtual Discount Discount { get; set; }
-        
-        //Bugun qo'shilgan model
+       
         
         public string BarCode { get; set; }
         public int  AmountInPackage { get; set; }
-        public int CompanyId { get; set; }
         public int Amount { get; set; }
         public int ActualPrice { get; set; }
         public int Price { get; set; }
         public int PriceOfPiece { get; set; }
         public bool Selected { get; set; }
         
-        //public virtual List<ProductDiscount> ProductDiscounts { get; set; }
-       // public virtual List<Discount> Discounts { get; set; }
         
-       // public long ProductCategoryId { get; set; }
-      //  public ProductCategory ProductCategory { get; set; }
+         public long? DiscountId { get; set; }
+         public virtual Discount? Discount { get; set; }
+                 
+         
+        public long? CompanyId { get; set; }
+        public virtual Company? Companys { get; set; }
+        
+       
+        
+        public long? CategoryId { get; set; }
+        public virtual ProductCategory? Category { get; set; }
+        
     }
 }

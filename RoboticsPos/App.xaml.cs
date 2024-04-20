@@ -78,6 +78,7 @@ namespace RoboticsPos
                 services.AddTransient<CheckCreatePage>();
                 services.AddTransient<ClientForm>();
                 services.AddTransient<ClientCreatePagae>();
+                services.AddTransient<ChegirmaPage>();
 
             }
             ).Build();

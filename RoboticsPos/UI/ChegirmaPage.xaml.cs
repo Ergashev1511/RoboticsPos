@@ -7,13 +7,17 @@ namespace RoboticsPos.UI;
 
 public partial class ChegirmaPage : Window
 {
-    private decimal lastsumma;
+   
+    public decimal result { get; set; }  // c
+    public decimal summa { get; set; }//a
+    public decimal percent { get; set; }//b
     private KassaPage _kassaPage { get; set; }
   
-    public void SetValue(KassaPage kassaPage)
+    public void SetValues(KassaPage kassaPage,string Summa)
     {
         _kassaPage = kassaPage;
-        
+        chegirmasum_txt.Text = Summa;
+        summa = decimal.Parse(Summa);
     }
     
     public ChegirmaPage()
@@ -31,17 +35,38 @@ public partial class ChegirmaPage : Window
         chegirmasum_txt.Text = totalsum.ToString();
     }
 
-    private void Chegirmafoiz_txt_OnTextChanged(object sender, TextChangedEventArgs e)
-    {
-        decimal a = decimal.Parse(chegirmasum_txt.Text);
-        decimal b = decimal.Parse(chegirmafoiz_txt.Text);
-        lastsumma = a - (a / 100) * b;
-        chegnatijasum_txt.Text = lastsumma.ToString(); 
-    }
-
+  
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-        this.Close();
-        _kassaPage.SetSum(lastsumma);
+        if(result < summa)
+        {
+             _kassaPage.SetSum(result);
+            chegirmafoiz_txt.Text = chegirmasum_txt.Text = chegnatijasum_txt.Text = string.Empty;
+            this.Close();
+        }
+        else
+        {
+            MessageBox.Show("Ortiqcha summa kiritildi");
+        }
+    }
+
+   
+
+    private void ChegirmaPage_OnKeyUp(object sender, KeyEventArgs e)
+    {
+        if (chegirmafoiz_txt.Text.Length > 0 && chegirmafoiz_txt.IsFocused)
+        {
+            summa = decimal.Parse(chegirmasum_txt.Text);
+            percent = decimal.Parse(chegirmafoiz_txt.Text);
+            result = Math.Round(summa - (summa / 100) * percent,3);
+            chegnatijasum_txt.Text = result.ToString(); 
+        }
+        if (chegnatijasum_txt.Text.Length > 0 && chegnatijasum_txt.IsFocused )
+        {
+            result = decimal.Parse(chegnatijasum_txt.Text);
+            summa = decimal.Parse(chegirmasum_txt.Text);
+            percent = Math.Round(((percent - summa) / percent) * 100,3);
+            chegirmafoiz_txt.Text=percent.ToString();
+        }
     }
 }

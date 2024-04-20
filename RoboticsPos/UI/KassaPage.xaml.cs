@@ -19,7 +19,6 @@ namespace RoboticsPos.UI
         private List<ProductSearchDTO> Products = new List<ProductSearchDTO>();
         private List<ProductForKassaDTO> productsCash = new List<ProductForKassaDTO>();
         private ProductForKassaDTO selectedkassaForKassaDto { get; set; }
-
         public void SetMainWinndow(MainWindow mainWindow, IProductService productService)
         {
             this.mainWindow = mainWindow;
@@ -55,11 +54,12 @@ namespace RoboticsPos.UI
                    AddProduct(selectedProduct.Id);
                 }
             }
+           
         }
 
         private async void AddProduct(long productId)
         {
-            var product = await _productService.GetProductById(selectedProduct.Id);
+            var product = await _productService.GetProductById(productId);
                    
             if (product.Amount > 1)
             {
@@ -102,9 +102,10 @@ namespace RoboticsPos.UI
                     Products = await _productService.GetAllSearchFOrProducts(searchcombo.Text);
                     searchcombo.ItemsSource = Products.Select(a => a.Name);
                 }
-                else
+                else if(searchcombo.Text.Length==0)
                 {
                     searchcombo.ItemsSource = null;
+                    searchcombo.Items.Refresh();
                 }
             
            
@@ -124,6 +125,10 @@ namespace RoboticsPos.UI
             if (product != null)
             {
                 AddProduct(product.Id);
+            }
+            else
+            {
+                MessageBox.Show("Kechirasiz mahsulot tanlanmadi!");
             }
         }
 
@@ -169,7 +174,7 @@ namespace RoboticsPos.UI
             product_datagrid.ItemsSource = null;
             searchcombo.ItemsSource= null;
             summatxt.Text = string.Empty;
-         //   final_sum_lbl.Content =string.Empty;
+            chegirmabn_txt.Text =string.Empty;
         }
 
         private void Chegirma_btn_OnClick(object sender, RoutedEventArgs e)
@@ -180,6 +185,7 @@ namespace RoboticsPos.UI
                 
                  ChegirmaPage chegirmaPage = new ChegirmaPage();
                  chegirmaPage.SetSumma(productsCash.Sum(a=>a.TotalPrice));
+                 
                  chegirmaPage.ShowDialog();
             }
             else
@@ -191,7 +197,7 @@ namespace RoboticsPos.UI
 
         public void SetSum(decimal sum)
         {
-            chegirmabn_txt.Text = sum.ToString();
+           chegirmabn_txt.Text = sum.ToString();
         }
     }
 }

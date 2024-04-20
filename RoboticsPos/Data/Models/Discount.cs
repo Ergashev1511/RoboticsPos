@@ -14,7 +14,12 @@ namespace RoboticsPos.Data.Models
         public string Description { get; set; }
         public decimal Amount { get; set; }           // 0.6 %,         1 + 1,     har biri uchun 10 000
         public DiscountType AmountType { get; set; }  // Percent,       Count,     Amount
-        
-       // public virtual List<Product> Products { get; set; }
+
+        public DiscountStatus DiscountStatus { get; set; }
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        public virtual List<Product> Products { get; set; }
     }
 }

@@ -85,6 +85,7 @@ public partial class ClientCreatePagae : UserControl
     private void Cansel_btn_OnClick(object sender, RoutedEventArgs e)
     {
         ClearForm();
+        Disable(false);
         _settings.client_creat.Visibility = Visibility.Collapsed;
         _settings.client_doc.Visibility = Visibility.Visible;
     }
@@ -104,11 +105,11 @@ public partial class ClientCreatePagae : UserControl
     // Disable() funksiya ishlashida muammo chiqayapdi
     public void Disable( bool IsView)
     {
-        firstnametxt.IsReadOnly = !IsEnabled;
-        lastnametxt.IsReadOnly = !IsEnabled;
-        fathernametxt.IsReadOnly = !IsEnabled;
-        phoneNumbertxt.IsReadOnly = !IsEnabled;
-        addresstxt.IsReadOnly = !IsEnabled;
-        borndatepicer.IsEnabled = IsEnabled;
+        firstnametxt.IsReadOnly = IsView;  // Bu yerda kamchiliklarni to'g'irlashim kerak
+        lastnametxt.IsReadOnly = IsView;
+        fathernametxt.IsReadOnly = IsView;
+        phoneNumbertxt.IsReadOnly = IsView;
+        addresstxt.IsReadOnly = IsView;
+        borndatepicer.IsEnabled = !IsView;
     }
 }

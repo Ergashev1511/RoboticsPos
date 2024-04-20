@@ -36,6 +36,7 @@ namespace RoboticsPos
         private ClientForm _clientForm { get; set; }
         private ClientCreatePagae _clientCreatePagae { get; set; }
         private IClientService _clientService { get; set; }
+        
         public MainWindow(IUserService userService,IRepository<User> userRepository,AppDbContext context,
             EmployeeService employeeService,XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
             ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService,
@@ -57,6 +58,8 @@ namespace RoboticsPos
             _clientForm = clientForm;
             _clientCreatePagae = clientCreatePagae;
             _clientService = _clientService;
+           
+            
             
             InitializeComponent();
             

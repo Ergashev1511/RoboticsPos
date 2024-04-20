@@ -22,7 +22,6 @@ namespace RoboticsPos.Data.Repositories
         public DbSet<CheckPrintingData> CheckPrintingData { get; set; }
         public DbSet<Discount> Discounts { get; set; }
 
-
         private SqliteConnection connectiion;
 
 
