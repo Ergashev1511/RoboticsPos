@@ -42,7 +42,7 @@ namespace RoboticsPos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CashBoxes");
+                    b.ToTable("CashBoxes", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.CheckPrintingData", b =>
@@ -82,7 +82,7 @@ namespace RoboticsPos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CheckPrintingData");
+                    b.ToTable("CheckPrintingData", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Client", b =>
@@ -107,35 +107,7 @@ namespace RoboticsPos.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("RoboticsPos.Data.Models.Company", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Company");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Discount", b =>
@@ -157,19 +129,10 @@ namespace RoboticsPos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DiscountStatus")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("TEXT");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -178,7 +141,7 @@ namespace RoboticsPos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Discounts");
+                    b.ToTable("Discounts", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Employee", b =>
@@ -216,7 +179,7 @@ namespace RoboticsPos.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Person", b =>
@@ -259,7 +222,7 @@ namespace RoboticsPos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Persons", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Product", b =>
@@ -281,10 +244,7 @@ namespace RoboticsPos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long?>("CategoryId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("CompanyId")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreateDate")
@@ -314,46 +274,9 @@ namespace RoboticsPos.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("DiscountId");
 
-                    b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("RoboticsPos.Data.Models.ProductCategory", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Discription")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<long?>("ParentCategoryId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentCategoryId");
-
-                    b.ToTable("ProductCategory");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.User", b =>
@@ -390,7 +313,7 @@ namespace RoboticsPos.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Client", b =>
@@ -417,32 +340,11 @@ namespace RoboticsPos.Migrations
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Product", b =>
                 {
-                    b.HasOne("RoboticsPos.Data.Models.ProductCategory", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("RoboticsPos.Data.Models.Company", "Companys")
-                        .WithMany("Products")
-                        .HasForeignKey("CompanyId");
-
                     b.HasOne("RoboticsPos.Data.Models.Discount", "Discount")
                         .WithMany("Products")
                         .HasForeignKey("DiscountId");
 
-                    b.Navigation("Category");
-
-                    b.Navigation("Companys");
-
                     b.Navigation("Discount");
-                });
-
-            modelBuilder.Entity("RoboticsPos.Data.Models.ProductCategory", b =>
-                {
-                    b.HasOne("RoboticsPos.Data.Models.ProductCategory", "ParentCategory")
-                        .WithMany("ChildCategories")
-                        .HasForeignKey("ParentCategoryId");
-
-                    b.Navigation("ParentCategory");
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.User", b =>
@@ -456,20 +358,8 @@ namespace RoboticsPos.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("RoboticsPos.Data.Models.Company", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("RoboticsPos.Data.Models.Discount", b =>
                 {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("RoboticsPos.Data.Models.ProductCategory", b =>
-                {
-                    b.Navigation("ChildCategories");
-
                     b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
