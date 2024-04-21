@@ -15,7 +15,7 @@ public partial class ChegirmaPage : Window
   
     public void SetValues(KassaPage kassaPage,string Summa)
     {
-        _kassaPage = kassaPage;
+        // bu yerda projectni to'g'irlashim kerak githubga qarab!
         chegirmasum_txt.Text = Summa;
         summa = decimal.Parse(Summa);
     }
@@ -30,7 +30,7 @@ public partial class ChegirmaPage : Window
         this.Close();
     }
 
-    public void SetSumma(decimal totalsum)
+    public void SetSumma(KassaPage kassaPage,decimal totalsum)
     {
         chegirmasum_txt.Text = totalsum.ToString();
     }

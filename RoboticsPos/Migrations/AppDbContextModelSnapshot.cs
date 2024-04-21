@@ -17,6 +17,53 @@ namespace RoboticsPos.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
+            modelBuilder.Entity("RoboticsPos.Data.Models.Cart", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("ActualPrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Count")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("DiscountId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("ShopId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("TotalSum")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiscountId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShopId");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("RoboticsPos.Data.Models.CashBox", b =>
                 {
                     b.Property<long>("Id")
@@ -268,14 +315,14 @@ namespace RoboticsPos.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ActualPrice")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("ActualPrice")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("AmountInPackage")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("AmountInPackage")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("BarCode")
                         .IsRequired()
@@ -303,11 +350,11 @@ namespace RoboticsPos.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("PriceOfPiece")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal>("PriceOfPiece")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Selected")
                         .HasColumnType("INTEGER");
@@ -356,6 +403,34 @@ namespace RoboticsPos.Migrations
                     b.ToTable("ProductCategory");
                 });
 
+            modelBuilder.Entity("RoboticsPos.Data.Models.Shop", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("ClientId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("TotalSum")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Shops");
+                });
+
             modelBuilder.Entity("RoboticsPos.Data.Models.User", b =>
                 {
                     b.Property<long>("Id")
@@ -391,6 +466,27 @@ namespace RoboticsPos.Migrations
                     b.HasIndex("PersonId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RoboticsPos.Data.Models.Cart", b =>
+                {
+                    b.HasOne("RoboticsPos.Data.Models.Discount", "Discount")
+                        .WithMany()
+                        .HasForeignKey("DiscountId");
+
+                    b.HasOne("RoboticsPos.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("RoboticsPos.Data.Models.Shop", "Shop")
+                        .WithMany("Carts")
+                        .HasForeignKey("ShopId");
+
+                    b.Navigation("Discount");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Shop");
                 });
 
             modelBuilder.Entity("RoboticsPos.Data.Models.Client", b =>
@@ -445,6 +541,17 @@ namespace RoboticsPos.Migrations
                     b.Navigation("ParentCategory");
                 });
 
+            modelBuilder.Entity("RoboticsPos.Data.Models.Shop", b =>
+                {
+                    b.HasOne("RoboticsPos.Data.Models.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
             modelBuilder.Entity("RoboticsPos.Data.Models.User", b =>
                 {
                     b.HasOne("RoboticsPos.Data.Models.Person", "Person")
@@ -471,6 +578,11 @@ namespace RoboticsPos.Migrations
                     b.Navigation("ChildCategories");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("RoboticsPos.Data.Models.Shop", b =>
+                {
+                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }

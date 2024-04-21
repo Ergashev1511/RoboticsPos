@@ -9,5 +9,5 @@ public class Shop : BaseEntity
     public virtual List<Cart> Carts { get; set; }
 
     public long ClientId { get; set; }
-    public Client Client { get; set; }
+    public virtual Client Client { get; set; }
 }

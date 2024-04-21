@@ -184,7 +184,7 @@ namespace RoboticsPos.UI
             {
                 
                  ChegirmaPage chegirmaPage = new ChegirmaPage();
-                 chegirmaPage.SetSumma(productsCash.Sum(a=>a.TotalPrice));
+                 chegirmaPage.SetSumma(this,productsCash.Sum(a=>a.TotalPrice));
                  
                  chegirmaPage.ShowDialog();
             }

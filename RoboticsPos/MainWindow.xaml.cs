@@ -64,7 +64,7 @@ namespace RoboticsPos
             InitializeComponent();
             
             
-            Kirishpage.SetMainWinndow(this);
+            kirishpage.SetMainWinndow(this);
             pinkodpage.SetMainWinndow(this,userService);
             menyupage.SetMainWinndow(this);
             kassapage.SetMainWinndow(this,productService);

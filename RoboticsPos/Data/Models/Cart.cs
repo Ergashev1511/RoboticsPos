@@ -9,12 +9,12 @@ public class Cart : BaseEntity
     public decimal Count { get; set; }
     public decimal TotalSum { get; set; }
 
-    public long DiscountId { get; set; }
-    public Discount Discount { get; set; }
+    public long? DiscountId { get; set; }
+    public Discount? Discount { get; set; }
 
-    public long ProductId { get; set; }
-    public Product Product { get; set; }
+    public long? ProductId { get; set; }
+    public virtual Product? Product { get; set; }
 
-    public long ShopId { get; set; }
-    public virtual Shop Shop { get; set; }
+    public long? ShopId { get; set; }
+    public virtual Shop? Shop { get; set; }
 }

@@ -44,27 +44,36 @@
                 <Button  Foreground="Snow" Background="Transparent" Content="Theme" Width="180" Height="30" Margin="0 20 0 0"/>
             </StackPanel>
         </Grid>
-        <Grid Column="1" x:Name="grid_col1">
-          <DockPanel Height="Auto" Width="Auto" x:Name="Employee_doc" Visibility="Visible">
+        <DockPanel Grid.Column="1" x:Name="grid_col1">
+            
+            <DockPanel Height="Auto" Width="Auto" x:Name="Employee_doc" Visibility="Visible">
               <local:XodimCrudPage x:Name="employeeControl"></local:XodimCrudPage>
           </DockPanel>
+            
             <Viewbox x:Name="Create_doc"  Height="Auto" Width="Auto" Visibility="Collapsed" >
                 <local:XodimCreatePage x:Name="createPage"></local:XodimCreatePage>
             </Viewbox>
             
+            
+            
             <DockPanel Height="Auto" Width="Auto" x:Name="client_doc" Visibility="Hidden">
                 <local:ClientForm x:Name="clientpage"></local:ClientForm>
             </DockPanel>
+            
             <Viewbox x:Name="client_creat" Height="Auto" Width="Auto" Visibility="Hidden">
                 <local:ClientCreatePagae x:Name="client_createPage"></local:ClientCreatePagae>
             </Viewbox>
             
+            
+            
             <DockPanel Height="Auto" Width="Auto" x:Name="check_doc" Visibility="Hidden">
                 <local:CheckForm x:Name="chekspage"></local:CheckForm>
             </DockPanel>
+            
             <Viewbox x:Name="check_creat" Height="Auto" Width="Auto" Visibility="Hidden">
                 <local:CheckCreatePage x:Name="checks_createPage"></local:CheckCreatePage>
             </Viewbox>
-        </Grid>
+            
+        </DockPanel>
     </Grid>
 </UserControl>

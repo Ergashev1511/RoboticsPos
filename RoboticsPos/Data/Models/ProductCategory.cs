@@ -10,7 +10,7 @@ public class ProductCategory : BaseEntity
     public long? ParentCategoryId { get; set; }
     public ProductCategory? ParentCategory { get; set; }
 
-    public List<ProductCategory>? ChildCategories { get; set; }
+    public virtual List<ProductCategory>? ChildCategories { get; set; }
 
     public virtual List<Product> Products { get; set; }
 }
