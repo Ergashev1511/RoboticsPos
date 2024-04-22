@@ -10,9 +10,6 @@ namespace RoboticsPos.Data.Models
     public class Product : BaseEntity
     {
         public string Name { get; set; }
-
-       
-        
         public string BarCode { get; set; }
         public decimal  AmountInPackage { get; set; }
         public decimal Amount { get; set; }
@@ -21,15 +18,11 @@ namespace RoboticsPos.Data.Models
         public decimal PriceOfPiece { get; set; }
         public bool Selected { get; set; }
         
-        
          public long? DiscountId { get; set; }
          public virtual Discount? Discount { get; set; }
-                 
          
         public long? CompanyId { get; set; }
         public virtual Company? Companys { get; set; }
-        
-       
         
         public long? CategoryId { get; set; }
         public virtual ProductCategory? Category { get; set; }

@@ -32,7 +32,8 @@ public partial class ChegirmaPage : Window
 
     public void SetSumma(KassaPage kassaPage,decimal totalsum)
     {
-        chegirmasum_txt.Text = totalsum.ToString();
+        _kassaPage = kassaPage;
+        chegirmasum_txt.Text = totalsum.ToString();    // savdo qilingan umumiy summani chegirma page ga olish
     }
 
   
@@ -65,7 +66,7 @@ public partial class ChegirmaPage : Window
         {
             result = decimal.Parse(chegnatijasum_txt.Text);
             summa = decimal.Parse(chegirmasum_txt.Text);
-            percent = Math.Round(((percent - summa) / percent) * 100,3);
+            percent = Math.Round(((summa - result) / summa) * 100,3);
             chegirmafoiz_txt.Text=percent.ToString();
         }
     }

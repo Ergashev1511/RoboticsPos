@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="RoboticsPos.UI.CompanyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RoboticsPos.UI"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="600">
+    <Grid Background="#ffffff">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 10 0" Height="25" Width="80">
+                <Button x:Name="create_btn" Click="create_btn_Click" Height="25" Content="Create" Background="#4D638C" Foreground="White"></Button>
+            </StackPanel>
+            <!--<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 10 0" Height="25" Width="80">
+                <Button x:Name="delete_btn" Click="delete_btn_Click" Height="25" Content="Delete" Background="#4D638C" Foreground="White"></Button>
+            </StackPanel>-->
+        </DockPanel>
+        <DockPanel Grid.Column="0" Grid.Row="1">
+            <DataGrid x:Name="products_datagrid"
+                      AutoGenerateColumns="False"
+                      Width="Auto"
+                      GridLinesVisibility="Horizontal"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="True"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      Background="#ffffff"
+                      Margin="10"
+                      BorderThickness="1"
+                      SelectionMode="Single"
+                      AlternationCount="2"
+                      HeadersVisibility="Column"
+                      ItemsSource="{Binding res, Mode=TwoWay}" 
+                      SelectionChanged="products_datagrid_SelectionChanged"
+                      MouseDoubleClick="products_datagrid_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Barcode" Binding="{Binding Barcode}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ActualPrice" Binding="{Binding ActualPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                  
+                    <DataGridTemplateColumn Width="*">
+                     <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Edit"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="edit_btn"  Height="25" Content="Edit" Background="#4D638C" Foreground="White"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Delete"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="delete_btn" Height="25" Content="Delete" Background="#4D638C" Foreground="White"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+</UserControl>

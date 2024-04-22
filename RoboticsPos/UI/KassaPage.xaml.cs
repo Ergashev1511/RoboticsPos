@@ -197,7 +197,7 @@ namespace RoboticsPos.UI
 
         public void SetSum(decimal sum)
         {
-           chegirmabn_txt.Text = sum.ToString();
+           chegirmabn_txt.Text = sum.ToString();  // chegirma pagedagi resalt summani olish
         }
     }
 }
