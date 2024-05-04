@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 
 namespace RoboticsPos.Data.Repositories;
@@ -11,14 +12,27 @@ public class CetegoryRepository : ICategoryRepository
     {
         _context = context;
     }
-    
-    
+
+
+    public async Task<List<Select>> GetCategoriesForSelect()
+    {
+        var categories = await _context.ProductCategory.Where(a=>!a.IsDeleted).Select(s => new Select()
+        {
+            Id = s.Id,
+            Name = s.Name
+        }).AsSplitQuery().ToListAsync();
+        
+        return categories;
+       
+    }
+
     public async Task<ProductCategory> CreateCategory(ProductCategory productCategory)
     {
         await _context.ProductCategory.AddAsync(productCategory);
         await _context.SaveChangesAsync();
         return productCategory;
     }
+   
 
     public async Task<ProductCategory> UpdateCategory(ProductCategory productCategory)
     {
@@ -44,12 +58,13 @@ public class CetegoryRepository : ICategoryRepository
 
     public async Task<List<ProductCategory>> GetAllCategory()
     {
-        return await _context.ProductCategory.Where(a => !a.IsDeleted).ToListAsync();
+        return await _context.ProductCategory.Where(a => !a.IsDeleted).Include(s=>s.Products).ToListAsync();
     }
 }
 
 public interface ICategoryRepository
 {
+    public Task<List<Select>> GetCategoriesForSelect();
     Task<ProductCategory> CreateCategory(ProductCategory productCategory);
     Task<ProductCategory> UpdateCategory(ProductCategory productCategory);
     Task<ProductCategory> GetByIdCategory(long Id);

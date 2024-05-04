@@ -1,0 +1,99 @@
+﻿<Window x:Class="RoboticsPos.UI.DiscountForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:RoboticsPos.UI"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="DiscountForm" Height="550" Width="450">
+      <Grid>
+       <Border BorderThickness="2" BorderBrush="Black">
+            <StackPanel>
+            <DockPanel HorizontalAlignment="Right"  Margin="0 20 60 0 ">
+                <TextBlock Margin="0 0 10 0" Text="Title" FontSize="15"></TextBlock>
+                <TextBox x:Name="title_txt" Height="25" BorderThickness="1" Width="200" Padding="10 0 0 0" VerticalAlignment="Center" FontSize="13"></TextBox>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Right" Margin="0 20 60 0 ">
+                <TextBlock Margin="0 0 10 0"  Text="Decribtion" FontSize="15"></TextBlock>
+                <WrapPanel>
+                    <TextBox x:Name="describtion_txt" TextWrapping="Wrap"  BorderThickness="1" Width="200" Height="60" FontSize="13" HorizontalAlignment="Right"></TextBox>
+                </WrapPanel>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Right" Margin="0 20 60 0 ">
+                <TextBlock Margin="0 0 10 0" Text="Amount" FontSize="15"></TextBlock>
+                <TextBox x:Name="amount_txt" Height="25" BorderThickness="1" Width="200"  Padding="10 0 0 0" VerticalAlignment="Center" FontSize="13"></TextBox>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Right" Margin="0 20 60 0 ">
+                                                     <TextBlock Margin="0 0 10 0"  Text="Amount type" FontSize="15"></TextBlock>
+                <ComboBox x:Name="amountType_combo" md:HintAssist.Hint="Amount type" Height="25" BorderThickness="1" Width="200" Text=" fhtj" Padding="10 0 0 0" VerticalAlignment="Center" FontSize="13">
+                    <ComboBoxItem Content="Percent"></ComboBoxItem>
+                    <ComboBoxItem Content="Count"></ComboBoxItem>
+                    <ComboBoxItem Content="Amount"></ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Right" Margin="0 20 60 0 ">
+                <TextBlock Margin="0 0 10 0"  Text="Start Date"  FontSize="15"></TextBlock>
+                <DatePicker x:Name="start_date"  Height="25" BorderThickness="1" Width="200"  Padding="10 0 0 0" VerticalAlignment="Center" FontSize="13"></DatePicker>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Right" Margin="0 20 60 0 ">
+                <TextBlock Margin="0 0 10 0"  Text="End Date"  FontSize="15"></TextBlock>
+                <DatePicker x:Name="end_date"  Height="25" BorderThickness="1" Width="200"  Padding="10 0 0 0" VerticalAlignment="Center" FontSize="13"></DatePicker>
+            </DockPanel>
+            <DockPanel Margin="100 10 0 0">
+                <TextBlock Margin="0 0 10 0"  Text="Active" FontSize="15"></TextBlock>
+                <CheckBox x:Name="active_chekbox" ></CheckBox>
+                 <TextBlock Text="Products"  FontSize="13" Margin="60 0 0 0"></TextBlock>
+                <Button x:Name="refresh_btn" Click="Refresh_btn_OnClick" Height="20" Width="100" Content="Refresh" Background="Transparent" Foreground="Black" Padding="0"></Button>
+            </DockPanel>
+              <DataGrid x:Name="products_datagrid"
+                      AutoGenerateColumns="False"
+                      Width="Auto"
+                      GridLinesVisibility="Horizontal"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="True"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      Background="#ffffff"
+                      Margin="10"
+                      BorderThickness="1"
+                      SelectionMode="Single"
+                      AlternationCount="2"
+                      HeadersVisibility="Column"
+                      ItemsSource="{Binding res, Mode=TwoWay}" 
+                     >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTemplateColumn Width="0.8*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Select"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox x:Name="checkBox" IsChecked="{Binding Selected,Mode=TwoWay}" Checked="CheckBox_OnChecked" Unchecked="CheckBox_OnUnchecked" VerticalAlignment="Center" Height="25" Content="Select" Background="#4D638C" Foreground="White"></CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    
+                </DataGrid.Columns>
+            </DataGrid>  
+                
+        </StackPanel>
+      
+       </Border>
+        <StackPanel VerticalAlignment="Bottom">
+            <DockPanel Margin="0 0 0 10" HorizontalAlignment="Center">
+                <Button x:Name="save_btn" Click="Save_btn_OnClick" Content="Saqlash" Width="120" Margin="0 0 10 0"></Button>
+                <Button x:Name="back_btn" Click="Back_btn_OnClick" Content="Bekor qilish" Width="120" Margin="10 0 0 0"></Button>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

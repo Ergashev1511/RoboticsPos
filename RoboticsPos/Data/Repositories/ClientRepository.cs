@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 
 namespace RoboticsPos.Data.Repositories;
@@ -45,8 +46,7 @@ public class ClientRepository : IClientRepository
         if (Id < 0) throw new Exception("Id is low from 0!");
         return await _context.Clients.FirstOrDefaultAsync(a => !a.IsDeleted && a.Id == Id);
     }
-
-
+    
 }
 
 public interface IClientRepository
@@ -56,4 +56,5 @@ public interface IClientRepository
     Task<List<Client>> GetAllClient();
     Task DeleteClient(Client client);
     Task<Client> GetById(long Id);
+  
 }

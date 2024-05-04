@@ -1,4 +1,5 @@
-﻿using RoboticsPos.Common.DTOs;
+﻿using System.Windows;
+using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 using RoboticsPos.Data.Repositories;
 
@@ -7,42 +8,89 @@ namespace RoboticsPos.Services;
 public class CategoryService : ICategoryService
 {
     private readonly ICategoryRepository _categoryRepository;
+    private IProductRepository _productRepository { get; set; }
 
-    public CategoryService(ICategoryRepository categoryRepository)
+    public CategoryService(ICategoryRepository categoryRepository,IProductRepository productRepository)
     {
         _categoryRepository = categoryRepository;
+        _productRepository = productRepository;
     }
-    
-    
+
+
+    public async Task<List<Select>> GetCategoriesForSelect()
+    {
+        var select = await _categoryRepository.GetCategoriesForSelect();
+        if (select != null)
+        {
+            return select;
+        }
+
+        return new List<Select>();
+    }
+
     public async Task<ProuctCategoryDTO> CreateCategory(ProuctCategoryDTO prouctCategoryDto)
     {
-        if (prouctCategoryDto == null) throw new Exception("ProductCategory is null here!");
-        ProductCategory productCategory = new ProductCategory()
+        List<Product> productsId = new List<Product>();
+        if (prouctCategoryDto != null)
         {
-            Name = prouctCategoryDto.Name,
-            Discription = prouctCategoryDto.Discription
-        };
-        await _categoryRepository.CreateCategory(productCategory);
+            productsId = await _productRepository.GetProductsByIds(prouctCategoryDto.ProductDtos.Select(s=>s.Id).ToList());
+            ProductCategory category = new ProductCategory()
+            {
+                Name = prouctCategoryDto.Name,
+                Discription = prouctCategoryDto.Discription,
+                ParentCategoryId = prouctCategoryDto.ParentId,
+                Products = productsId
+            };
+            await _categoryRepository.CreateCategory(category);
+            return prouctCategoryDto;
+        }
+
         return prouctCategoryDto;
     }
 
     public async Task<ProuctCategoryDTO> UpdateCategory(long Id, ProuctCategoryDTO prouctCategoryDto)
     {
-        var category = await _categoryRepository.GetByIdCategory(Id);
-        if (category == null) throw new Exception("ProductCategory is null here!");
-        
-        category.Name = prouctCategoryDto.Name;
-        category.Discription = prouctCategoryDto.Discription;
+        if (Id > 0)
+        {
+            var oldcategory = await _categoryRepository.GetByIdCategory(Id);
+            if (oldcategory != null)
+            {
+                var products =
+                    await _productRepository.GetProductsByIds(prouctCategoryDto.ProductDtos.Select(s => s.Id).ToList());
+                oldcategory.Name = prouctCategoryDto.Name;
+                oldcategory.Discription = prouctCategoryDto.Discription;
+                oldcategory.ParentCategoryId = prouctCategoryDto.ParentId;
 
-        await _categoryRepository.UpdateCategory(category);
+                oldcategory.Products = new List<Product>();
+                oldcategory.Products = products;
+
+                await _categoryRepository.UpdateCategory(oldcategory);
+                return prouctCategoryDto;
+
+            }
+            else
+            {
+                MessageBox.Show("Id is low from 0!");
+            }
+        }
+
         return prouctCategoryDto;
+
     }
 
     public async Task Delete(long Id)
     {
-        var category = await _categoryRepository.GetByIdCategory(Id);
-        if (category == null) throw new Exception("ProductCategory is null here!");
-        await _categoryRepository.DeleteCategory(category);
+        if (Id > 0)
+        {
+             var category = await _categoryRepository.GetByIdCategory(Id);
+                    if (category == null) throw new Exception("ProductCategory is null here!");
+                    await _categoryRepository.DeleteCategory(category);
+        }
+        else
+        {
+            MessageBox.Show("Id is low from 0!");
+        }
+       
 
     }
 
@@ -55,7 +103,14 @@ public class CategoryService : ICategoryService
         {
             Id = category.Id,
             Name = category.Name,
-            Discription = category.Discription
+            Discription = category.Discription,
+            ParentName = category?.ParentCategory?.Name ?? string.Empty,
+             ProductDtos = category.Products.Select(s=> new ProductForSelect()
+                        {
+                            Id = s.Id,
+                            Name = s.Name,
+                            Selected = true
+                        }).ToList()
         };
         return prouctCategoryDto;
     }
@@ -69,7 +124,16 @@ public class CategoryService : ICategoryService
             {
                 Id = a.Id,
                 Name = a.Name,
-                Discription = a.Discription
+                Discription = a.Discription,
+                ParentName = a?.ParentCategory?.Name ?? string.Empty,
+                Productnames = string.Join(", ", a.Products.Select(s=>s.Name)),
+                ProductDtos = a.Products.Select(a=>new ProductForSelect()
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Amount = a.Amount,
+                    Selected = true
+                }).ToList()
             }).ToList();
             return category;
         }
@@ -80,6 +144,7 @@ public class CategoryService : ICategoryService
 
 public interface ICategoryService
 {
+    Task<List<Select>> GetCategoriesForSelect();
     Task<ProuctCategoryDTO> CreateCategory(ProuctCategoryDTO prouctCategoryDto);
     Task<ProuctCategoryDTO> UpdateCategory(long Id, ProuctCategoryDTO prouctCategoryDto);
     Task Delete(long Id);

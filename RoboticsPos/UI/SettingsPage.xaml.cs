@@ -31,9 +31,14 @@ namespace RoboticsPos.UI
         private ClientCreatePagae _clientCreatePagae { get; set; }
         private ICheckPrinterService _service { get; set; }
         private IClientService _clientService { get; set; }
+        private IDiscountService _discountService { get; set; }
+        private IProductService _productService { get; set; }
+        private ICompanyService _companyService { get; set; }
+        private ICategoryService _categoryService { get; set; }
         public void SetMainWinndow(MainWindow mainWindow, EmployeeService employeeService, XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
             CheckCreatePage checkCreatePage,CheckForm checkForm,ICheckPrinterService service,ClientForm clientForm,ClientCreatePagae clientCreatePagae,
-            IClientService clientService
+            IClientService clientService,IDiscountService discountService,IProductService productService,ICompanyService companyService,ICategoryService categoryService
+            
         )
         {
             _mainWindow = mainWindow;
@@ -46,12 +51,20 @@ namespace RoboticsPos.UI
             _clientForm = clientForm;
             _clientCreatePagae = clientCreatePagae;
             _clientService = clientService;
+            _discountService = discountService;
+            _productService = productService;
+            _companyService = companyService;
+            _categoryService = categoryService;
+            
             employeeControl.SetMainWinndow(mainWindow,this,  _employeeService,xodimCreatePage);
             createPage.SetMainWinndow(mainWindow,employeeService,_xodimCrudPage,this);
             checks_createPage.SetValues(mainWindow,this,checkForm,_service);
             chekspage.SetValues(mainWindow,this,checkCreatePage,_service);
             clientpage.SetValues(mainWindow,this,clientCreatePagae,clientService);
             client_createPage.SetValues(mainWindow,this,clientForm,clientService);
+            discountControl.SetVariablies(this,discountService, productService);
+            companycontrol.SetVariablies(this,companyService,productService);
+            categorycontrol.SetVariablies(this,categoryService,productService);
         }
 
         public SettingsPage()
@@ -61,36 +74,27 @@ namespace RoboticsPos.UI
 
 
 
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            Employee_doc.Visibility = Visibility.Visible;
-        }
-        
-
-
-        private void ButtonBase_OnClick1(object sender, RoutedEventArgs e)
-        {
-            _mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
-            _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
-        }
-
-
-
         private void Xodim_btn_OnClick(object sender, RoutedEventArgs e)
         {
             Employee_doc.Visibility = Visibility.Visible;
             employeeControl.SetMainWinndow(_mainWindow,this,  _employeeService,_xodimCreatePage);
             Create_doc.Visibility = Visibility.Hidden;
+            
             check_doc.Visibility = Visibility.Collapsed;
             check_creat.Visibility = Visibility.Collapsed;
-            client_doc.Visibility = Visibility.Hidden;
-            client_creat.Visibility = Visibility.Hidden;
+            
+            client_doc.Visibility = Visibility.Collapsed;
+            client_creat.Visibility = Visibility.Collapsed;
+            
+            discount_oc.Visibility = Visibility.Collapsed;
+            company_doc.Visibility = Visibility.Collapsed;
+            category_doc.Visibility = Visibility.Collapsed;
+           
         }
 
         private void Back_btn_OnClick(object sender, RoutedEventArgs e)
         {
-           _mainWindow.SettingsViewBox.Visibility = Visibility.Hidden;
+           _mainWindow.SettingsViewBox.Visibility = Visibility.Collapsed;
             _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
         }
 
@@ -106,25 +110,94 @@ namespace RoboticsPos.UI
             }
         }
 
-        private void Discount_btn_OnClick(object sender, RoutedEventArgs e)
+        private void Check_btn_OnClick(object sender, RoutedEventArgs e)
         {
-            Employee_doc.Visibility = Visibility.Collapsed;
-            chekspage.SetValues(_mainWindow,this,_checkCreate,_service);
-            check_doc.Visibility = Visibility.Visible;
-            client_doc.Visibility = Visibility.Hidden;
-            client_creat.Visibility = Visibility.Hidden;
+            check_doc.Visibility = Visibility.Visible; 
             check_creat.Visibility = Visibility.Collapsed;
-            Create_doc.Visibility = Visibility.Hidden;
+            
+            chekspage.SetValues(_mainWindow,this,_checkCreate,_service);
+            
+            client_doc.Visibility = Visibility.Collapsed;
+            client_creat.Visibility = Visibility.Collapsed;
+           
+            
+            Employee_doc.Visibility = Visibility.Collapsed;
+            Create_doc.Visibility = Visibility.Collapsed;
+            
+            discount_oc.Visibility = Visibility.Collapsed;
+            company_doc.Visibility = Visibility.Collapsed;
+            category_doc.Visibility = Visibility.Collapsed;
+            
         }
 
         private void Client_btn_OnClick(object sender, RoutedEventArgs e)
         {
             client_doc.Visibility = Visibility.Visible;
-            client_creat.Visibility = Visibility.Hidden;
+            client_creat.Visibility = Visibility.Collapsed;
             clientpage.SetValues(_mainWindow,this,_clientCreatePagae,_clientService);
             
-            Employee_doc.Visibility = Visibility.Hidden;
-            Create_doc.Visibility = Visibility.Hidden;
+            Employee_doc.Visibility = Visibility.Collapsed;
+            Create_doc.Visibility = Visibility.Collapsed;
+            
+            check_doc.Visibility = Visibility.Collapsed;
+            check_creat.Visibility = Visibility.Collapsed;
+            
+            discount_oc.Visibility = Visibility.Collapsed;
+            
+            company_doc.Visibility = Visibility.Collapsed;
+            category_doc.Visibility = Visibility.Collapsed;
+          
+        }
+
+
+        private void Discount_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            discount_oc.Visibility = Visibility.Visible;
+            discountControl.SetVariablies(this,_discountService,_productService);
+            
+            
+            client_doc.Visibility = Visibility.Collapsed;
+            client_creat.Visibility = Visibility.Collapsed;
+            
+            Employee_doc.Visibility = Visibility.Collapsed;
+            Create_doc.Visibility = Visibility.Collapsed;
+            
+            check_doc.Visibility = Visibility.Collapsed;
+            check_creat.Visibility = Visibility.Collapsed;
+            
+            company_doc.Visibility = Visibility.Collapsed;
+            category_doc.Visibility = Visibility.Collapsed;
+        }
+
+        private void Company_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            company_doc.Visibility = Visibility.Visible;
+            companycontrol.SetVariablies(this,_companyService,_productService);
+            
+            discount_oc.Visibility = Visibility.Collapsed;
+            client_doc.Visibility = Visibility.Collapsed;
+            client_creat.Visibility = Visibility.Collapsed;
+            
+            Employee_doc.Visibility = Visibility.Collapsed;
+            Create_doc.Visibility = Visibility.Collapsed;
+            
+            check_doc.Visibility = Visibility.Collapsed;
+            check_creat.Visibility = Visibility.Collapsed;
+            category_doc.Visibility = Visibility.Collapsed;
+        }
+
+        private void Categroy_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            category_doc.Visibility = Visibility.Visible;
+            categorycontrol.SetVariablies(this, _categoryService, _productService);
+            company_doc.Visibility = Visibility.Collapsed;
+            discount_oc.Visibility = Visibility.Collapsed;
+            client_doc.Visibility = Visibility.Collapsed;
+            client_creat.Visibility = Visibility.Collapsed;
+            
+            Employee_doc.Visibility = Visibility.Collapsed;
+            Create_doc.Visibility = Visibility.Collapsed;
+            
             check_doc.Visibility = Visibility.Collapsed;
             check_creat.Visibility = Visibility.Collapsed;
         }

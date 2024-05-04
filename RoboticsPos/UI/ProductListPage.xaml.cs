@@ -12,14 +12,22 @@ public partial class ProductListPage : UserControl
     private StoreControl _storeControl { get; set; }
     private ProductCreatePage _productCreatePage { get; set; }
     private IProductService _productService { get; set; }
+    private ICategoryService _categoryService { get; set; }
+    private IDiscountService _discountService { get; set; }
+    private ICompanyService _companyService { get; set; }
+    
     private List<ProductDTO> productDtos = new List<ProductDTO>();
      ProductDTO _productDto { get; set; }
-    public async void SetVariablies(MainWindow mainWindow, StoreControl storeControl,ProductCreatePage productCreatePage,IProductService productService)
+    public async void SetVariablies(MainWindow mainWindow, StoreControl storeControl,ProductCreatePage productCreatePage,
+        IProductService productService,ICategoryService categoryService,IDiscountService discountService,ICompanyService companyService)
     {
         _mainWindow = mainWindow;
         _storeControl = storeControl;
         _productCreatePage = productCreatePage;
         _productService = productService;
+        _categoryService = categoryService;
+        _discountService = discountService;
+        _companyService = companyService;
         await GetAllProducts();
     }
     public ProductListPage()
@@ -43,7 +51,7 @@ public partial class ProductListPage : UserControl
         _storeControl.ProCreatePage.SetProductData(_productDto.Id,true);
         if (_productDto != null)
         {
-            _storeControl.ProCreatePage.SetVariablies(_mainWindow, _storeControl, this, _productService);
+            _storeControl.ProCreatePage.SetVariablies(_mainWindow, _storeControl, this, _productService,_categoryService,_discountService,_companyService);
             _productDto=users_datagrid.SelectedItem as ProductDTO; 
             
             _storeControl.ProCreate_doc.Visibility = Visibility.Visible;
@@ -71,7 +79,7 @@ public partial class ProductListPage : UserControl
         if (_productDto != null)
         {
             _storeControl.ProCreatePage.SetProductData(_productDto.Id);
-            _storeControl.ProCreatePage.SetVariablies(_mainWindow,_storeControl,this,_productService);
+            _storeControl.ProCreatePage.SetVariablies(_mainWindow,_storeControl,this,_productService,_categoryService,_discountService,_companyService);
           
             
             _storeControl.ProCreate_doc.Visibility = Visibility.Visible;

@@ -36,12 +36,16 @@ namespace RoboticsPos
         private ClientForm _clientForm { get; set; }
         private ClientCreatePagae _clientCreatePagae { get; set; }
         private IClientService _clientService { get; set; }
+        private IDiscountService _discountService { get; set; }
+        private ICompanyService _companyService { get; set; }
+        private ICategoryService _categoryService { get; set; }
         
         public MainWindow(IUserService userService,IRepository<User> userRepository,AppDbContext context,
             EmployeeService employeeService,XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
             ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService,
             CheckForm checkForm,CheckCreatePage checkCreate,ICheckPrinterService checkservice,
-            ClientForm clientForm,ClientCreatePagae clientCreatePagae,IClientService clientService)
+            ClientForm clientForm,ClientCreatePagae clientCreatePagae,IClientService clientService,
+            IDiscountService discountService,ICompanyService companyService,ICategoryService categoryService)
         {
             this.userService = userService;
             this.userRepository = userRepository;
@@ -57,8 +61,10 @@ namespace RoboticsPos
             _checkCreate = checkCreate;
             _clientForm = clientForm;
             _clientCreatePagae = clientCreatePagae;
-            _clientService = _clientService;
-           
+            _clientService = clientService;
+            _discountService = discountService;
+            _companyService = companyService;
+            _categoryService = categoryService;
             
             
             InitializeComponent();
@@ -67,15 +73,16 @@ namespace RoboticsPos
             kirishpage.SetMainWinndow(this);
             pinkodpage.SetMainWinndow(this,userService);
             menyupage.SetMainWinndow(this);
-            kassapage.SetMainWinndow(this,productService);
+            kassapage.SetMainWinndow(this,productService,clientService);
             shaxsiy_malPage.SetMainWindow(this);
             loginpage.SetVariablies(userService,this);
-            store_control.SetMainWindow(this,_productCreatePage,_productListPage,_productService);
+            store_control.SetMainWindow(this,_productCreatePage,_productListPage,_productService,_categoryService,_discountService,_companyService);
             
             
             
             
-            settingspage.SetMainWinndow(this,_employeeService,_xodimCrudPage,xodimCreatePage,checkCreate,checkForm,checkservice,clientForm,clientCreatePagae,clientService);
+            settingspage.SetMainWinndow(this,_employeeService,_xodimCrudPage,xodimCreatePage,checkCreate,checkForm,checkservice,clientForm,clientCreatePagae,
+                clientService,discountService,productService,companyService,categoryService);
             _xodimCreatePage.SetMainWinndow(this,_employeeService,_xodimCrudPage,settingspage);
             _xodimCrudPage.SetMainWinndow(this,settingspage,_employeeService,_xodimCreatePage);
             _checkForm.SetValues(this,settingspage,checkCreate,checkservice);
@@ -85,9 +92,9 @@ namespace RoboticsPos
             _clientCreatePagae.SetValues(this,settingspage,clientForm,clientService);
             
             
-            store_control.SetMainWindow(this,productCreatePage,productListPage,productService);
-            productCreatePage.SetVariablies(this,store_control,productListPage,productService);
-            productListPage.SetVariablies(this,store_control,productCreatePage,productService);
+            store_control.SetMainWindow(this,productCreatePage,productListPage,productService,categoryService,discountService,companyService);
+            productCreatePage.SetVariablies(this,store_control,productListPage,productService,categoryService,discountService,companyService);
+            productListPage.SetVariablies(this,store_control,productCreatePage,productService,categoryService,discountService,companyService);
         }
     }
 }

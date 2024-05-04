@@ -8,6 +8,7 @@ public class ClientDTO : BaseDTO
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string FathersName { get; set; }
+    public string? FullName { get; set; }
     public DateTime BornDate { get; set; }
     public string PhoneNumber { get; set; }
     public string Address { get; set; }

@@ -8,44 +8,79 @@ namespace RoboticsPos.Services;
 public class DiscountService : IDiscountService
 {
     private readonly IDiscountRepository _discountRepository;
+    private readonly IProductRepository _productRepository;
 
-    public DiscountService(IDiscountRepository discountRepository)
+    public DiscountService(IDiscountRepository discountRepository,IProductRepository productRepository)
     {
         _discountRepository = discountRepository;
+        _productRepository = productRepository;
     }
-    
+
+    public async Task<List<Select>> GetSelectDiscount()
+    {
+        var discount = await _discountRepository.GetSelectForDiscount();
+        if (discount != null)
+        {
+            return discount;
+        }
+
+        return new List<Select>();
+    }
+
     public async Task<DiscountDTO> CreateDiscount(DiscountDTO discountDto)
     {
-        if (discountDto == null) throw new Exception("Discount is null here!");
-
-        Discount discount = new Discount()
+        if (discountDto != null)
         {
-            Title = discountDto.Title,
-            Description = discountDto.Description,
-            Amount = discountDto.Amount,
-            AmountType = discountDto.AmountType,
-            DiscountStatus = discountDto.DiscountStatus,
-            StartDate = discountDto.StartDate,
-            EndDate = discountDto.EndDate
-        };
-        await _discountRepository.CreateDiscount(discount);
+           var products = await _productRepository.GetProductsByIds(discountDto.ProductDtos.Select(s=>s.Id).ToList());
+                
+            Discount newDiscount = new Discount()
+            {
+                Title = discountDto.Title,
+                Description = discountDto.Description,
+                Amount = discountDto.Amount,
+                AmountType = discountDto.AmountType,
+                DiscountStatus = discountDto.DiscountStatus,
+                StartDate = discountDto.StartDate,
+                EndDate = discountDto.EndDate,
+                Products = products
+            };
+            await _discountRepository.CreateDiscount(newDiscount);
+            return discountDto;
+        }
         return discountDto;
+        
     }
 
     public async Task<DiscountDTO> UpdateDiscount(long Id, DiscountDTO discountDto)
     {
-        var oldDiscount = await _discountRepository.GetByIdDiscount(Id);
-        if (oldDiscount == null) throw new Exception("Discount is null here!");
+        if (Id > 0)
+        {
+            var oldDiscount = await _discountRepository.GetByIdDiscount(Id);
+            if (oldDiscount != null)
+            {
+                var prodocts =
+                    await _productRepository.GetProductsByIds(discountDto.ProductDtos.Select(a => a.Id).ToList());
+               
+                oldDiscount.Title = discountDto.Title;
+                oldDiscount.Description = discountDto.Description;
+                oldDiscount.Amount = discountDto.Amount;
+                oldDiscount.AmountType = discountDto.AmountType;
+                oldDiscount.DiscountStatus = discountDto.DiscountStatus;
 
-        oldDiscount.Title = discountDto.Title;
-        oldDiscount.Description = discountDto.Description;
-        oldDiscount.Amount = discountDto.Amount;
-        oldDiscount.AmountType = discountDto.AmountType;
-        oldDiscount.DiscountStatus = discountDto.DiscountStatus;
+                oldDiscount.StartDate = discountDto.StartDate;
+                oldDiscount.EndDate = discountDto.EndDate;
 
-        oldDiscount.StartDate = discountDto.StartDate;
-        oldDiscount.EndDate = discountDto.EndDate;
-        await _discountRepository.UpdateDiscount(oldDiscount);
+                oldDiscount.Products = new List<Product>();
+                oldDiscount.Products = prodocts;
+        
+                await _discountRepository.UpdateDiscount(oldDiscount);
+                return discountDto;
+            }
+            else
+            {
+                throw new Exception("Discount not found!");
+            }
+        }
         return discountDto;
     }
 
@@ -62,10 +97,17 @@ public class DiscountService : IDiscountService
             AmountType = discount.AmountType,
             DiscountStatus = discount.DiscountStatus,
             StartDate = discount.StartDate,
-            EndDate = discount.EndDate
+            EndDate = discount.EndDate,
+            ProductDtos = discount.Products.Select(s=> new ProductForSelect()
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Amount = s.Amount,
+                Selected = true
+            }).ToList()
         };
         return discountDto;
-    }
+    } 
 
     public async Task DeleteDiscount(long Id)
     {
@@ -89,7 +131,15 @@ public class DiscountService : IDiscountService
                 AmountType = a.AmountType,
                 DiscountStatus = a.DiscountStatus,
                 StartDate = a.StartDate,
-                EndDate = a.EndDate
+                EndDate = a.EndDate,
+                ProductNames = string.Join(", ",a.Products.Select(b=>b.Name)),
+                ProductDtos = a.Products.Select(a=>new ProductForSelect()
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Amount = a.Amount,
+                    Selected = true
+                }).ToList()
             }).ToList();
             return discount;
         }
@@ -100,6 +150,7 @@ public class DiscountService : IDiscountService
 
 public interface IDiscountService
 {
+    Task<List<Select>> GetSelectDiscount();
     Task<DiscountDTO> CreateDiscount(DiscountDTO discountDto);
     Task<DiscountDTO> UpdateDiscount(long Id, DiscountDTO discountDto);
     Task<DiscountDTO> GetByIdDiscount(long Id);

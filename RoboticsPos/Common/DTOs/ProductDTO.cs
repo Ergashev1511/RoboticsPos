@@ -1,4 +1,6 @@
-﻿namespace RoboticsPos.Common.DTOs;
+﻿using RoboticsPos.Data.Enum;
+
+namespace RoboticsPos.Common.DTOs;
 
 public class ProductDTO : BaseDTO
 {
@@ -13,4 +15,8 @@ public class ProductDTO : BaseDTO
     public decimal PriceOfPiece { get; set; }
     public bool Selected { get; set; } = false;
     public long? DiscountId { get; set; }
+    public long? CompanyId { get; set; }
+    public long?  CategoryId  { get; set; }
+    
+    public DiscountType? DiscountType { get; set; }
 }

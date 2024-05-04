@@ -118,10 +118,10 @@ namespace RoboticsPos.UI
                 _settingsPage.createPage.SetEmployeeData(selectuserDto.Id,true);
                 
                 _settingsPage.Create_doc.Visibility = Visibility.Visible;
-                _settingsPage.Employee_doc.Visibility = Visibility.Hidden;
+                _settingsPage.Employee_doc.Visibility = Visibility.Collapsed;
                 
                 _settingsPage.createPage.saqlash_btn.Visibility = Visibility.Collapsed;
-                _settingsPage.createPage.cansel_btn.Visibility = Visibility.Visible;
+                _settingsPage.createPage.cansel_btn.Visibility = Visibility.Collapsed;
             }
             else
             {

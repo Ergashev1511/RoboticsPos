@@ -17,25 +17,30 @@
         </Grid.ColumnDefinitions>
         <Grid Column="0">
             <StackPanel HorizontalAlignment="Right">
-                <TextBlock HorizontalAlignment="Right" Text="Name"              FontSize="20" Margin="0 15 0  0 "></TextBlock>
-                <TextBlock HorizontalAlignment="Right" Text="Bar Code"          FontSize="20" Margin="0 15 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Name"              FontSize="20" Margin="0 10 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Bar Code"          FontSize="20" Margin="0 10 0  0 "></TextBlock>
                 <TextBlock HorizontalAlignment="Right" Text="Amount In Package" FontSize="20" Margin="5 10 0  0 "></TextBlock>
-                <TextBlock HorizontalAlignment="Right" Text="Amount"            FontSize="20" Margin="0 15 0  0 "></TextBlock>
-                <TextBlock HorizontalAlignment="Right" Text="ActualPrice"       FontSize="20" Margin="0 15 0  0 "></TextBlock>
-                <TextBlock HorizontalAlignment="Right" Text="Price"             FontSize="20" Margin="0 15 0  0 "></TextBlock>
-                <TextBlock HorizontalAlignment="Right" Text="Price Of Piese"    FontSize="20" Margin="0 15 0  0 "></TextBlock>
-            
+                <TextBlock HorizontalAlignment="Right" Text="Amount"            FontSize="20" Margin="0 8 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="ActualPrice"       FontSize="20" Margin="0 8 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Price"             FontSize="20" Margin="0 8 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Price Of Piese"    FontSize="20" Margin="0 8 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Discount"    FontSize="20" Margin="0 8 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Category"    FontSize="20" Margin="0 8 0  0 "></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Text="Company"    FontSize="20" Margin="0 8 0  0 "></TextBlock>
             </StackPanel>
         </Grid>
         <Grid Column="1">
             <StackPanel>
-                <TextBox x:Name="nametxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
-                <TextBox x:Name="barcodetxt" Margin="10 16 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
-                <TextBox x:Name="amountinpacakgetxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
-                <TextBox x:Name="amounttxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
-                <TextBox x:Name="actualpricetxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
-                <TextBox x:Name="pricetxt" Margin="10 18 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
-                <TextBox x:Name="priceofpiesetxt" Margin="10 15 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="nametxt" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="barcodetxt" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="amountinpacakgetxt" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="amounttxt" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="actualpricetxt" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="pricetxt" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <TextBox x:Name="priceofpiesetxt" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></TextBox>
+                <ComboBox x:Name="discount_combo" Margin="10 10 0 0" Width="320" HorizontalAlignment="Left" ></ComboBox>
+                <ComboBox x:Name="category_combo" HorizontalAlignment="Left" Margin="10 10 0 0" Width="320"></ComboBox>
+                <ComboBox x:Name="company_combo" HorizontalAlignment="Left" Margin="10 10 0 0" Width="320"></ComboBox>
                 <DockPanel>
                     <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" Width="150" Height="40" Margin="0 50  0 0" Style="{DynamicResource RoundButton}" Content="Bekor qilish" Background="Red" Foreground="White" FontSize="17"/>
                     <Button x:Name="saqlash_btn"  Click="Saqlash_btn_OnClick"  Width="150" Height="40" Margin="0 50  0 0" Style="{DynamicResource RoundButton}" Content="Saqlash" Foreground="White" Background="Green" FontSize="17"/>

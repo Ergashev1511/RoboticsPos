@@ -35,13 +35,14 @@
                                 Margin="0 0 0 0"
                      />
                  </DockPanel>
-                <Button  x:Name="xodim_btn" Click="Xodim_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Xodimlar" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button x:Name="discount_btn" Click="Discount_btn_OnClick"  Foreground="Snow" Background="Transparent" Content="Chek sozlamalar" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button  Foreground="Snow" Background="Transparent" Content="Chegirma berish" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button x:Name="client_btn" Click="Client_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Mijozlar" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button  Foreground="Snow" Background="Transparent" Content="Kassa" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button  Foreground="Snow" Background="Transparent" Content="Til" Width="180" Height="30" Margin="0 20 0 0"/>
-                <Button  Foreground="Snow" Background="Transparent" Content="Theme" Width="180" Height="30" Margin="0 20 0 0"/>
+                <Button  x:Name="xodim_btn" Click="Xodim_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Xodimlar" Width="180" Height="30" Margin="0 10 0 0"/>
+                <Button x:Name="check_btn" Click="Check_btn_OnClick"  Foreground="Snow" Background="Transparent" Content="Chek sozlamalar" Width="180" Height="30" Margin="0 10 0 0"/>
+                <Button x:Name="discount_btn" Click="Discount_btn_OnClick"  Foreground="Snow" Background="Transparent" Content="Chegirma berish" Width="180" Height="30" Margin="0 10 0 0"/>
+                <Button x:Name="client_btn" Click="Client_btn_OnClick" Foreground="Snow" Background="Transparent" Content="Mijozlar" Width="180" Height="30" Margin="0 10 0 0"/>
+                <Button x:Name="company_btn" Click="Company_btn_OnClick"  Foreground="Snow" Background="Transparent" Content="Kompaniya" Width="180" Height="30" Margin="0 10 0 0"/>
+                <Button x:Name="categroy_btn" Click="Categroy_btn_OnClick"  Foreground="Snow" Background="Transparent" Content="Categoriya" Width="180" Height="30" Margin="0 10 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Til" Width="180" Height="30" Margin="0 10 0 0"/>
+                <Button  Foreground="Snow" Background="Transparent" Content="Theme" Width="180" Height="30" Margin="0 10 0 0"/>
             </StackPanel>
         </Grid>
         <DockPanel Grid.Column="1" x:Name="grid_col1">
@@ -56,23 +57,36 @@
             
             
             
-            <DockPanel Height="Auto" Width="Auto" x:Name="client_doc" Visibility="Hidden">
+            <DockPanel Height="Auto" Width="Auto" x:Name="client_doc" Visibility="Collapsed">
                 <local:ClientForm x:Name="clientpage"></local:ClientForm>
             </DockPanel>
             
-            <Viewbox x:Name="client_creat" Height="Auto" Width="Auto" Visibility="Hidden">
+            <Viewbox x:Name="client_creat" Height="Auto" Width="Auto" Visibility="Collapsed">
                 <local:ClientCreatePagae x:Name="client_createPage"></local:ClientCreatePagae>
             </Viewbox>
             
             
             
-            <DockPanel Height="Auto" Width="Auto" x:Name="check_doc" Visibility="Hidden">
+            <DockPanel Height="Auto" Width="Auto" x:Name="check_doc" Visibility="Collapsed">
                 <local:CheckForm x:Name="chekspage"></local:CheckForm>
             </DockPanel>
             
-            <Viewbox x:Name="check_creat" Height="Auto" Width="Auto" Visibility="Hidden">
+            <Viewbox x:Name="check_creat" Height="Auto" Width="Auto" Visibility="Collapsed">
                 <local:CheckCreatePage x:Name="checks_createPage"></local:CheckCreatePage>
             </Viewbox>
+            
+            <DockPanel x:Name="discount_oc" Width="Auto" Height="Auto" Visibility="Collapsed">
+                <local:DiscountControl x:Name="discountControl"></local:DiscountControl>
+            </DockPanel>
+            
+            
+            <DockPanel x:Name="company_doc" Width="Auto" Height="Auto" Visibility="Collapsed">
+                <local:CompanyControl x:Name="companycontrol"></local:CompanyControl>
+            </DockPanel>
+            
+            <DockPanel x:Name="category_doc" Width="Auto" Height="Auto" Visibility="Collapsed">
+                <local:CategoryCantrol x:Name="categorycontrol"></local:CategoryCantrol>
+            </DockPanel>
             
         </DockPanel>
     </Grid>

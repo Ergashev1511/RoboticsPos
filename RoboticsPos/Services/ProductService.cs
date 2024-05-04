@@ -1,4 +1,6 @@
-﻿using RoboticsPos.Common.DTOs;
+﻿using System.Windows.Documents;
+using RoboticsPos.Common.DTOs;
+using RoboticsPos.Data.Enum;
 using RoboticsPos.Data.Models;
 using RoboticsPos.Data.Repositories;
 
@@ -14,6 +16,22 @@ public class ProductService : IProductService
         
     }
 
+
+    public async Task<List<ProductForSelect>> GetProductsByIdsForDiscount(List<long> productIds)
+    {
+        var products = await _repository.GetAllProducts();
+        if (products != null && products.Any())
+        {
+            return products.Select(a => new ProductForSelect ()
+            {
+                Id = a.Id,
+                Name = a.Name,
+                Amount = a.Amount,
+                Selected = true
+            }).ToList();
+        }
+        return new List<ProductForSelect>();
+    }
 
     public async Task<List<ProductDTO>> GetAllProducts()
     {
@@ -58,7 +76,10 @@ public class ProductService : IProductService
             Price = productDto.Price,
             PriceOfPiece = productDto.PriceOfPiece,
             Selected = productDto.Selected,
-            DiscountId = productDto.DiscountId
+            DiscountId = productDto.DiscountId,  
+            CompanyId = productDto.CompanyId,
+            CategoryId = productDto.CategoryId,
+          
         };
         await _repository.CreateProduct(products);
         return productDto;
@@ -110,9 +131,27 @@ public class ProductService : IProductService
         };
         return productDto;
     }
+
+    public async Task<List<ProductForSelect>> GetAllForSelect()
+    {
+        var products = await _repository.GetAllProducts();
+        if (products != null && products.Any())
+        {
+            return products.Select(a => new ProductForSelect()
+            {
+                Id = a.Id,
+                Name = a.Name,
+               Amount = a.Amount,
+               Selected = a.Selected
+            }).ToList();
+        }
+
+        return new List<ProductForSelect>();
+    }
 }
 public interface IProductService
      {
+         public Task<List<ProductForSelect>> GetProductsByIdsForDiscount(List<long> productIds);
          public Task<List<ProductDTO>> GetAllProducts();
          public Task<List<ProductSearchDTO>> GetAllSearchFOrProducts(string name);
          public Task<ProductDTO> CreateProduct(ProductDTO productDto);
@@ -121,6 +160,7 @@ public interface IProductService
          public Task DeleteProduct(long Id);
  
          public Task<ProductDTO> GetProductById(long Id);
- 
- 
+         public Task<List<ProductForSelect>> GetAllForSelect();
+
+
      }

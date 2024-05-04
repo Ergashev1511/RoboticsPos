@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 
 namespace RoboticsPos.Data.Repositories;
@@ -11,7 +12,17 @@ public class DiscountRepository : IDiscountRepository
     {
         _context = context;
     }
-    
+
+    public async Task<List<Select>> GetSelectForDiscount()
+    {
+        var discounts = await _context.Discounts.Where(a => !a.IsDeleted).Select(s => new Select()
+        {
+            Id = s.Id,
+            Name = s.Title
+        }).AsSplitQuery().ToListAsync();
+        return discounts;
+    }
+
     public async Task<Discount> CreateDiscount(Discount discount)
     {
       // var hascopy= await _context.Discounts.Any(a=>a.)
@@ -43,13 +54,14 @@ public class DiscountRepository : IDiscountRepository
 
     public async Task<List<Discount>> GetAllDiscount()
     {
-        return await _context.Discounts.Where(a => !a.IsDeleted).ToListAsync();
+        return await _context.Discounts.Where(a => !a.IsDeleted).Include(b=>b.Products).ToListAsync();
         // include qilmadim List<Product> nullable bo'lgani uchun
     }
 }
 
 public interface IDiscountRepository
 {
+    Task<List<Select>> GetSelectForDiscount();
     Task<Discount> CreateDiscount(Discount discount);
     Task<Discount> UpdateDiscount(Discount discount);
     Task<Discount> GetByIdDiscount(long Id);

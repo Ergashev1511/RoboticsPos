@@ -14,6 +14,12 @@ public class ProductRepository  : IProductRepository
       this._context = context;
    }
 
+   public async Task<List<Product>> GetProductsByIds(List<long> ids)
+   {
+      var products = await _context.Products.Where(s => ids.Contains(s.Id)).ToListAsync();
+      return products;
+   }
+
    public async Task<List<Product>> GetAllProducts()
    {
       return await _context.Products.Where(a => !a.IsDeleted).ToListAsync();
@@ -26,11 +32,9 @@ public class ProductRepository  : IProductRepository
       {
          var hascopy = await _context.Products.AnyAsync(a => a.Name.ToLower() == product.Name.ToLower() || a.BarCode == product.BarCode);
          if (hascopy) throw new Exception("Product already exist!");
-         else
-         {
+        
            await _context.Products.AddAsync(product);
            await _context.SaveChangesAsync();
-         }
       }
 
       return product;
@@ -76,6 +80,7 @@ public class ProductRepository  : IProductRepository
 
 public interface IProductRepository
 {
+   public Task<List<Product>> GetProductsByIds(List<long> ids);
    public Task<List<Product>>  GetAllProducts();
    public Task<Product> CreateProduct(Product product);
    public Task DeleteProduct(long Id);

@@ -1,4 +1,5 @@
-﻿using RoboticsPos.Common.DTOs;
+﻿using System.Windows.Documents;
+using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 using RoboticsPos.Data.Repositories;
 
@@ -25,7 +26,7 @@ public class ClientService : IClientService
                 FathersName = clientDto.FathersName,
                 BornDate = clientDto.BornDate,
                 PhoneNumber = clientDto.PhoneNumber,
-                Address = clientDto.Address
+                Address = clientDto.Address,
             }
         };
         await _repository.CreateClient(client);
@@ -60,7 +61,8 @@ public class ClientService : IClientService
                 FathersName = p.Person.FathersName,
                 PhoneNumber = p.Person.PhoneNumber,
                 Address = p.Person.Address,
-                BornDate = p.Person.BornDate
+                BornDate = p.Person.BornDate,
+                FullName = $"{p.Person.LastName} {p.Person.FirstName}"
             }).ToList();
             return client;
         }
@@ -93,6 +95,13 @@ public class ClientService : IClientService
         };
         return clientDto;
     }
+
+    public async Task<List<ClientSearchDTo>> GetSearchAll(string fullname)
+    {
+        
+        return null;
+
+    }
 }
 
 
@@ -103,4 +112,5 @@ public interface IClientService
     Task<List<ClientDTO>> GetAll();
     Task Delete(long Id);
     Task<ClientDTO> GetById(long Id);
+    Task<List<ClientSearchDTo>> GetSearchAll(string fullname);
 }

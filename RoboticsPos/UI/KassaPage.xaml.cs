@@ -19,10 +19,12 @@ namespace RoboticsPos.UI
         private List<ProductSearchDTO> Products = new List<ProductSearchDTO>();
         private List<ProductForKassaDTO> productsCash = new List<ProductForKassaDTO>();
         private ProductForKassaDTO selectedkassaForKassaDto { get; set; }
-        public void SetMainWinndow(MainWindow mainWindow, IProductService productService)
+        private IClientService _clientService { get; set; }
+        public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService)
         {
             this.mainWindow = mainWindow;
             _productService = productService;
+            _clientService = clientService;
         }
         public KassaPage()
         {
@@ -175,6 +177,7 @@ namespace RoboticsPos.UI
             searchcombo.ItemsSource= null;
             summatxt.Text = string.Empty;
             chegirmabn_txt.Text =string.Empty;
+            client_txt.Text = string.Empty;
         }
 
         private void Chegirma_btn_OnClick(object sender, RoutedEventArgs e)
@@ -198,6 +201,18 @@ namespace RoboticsPos.UI
         public void SetSum(decimal sum)
         {
            chegirmabn_txt.Text = sum.ToString();  // chegirma pagedagi resalt summani olish
+        }
+
+        private void Mijoz_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+           mijozpage.SetVariablies(this,_clientService);
+           mijoz_doc.Visibility = Visibility.Visible;
+           kassa_right_doc.Visibility = Visibility.Collapsed;
+        }
+
+        public void ClientGetName(string name)
+        {
+            client_txt.Text = name;
         }
     }
 }

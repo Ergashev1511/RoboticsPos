@@ -10,14 +10,22 @@ public partial class StoreControl : UserControl
      private ProductCreatePage _productCreatePage { get; set; }
      private ProductListPage _productListPage { get; set; }
      private IProductService _productService { get; set; }
-    public void SetMainWindow(MainWindow mainWindow,ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService)
+     private ICategoryService _categoryService { get; set; }
+     private IDiscountService _discountService { get; set; }
+     private ICompanyService _companyService { get; set; }
+     
+    public void SetMainWindow(MainWindow mainWindow,ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService,
+        ICategoryService categoryService,IDiscountService discountService,ICompanyService companyService)
     {
         _mainWindow = mainWindow;
         _productCreatePage = productCreatePage;
         _productListPage = productListPage;
         _productService = productService;
-        ProCreatePage.SetVariablies(mainWindow,this,productListPage,productService);
-        product_control.SetVariablies(mainWindow,this,productCreatePage,_productService);
+        _categoryService = categoryService;
+        _discountService = discountService;
+        _companyService = companyService;
+        ProCreatePage.SetVariablies(mainWindow,this,productListPage,productService,categoryService,discountService,companyService);
+        product_control.SetVariablies(mainWindow,this,productCreatePage,_productService,categoryService,discountService,companyService);
     }
     public StoreControl()
     {
@@ -28,7 +36,7 @@ public partial class StoreControl : UserControl
     {
         _productCreatePage.ClearForm();
         product_doc.Visibility = Visibility.Visible;
-        product_control.SetVariablies(_mainWindow,this,_productCreatePage,_productService);
+        product_control.SetVariablies(_mainWindow,this,_productCreatePage,_productService,_categoryService,_discountService,_companyService);
         ProCreate_doc.Visibility = Visibility.Collapsed;
     }
 

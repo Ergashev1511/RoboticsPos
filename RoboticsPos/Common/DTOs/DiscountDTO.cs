@@ -13,4 +13,7 @@ public class DiscountDTO : BaseDTO
 
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+
+    public List<ProductForSelect> ProductDtos { get; set; }
+    public string ProductNames { get; set; }
 }

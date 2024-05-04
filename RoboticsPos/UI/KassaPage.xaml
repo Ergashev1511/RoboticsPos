@@ -42,11 +42,15 @@
                            </ComboBox>
                         </DockPanel>
                     </Border>
-                    <TextBlock Text="Client:"
-                               Foreground="Blue"
-                               FontSize="25"
-                               Margin="10 10 0 0"
-                               />
+                   <DockPanel>
+                       <TextBlock Text="Client:"
+                                  Foreground="Blue"
+                                  FontSize="25"
+                                  Margin="10 10 0 0"
+                       />
+                       <TextBlock x:Name="client_txt" VerticalAlignment="Bottom" Padding="5 0 0 0"   Foreground="Blue"
+                                   FontSize="20"></TextBlock>
+                   </DockPanel>
                     <DockPanel>
                         <Button Content="Page1" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 10 0 0"/>
                         <Button Content="Page2" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 10 0 0"/>
@@ -87,7 +91,7 @@
                             <DataGridTextColumn Header="Summa" Binding="{Binding TotalPrice}" Width="Auto"/>
                         </DataGrid.Columns>
                     </DataGrid>
-
+    
                     <WrapPanel Height="100">
                         <Button  Content="Tag1" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 5 0 0"/>
                         <Button Content="Tag2" Foreground="Snow" FontSize="15" Style="{DynamicResource RoundButton}" Width="100" Height="40" Margin="5 5 0 0"/>
@@ -104,7 +108,8 @@
             </Grid>
             
             
-            <Grid Column="1">
+            <DockPanel    Grid.Column="1">
+                <DockPanel  x:Name="kassa_right_doc" Visibility="Visible">
                 <WrapPanel>
                     <Button x:Name="tahrir_btn" Click="Tahrir_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
@@ -133,7 +138,7 @@
                     <Button x:Name="add_btn" Click="Add_btn_OnClick" Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                             <md:PackIcon Kind="Plus" Width="40" Height="40" Foreground="Blue"></md:PackIcon>
                     </Button>
-                    <Button  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
+                    <Button x:Name="mijoz_btn" Click="Mijoz_btn_OnClick"  Margin="7 7 0 0" Width="80" Height="80"  Background="Transparent" Style="{DynamicResource RoundButton}">
                         <StackPanel Width="60" Height="60">
                             <Image Margin="0 10 0 0" Width="20" Height="20" Source="D:\RoboticsPos\RoboticsPos\Images\customer-2.png"/>
                             <TextBlock Text="Mijozlar (F4)" FontSize="10" Foreground="DodgerBlue"/>
@@ -182,7 +187,13 @@
                         </DockPanel>
                     </Button>
                 </WrapPanel>
-            </Grid>
+                </DockPanel>
+                
+                <DockPanel x:Name="mijoz_doc" Width="Auto" Height="Auto" Visibility="Collapsed">
+                    <local:Mijozlar x:Name="mijozpage"></local:Mijozlar>
+                </DockPanel>
+                
+            </DockPanel>
         </Grid>
     </Grid>
 </UserControl>

@@ -53,7 +53,7 @@
                                Margin="0 20 0 0"
                                />
                     <Border CornerRadius="8" Width="200" Height="40" Margin="10 20 0 0" BorderBrush="Blue" BorderThickness="1">
-                        <TextBox x:Name="txtlogin" FontSize="20" Padding="5 3 0 0" Foreground="Blue"  
+                        <TextBox Text="ergashev1511" x:Name="txtlogin" FontSize="20" Padding="5 3 0 0" Foreground="Blue"  
                                BorderThickness="0" /></Border>
                 </DockPanel>
                 <DockPanel HorizontalAlignment="Center">
@@ -62,7 +62,7 @@
                                Margin="0 20 0 0"
                     />
                    <Border  Width="200" Height="40"  Margin="10 20 0 0"  CornerRadius="8" BorderBrush="Blue " BorderThickness="1">
-                       <PasswordBox x:Name="txtPassword" FontSize="20" Padding="5 3 0 0" Foreground="Blue" 
+                       <PasswordBox Password="ergashev1511" x:Name="txtPassword" FontSize="20" Padding="5 3 0 0" Foreground="Blue" 
                                     BorderThickness="0"
                                     Width="200" Height="40"/>
                    </Border>

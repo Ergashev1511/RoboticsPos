@@ -25,20 +25,20 @@ namespace RoboticsPos
 
         public App()
         {
-            // if (!Directory.Exists(path))
-            // {
-            //     Directory.CreateDirectory(path);
-            // }
-            //
-            // if (!File.Exists(Variablies.StaticVariablies.DataBaseName))
-            // {
-            //     File.Create(Variablies.StaticVariablies.DataBaseName); ;
-            // }
+            /*if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            
+            if (!File.Exists(Variablies.StaticVariablies.DataBaseName))
+            {
+                File.Create(Variablies.StaticVariablies.DataBaseName); ;
+            }
 
 
-            // using var dbcontext = new AppDbContext();
-            //
-            // dbcontext.Database.Migrate();
+            using var dbcontext = new AppDbContext();
+            
+            dbcontext.Database.Migrate();*/
 
             AppHost = Host.CreateDefaultBuilder().ConfigureServices((_, services) =>
 
@@ -61,6 +61,13 @@ namespace RoboticsPos
 
                 services.AddScoped<IEmployeeRepository, EmployeeRepository>();
                 services.AddScoped<EmployeeService>();
+                services.AddScoped<IDiscountService, DiscountService>();
+                services.AddScoped<IDiscountRepository, DiscountRepository>();
+                services.AddScoped<ICompanyRepository, CompanyRepository>();
+                services.AddScoped<ICompanyService, CompanyService>();
+                services.AddScoped<ICategoryRepository, CetegoryRepository>();
+                services.AddScoped<ICategoryService,CategoryService>();
+                
                 
                 services.AddAutoMapper(typeof(IMapper));
                 services.AddTransient<MainWindow>();
