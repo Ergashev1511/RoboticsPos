@@ -67,9 +67,9 @@ public partial class CategoryForm : Window
         ProuctCategoryDTO categoryDto = new ProuctCategoryDTO();
 
       
-        categoryDto.Name = name_txt.Text;
+        categoryDto.Name = name_txt.Text; 
         categoryDto.Discription = describtion_txt.Text;
-        categoryDto.ParentId = parentCategories.Any() ? parentCategories[parent_combo.SelectedIndex].Id : null;
+        categoryDto.ParentId = parentCategories.Any() ? parentCategories[parent_combo.SelectedIndex].Id  : null;
         categoryDto.ProductDtos = _productForSelects.Any() ? _productForSelects.Where(s => s.Selected).ToList() : new ();
 
         if (products.Any(a => a.Selected))

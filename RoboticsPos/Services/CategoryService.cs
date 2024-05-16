@@ -38,8 +38,9 @@ public class CategoryService : ICategoryService
             {
                 Name = prouctCategoryDto.Name,
                 Discription = prouctCategoryDto.Discription,
-                ParentCategoryId = prouctCategoryDto.ParentId,
+                ParentCategoryId =  prouctCategoryDto.ParentId,
                 Products = productsId
+                
             };
             await _categoryRepository.CreateCategory(category);
             return prouctCategoryDto;
@@ -140,6 +141,11 @@ public class CategoryService : ICategoryService
 
         return new List<ProuctCategoryDTO>();
     }
+
+    public async Task<bool> HasChildCategory(long categoryId)
+    {
+        return await _categoryRepository.HasChildCategory(categoryId);
+    }
 }
 
 public interface ICategoryService
@@ -150,4 +156,5 @@ public interface ICategoryService
     Task Delete(long Id);
     Task<ProuctCategoryDTO> GetByIdCategory(long Id);
     Task<List<ProuctCategoryDTO>> GetAllCategory();
+    Task<bool> HasChildCategory(long categoryId);
 } 

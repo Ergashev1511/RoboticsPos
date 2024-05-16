@@ -20,11 +20,13 @@ namespace RoboticsPos.UI
         private List<ProductForKassaDTO> productsCash = new List<ProductForKassaDTO>();
         private ProductForKassaDTO selectedkassaForKassaDto { get; set; }
         private IClientService _clientService { get; set; }
-        public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService)
+        private ICategoryService _categoryService { get; set; }
+        public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService,ICategoryService categoryService)
         {
             this.mainWindow = mainWindow;
             _productService = productService;
             _clientService = clientService;
+            _categoryService = categoryService;
         }
         public KassaPage()
         {
@@ -213,6 +215,14 @@ namespace RoboticsPos.UI
         public void ClientGetName(string name)
         {
             client_txt.Text = name;
+        }
+
+        private void Category_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            kassa_right_doc.Visibility = Visibility.Collapsed;
+            category_doc.Visibility = Visibility.Visible;
+            categories_control.SetVariablies(this,_categoryService);
+            categories_control.GetChildCategories(0);
         }
     }
 }

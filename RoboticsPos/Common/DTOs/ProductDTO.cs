@@ -16,7 +16,7 @@ public class ProductDTO : BaseDTO
     public bool Selected { get; set; } = false;
     public long? DiscountId { get; set; }
     public long? CompanyId { get; set; }
-    public long?  CategoryId  { get; set; }
+    public long?  CategoryId   { get; set; }
     
     public DiscountType? DiscountType { get; set; }
 }

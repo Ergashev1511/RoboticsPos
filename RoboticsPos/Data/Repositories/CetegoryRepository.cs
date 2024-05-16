@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Windows.Documents;
+using Microsoft.EntityFrameworkCore;
 using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 
@@ -60,6 +61,23 @@ public class CetegoryRepository : ICategoryRepository
     {
         return await _context.ProductCategory.Where(a => !a.IsDeleted).Include(s=>s.Products).ToListAsync();
     }
+
+    public async Task<bool> HasChildCategory(long categoryId)
+    {
+        var category = await _context.ProductCategory.Include(a => a.ChildCategories)
+            .FirstOrDefaultAsync(s => s.Id == categoryId);
+        if (category is not null)
+        {
+            if (category.ChildCategories != null && category.ChildCategories.Any())
+                return true;
+            else
+             return  false;
+        }
+        else
+        {
+            throw new Exception("Category not found!");
+        }
+    }
 }
 
 public interface ICategoryRepository
@@ -70,4 +88,5 @@ public interface ICategoryRepository
     Task<ProductCategory> GetByIdCategory(long Id);
     Task DeleteCategory(ProductCategory productCategory);
     Task<List<ProductCategory>> GetAllCategory();
+    Task<bool> HasChildCategory(long categoryId);
 }

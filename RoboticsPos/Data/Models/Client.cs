@@ -11,5 +11,9 @@ namespace RoboticsPos.Data.Models
     {
         public long PersonId { get; set; }
         public virtual Person Person { get; set; }
+
+        public virtual List<Shop> Shops { get; set; }
+
+        public virtual List<Debt> Debts { get; set; }
     }
 }

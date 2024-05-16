@@ -73,7 +73,7 @@ namespace RoboticsPos
             kirishpage.SetMainWinndow(this);
             pinkodpage.SetMainWinndow(this,userService);
             menyupage.SetMainWinndow(this);
-            kassapage.SetMainWinndow(this,productService,clientService);
+            kassapage.SetMainWinndow(this,productService,clientService,categoryService);
             shaxsiy_malPage.SetMainWindow(this);
             loginpage.SetVariablies(userService,this);
             store_control.SetMainWindow(this,_productCreatePage,_productListPage,_productService,_categoryService,_discountService,_companyService);
