@@ -17,15 +17,9 @@ public class CategoryService : ICategoryService
     }
 
 
-    public async Task<List<Select>> GetCategoriesForSelect()
+    public async Task<List<Select>> GetCategoriesForSelect(long? parentId=null)
     {
-        var select = await _categoryRepository.GetCategoriesForSelect();
-        if (select != null)
-        {
-            return select;
-        }
-
-        return new List<Select>();
+        return await _categoryRepository.GetCategoriesForSelect(parentId);
     }
 
     public async Task<ProuctCategoryDTO> CreateCategory(ProuctCategoryDTO prouctCategoryDto)
@@ -98,45 +92,50 @@ public class CategoryService : ICategoryService
     public async Task<ProuctCategoryDTO> GetByIdCategory(long Id)
     {
         var category = await _categoryRepository.GetByIdCategory(Id);
-        if (category == null) throw new Exception("ProductCategory is null here!");
-
-       ProuctCategoryDTO prouctCategoryDto=new ProuctCategoryDTO()
+        if (category != null)
         {
-            Id = category.Id,
-            Name = category.Name,
-            Discription = category.Discription,
-            ParentName = category?.ParentCategory?.Name ?? string.Empty,
-             ProductDtos = category.Products.Select(s=> new ProductForSelect()
-                        {
-                            Id = s.Id,
-                            Name = s.Name,
-                            Selected = true
-                        }).ToList()
-        };
-        return prouctCategoryDto;
-    }
-
-    public async Task<List<ProuctCategoryDTO>> GetAllCategory()
-    {
-        var categorys = await _categoryRepository.GetAllCategory();
-        if (categorys.Any())
-        {
-            var category = categorys.Select(a => new ProuctCategoryDTO()
+            return new ProuctCategoryDTO()
             {
-                Id = a.Id,
-                Name = a.Name,
-                Discription = a.Discription,
-                ParentName = a?.ParentCategory?.Name ?? string.Empty,
-                Productnames = string.Join(", ", a.Products.Select(s=>s.Name)),
-                ProductDtos = a.Products.Select(a=>new ProductForSelect()
+                Id = category.Id,
+                Name = category.Name,
+                Discription = category.Discription,
+                ParentName = category?.ParentCategory?.Name ?? string.Empty,
+                ProductDtos = category.Products.Select(a => new ProductForSelect()
                 {
                     Id = a.Id,
                     Name = a.Name,
                     Amount = a.Amount,
                     Selected = true
                 }).ToList()
+            };
+        }
+        else
+        {
+            throw new Exception("Category not found!");
+        }
+    }
+
+    public async Task<List<ProuctCategoryDTO>> GetAllCategory()
+    {
+        var categories = await _categoryRepository.GetAllCategory();
+        if (categories.Any())
+        {
+            return categories.Select(s => new ProuctCategoryDTO()
+            {
+                Id = s.Id,
+                Name = s.Name,
+                Discription = s.Discription,
+                ParentName = s?.ParentCategory?.Name ?? string.Empty,
+                ProductDtos = s.Products.Select(a=>new ProductForSelect()
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Amount = a.Amount,
+                    Selected = true
+                }).ToList(),
+                Productnames = string.Join(", ", s.Products.Select(s=>s.Name))
+
             }).ToList();
-            return category;
         }
 
         return new List<ProuctCategoryDTO>();
@@ -150,7 +149,7 @@ public class CategoryService : ICategoryService
 
 public interface ICategoryService
 {
-    Task<List<Select>> GetCategoriesForSelect();
+    Task<List<Select>> GetCategoriesForSelect(long? parentId);
     Task<ProuctCategoryDTO> CreateCategory(ProuctCategoryDTO prouctCategoryDto);
     Task<ProuctCategoryDTO> UpdateCategory(long Id, ProuctCategoryDTO prouctCategoryDto);
     Task Delete(long Id);

@@ -46,7 +46,7 @@ public partial class ProductCreatePage : UserControl
 
     public async void GetCategroy()
     {
-        category = await _categoryService.GetCategoriesForSelect();
+        category = await _categoryService.GetCategoriesForSelect(null);
         if (category != null && category.Any())
         {
             category_combo.ItemsSource = category.Select(a=>a.Name);

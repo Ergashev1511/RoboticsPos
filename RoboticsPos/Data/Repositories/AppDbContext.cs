@@ -10,8 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
-using RoboticsPos.Data.Base;
 using Newtonsoft.Json;
+using RoboticsPos.Data.Base;
 
 namespace RoboticsPos.Data.Repositories
 {
@@ -117,7 +117,7 @@ namespace RoboticsPos.Data.Repositories
 
                 if (entityEntry.State == EntityState.Added)
                 {
-                    ((AuditEntity)entityEntry.Entity).CreatedDate = DateTime.Now;
+                   ((AuditEntity)entityEntry.Entity).CreatedDate = DateTime.Now;
                 }
                 if (entityEntry.State == EntityState.Deleted)
                 {
@@ -127,13 +127,12 @@ namespace RoboticsPos.Data.Repositories
 
                 if (entityEntry.State == EntityState.Modified)
                 {
-                
                     if (((AuditEntity)entityEntry.Entity).CreatedDate == DateTime.MinValue)
                        ((AuditEntity)entityEntry.Entity).CreatedDate = DateTime.Now;
                 }
 
 
-                var entityEntryStr = JsonConvert.SerializeObject(entityEntry.Entity, Newtonsoft.Json.Formatting.Indented,
+               var entityEntryStr = JsonConvert.SerializeObject(entityEntry.Entity, Newtonsoft.Json.Formatting.Indented,
                     new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                 var state = entityEntry.State;
 

@@ -3,7 +3,9 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using RoboticsPos.Common.DTOs;
+using RoboticsPos.Data.Enum;
 using RoboticsPos.Services;
+using RoboticsPos.UI.Components;
 
 namespace RoboticsPos.UI
 {
@@ -21,12 +23,17 @@ namespace RoboticsPos.UI
         private ProductForKassaDTO selectedkassaForKassaDto { get; set; }
         private IClientService _clientService { get; set; }
         private ICategoryService _categoryService { get; set; }
-        public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService,ICategoryService categoryService)
+        private IShopService _shopService { get; set; }
+        private ShopDTO shopDto = new ShopDTO();
+        public List<Select> clients = new List<Select>();
+        public long ClientId { get; set; }
+        public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService,ICategoryService categoryService,IShopService shopService)
         {
             this.mainWindow = mainWindow;
             _productService = productService;
             _clientService = clientService;
             _categoryService = categoryService;
+            _shopService = shopService;
         }
         public KassaPage()
         {
@@ -61,6 +68,10 @@ namespace RoboticsPos.UI
            
         }
 
+        public void AddProductToCash(long productId)
+        {
+            AddProduct(productId);
+        }
         private async void AddProduct(long productId)
         {
             var product = await _productService.GetProductById(productId);
@@ -223,6 +234,67 @@ namespace RoboticsPos.UI
             category_doc.Visibility = Visibility.Visible;
             categories_control.SetVariablies(this,_categoryService);
             categories_control.GetChildCategories(0);
+        }
+
+
+
+        public async void SelectPaymentResult(PaymentType paymentType, decimal payedsum = 0)
+        {
+            if (shopDto.Payments == null) shopDto.Payments = new List<PaymentDTO>();
+            shopDto.Payments.Add(
+                new PaymentDTO()
+                {
+                    PaymentType = paymentType,
+                    Sum = shopDto.TotalPaySum,
+                    PayedSum = payedsum == 0 ? shopDto.TotalPaySum : payedsum,
+                    PaymentStatus = paymentType == PaymentType.Debt ? PaymentStatus.Debted : PaymentStatus.Payed,
+                    RemainingSum = 0,
+                }
+            );
+            
+            if (shopDto.Payments.Sum(a => a.PayedSum) == shopDto.TotalPaySum)
+            {
+                if(ClientId > 0) shopDto.ClientId = ClientId;
+                await _shopService.CreateShop(shopDto);
+                ClearCash();
+               // MessageBox.Show("Savdo muvaffaqiyatli yakunlandi!","Xabar", MessageBoxButton.OK);
+            }
+        }
+        public void ShowGibridPayment()
+        {
+            GbridPayment gibridPayment = new GbridPayment();
+            gibridPayment.SetVariablies(this, _clientService);
+            gibridPayment.ShowDialog();
+        }
+        private void Payment_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!productsCash.Any())
+            {
+                MessageBox.Show("Mahsulot tanlanmagan!");
+                return;
+            }
+            
+            shopDto.TotalSum = decimal.Parse(summatxt.Text.ToString());
+            shopDto.TotalPaySum = chegirmabn_txt.Text.ToString().Length > 0 ? decimal.Parse(chegirmabn_txt.Text.ToString()) : decimal.Parse(summatxt.Text.ToString());
+            shopDto.Carts = productsCash.Select(a => new CardDTO()
+            {
+                Count = a.Quantity,
+                ProductId = a.Id,
+                ActualPrice = a.Price,
+                SalePrice = a.Price,
+                TotalSum = a.TotalPrice,
+            }).ToList();
+            SelectPayment selectPayment = new SelectPayment();
+            selectPayment.SetVariablies(this);
+            if (chegirmabn_txt.Text == "")
+            {
+                selectPayment.GetPaymentSum(productsCash.Sum(a=>a.TotalPrice).ToString());
+            }
+            else
+            {
+                selectPayment.GetPaymentSum(chegirmabn_txt.Text);
+            }
+            selectPayment.ShowDialog();
         }
     }
 }

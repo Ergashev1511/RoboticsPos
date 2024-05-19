@@ -181,7 +181,7 @@
                             <TextBlock FontWeight="DemiBold" Margin="0 0 5 0" Text="UZS" Foreground="Blue" VerticalAlignment="Center" FontSize="15" HorizontalAlignment="Right"/>
                         </DockPanel>
                     </Border>
-                    <Button Background="Transparent" Style="{DynamicResource RoundButton}" Width="250" Height="40" Margin="5 5 0 0">
+                    <Button x:Name="payment_btn" Click="Payment_btn_OnClick" Background="Transparent" Style="{DynamicResource RoundButton}" Width="250" Height="40" Margin="5 5 0 0">
                         <DockPanel HorizontalAlignment="Center">
                             <Image Width="30" Height="30" Margin="0 0 40 0" Source="D:\RoboticsPos\RoboticsPos\Images\credit-card-3.png"/>
                             <TextBlock Text="To'lovni tanlash (F10)" Foreground="Blue" FontSize="15" VerticalAlignment="Center" Margin="0 0 20 0"/>

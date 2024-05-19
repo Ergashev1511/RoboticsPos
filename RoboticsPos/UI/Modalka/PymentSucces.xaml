@@ -1,0 +1,24 @@
+﻿<Window x:Class="RoboticsPos.UI.Modalka.PymentSucces"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:RoboticsPos.UI.Modalka"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="PymentSucces" Height="210" Width="200">
+  <Border BorderThickness="2" BorderBrush="Green">
+      <Grid>
+          <StackPanel>
+            <Border Width="120" Height="120" CornerRadius="20" >
+                <Image Source="D:\RoboticsPos\RoboticsPos\Images\ModalkaImages\correct answer.jpg"></Image>
+            </Border>
+              <TextBlock Text="To'lov muvaffaqiyatli" HorizontalAlignment="Center" Foreground="Green" FontSize="15"></TextBlock>
+              <TextBlock Text="amalga oshirildi!" HorizontalAlignment="Center" Foreground="Green" FontSize="15" Margin="0  5 0 0"></TextBlock>
+              <Button x:Name="ok_btn" Click="Ok_btn_OnClick" Width="40" Height="30" Margin="0 10 0 0" Background="Transparent"  Content="Close" Foreground="Green" Padding="0"></Button>
+          </StackPanel>
+      </Grid>
+  </Border>
+</Window>

@@ -48,7 +48,7 @@ public partial class CategoryForm : Window
 
     public async void GetCategoryParents()
     {
-        parentCategories = await _categoryService.GetCategoriesForSelect();
+        parentCategories = await _categoryService.GetCategoriesForSelect(null);
         if (parentCategories.Any())
         {
             parent_combo.ItemsSource = parentCategories.Select(a => a.Name);
@@ -69,7 +69,7 @@ public partial class CategoryForm : Window
       
         categoryDto.Name = name_txt.Text; 
         categoryDto.Discription = describtion_txt.Text;
-        categoryDto.ParentId = parentCategories.Any() ? parentCategories[parent_combo.SelectedIndex].Id  : null;
+        categoryDto.ParentId = parentCategories.Any() ? (parent_combo.SelectedIndex > 0) ? parentCategories[parent_combo.SelectedIndex].Id : null : null;
         categoryDto.ProductDtos = _productForSelects.Any() ? _productForSelects.Where(s => s.Selected).ToList() : new ();
 
         if (products.Any(a => a.Selected))

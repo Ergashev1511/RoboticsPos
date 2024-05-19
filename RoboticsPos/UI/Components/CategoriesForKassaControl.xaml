@@ -15,7 +15,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Products" VerticalAlignment="Center" Margin="15 0 0 0" FontSize="15"></TextBlock>
                 <Button x:Name="refresh_btn" Click="Refresh_btn_OnClick" Content="Refresh" FontSize="10" BorderBrush="Black"  Foreground="Black" Width="70" Margin="10 0 0 0" Background="Transparent" BorderThickness="0"></Button>
-               <Button Background="Transparent"  BorderThickness="0" Margin="60 0 0 0">
+               <Button x:Name="exit_btn" Click="Exit_btn_OnClick" Background="Transparent"  BorderThickness="0" Margin="60 0 0 0">
                    <md:PackIcon Foreground="Blue" Kind="CloseOutline"></md:PackIcon>
                </Button>
             </StackPanel>
@@ -43,7 +43,6 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="2*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" IsReadOnly="True" Width="1*"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

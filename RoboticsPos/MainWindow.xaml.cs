@@ -39,13 +39,14 @@ namespace RoboticsPos
         private IDiscountService _discountService { get; set; }
         private ICompanyService _companyService { get; set; }
         private ICategoryService _categoryService { get; set; }
+        private IShopService _shopService { get; set; }
         
         public MainWindow(IUserService userService,IRepository<User> userRepository,AppDbContext context,
             EmployeeService employeeService,XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
             ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService,
             CheckForm checkForm,CheckCreatePage checkCreate,ICheckPrinterService checkservice,
             ClientForm clientForm,ClientCreatePagae clientCreatePagae,IClientService clientService,
-            IDiscountService discountService,ICompanyService companyService,ICategoryService categoryService)
+            IDiscountService discountService,ICompanyService companyService,ICategoryService categoryService,IShopService shopService)
         {
             this.userService = userService;
             this.userRepository = userRepository;
@@ -65,6 +66,7 @@ namespace RoboticsPos
             _discountService = discountService;
             _companyService = companyService;
             _categoryService = categoryService;
+            _shopService = shopService;
             
             
             InitializeComponent();
@@ -73,7 +75,7 @@ namespace RoboticsPos
             kirishpage.SetMainWinndow(this);
             pinkodpage.SetMainWinndow(this,userService);
             menyupage.SetMainWinndow(this);
-            kassapage.SetMainWinndow(this,productService,clientService,categoryService);
+            kassapage.SetMainWinndow(this,productService,clientService,categoryService,shopService);
             shaxsiy_malPage.SetMainWindow(this);
             loginpage.SetVariablies(userService,this);
             store_control.SetMainWindow(this,_productCreatePage,_productListPage,_productService,_categoryService,_discountService,_companyService);

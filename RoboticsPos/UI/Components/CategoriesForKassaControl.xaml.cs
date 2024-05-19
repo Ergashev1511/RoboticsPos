@@ -41,7 +41,9 @@ public partial class CategoriesForKassaControl : UserControl
     }
     public async void GetChildCategories(long? parentId)
     {
-        categorylist = await _categoryService.GetCategoriesForSelect();
+        categorylist = await _categoryService.GetCategoriesForSelect(parentId);
+        if(categorylist != null && categorylist.Any())
+            GetAllCategories();
     }
 
     public async void GetCategoryProducts(long categoryId)
@@ -60,7 +62,7 @@ public partial class CategoriesForKassaControl : UserControl
     private void Products_datagrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
         var selected = products_datagrid.SelectedItem as ProductForSelect;
-      //  _kassaPage.AddProductToCash(selected.Id);
+       _kassaPage.AddProductToCash(selected.Id);
         _kassaPage.kassa_right_doc.Visibility = Visibility.Visible;
         _kassaPage.category_doc.Visibility = Visibility.Collapsed;
         
@@ -75,5 +77,13 @@ public partial class CategoriesForKassaControl : UserControl
         {
             GetCategoryProducts(currentCategoryId);
         }
+    }
+
+    private void Exit_btn_OnClick(object sender, RoutedEventArgs e)
+    {
+        main_wrap.Visibility = Visibility.Collapsed;
+        products_datagrid.ItemsSource = null;
+        products_panel.Visibility = Visibility.Collapsed;
+        _kassaPage.kassa_right_doc.Visibility = Visibility.Visible;
     }
 }

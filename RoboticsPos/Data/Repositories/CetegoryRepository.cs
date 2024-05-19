@@ -15,9 +15,9 @@ public class CetegoryRepository : ICategoryRepository
     }
 
 
-    public async Task<List<Select>> GetCategoriesForSelect()
+    public async Task<List<Select>> GetCategoriesForSelect(long? parentId=null)
     {
-        var categories = await _context.ProductCategory.Where(a=>!a.IsDeleted).Select(s => new Select()
+        var categories = await _context.ProductCategory.Where(a=>parentId != null ? ( parentId == 0 ? a.ParentCategoryId == null : a.ParentCategoryId == parentId ) : true).Select(s => new Select()
         {
             Id = s.Id,
             Name = s.Name
@@ -64,14 +64,13 @@ public class CetegoryRepository : ICategoryRepository
 
     public async Task<bool> HasChildCategory(long categoryId)
     {
-        var category = await _context.ProductCategory.Include(a => a.ChildCategories)
-            .FirstOrDefaultAsync(s => s.Id == categoryId);
+        var category = await _context.ProductCategory.Include(s=>s.ChildCategories).FirstOrDefaultAsync(s => s.Id == categoryId);
         if (category is not null)
         {
             if (category.ChildCategories != null && category.ChildCategories.Any())
                 return true;
             else
-             return  false;
+                return false;
         }
         else
         {
@@ -82,7 +81,7 @@ public class CetegoryRepository : ICategoryRepository
 
 public interface ICategoryRepository
 {
-    public Task<List<Select>> GetCategoriesForSelect();
+    public Task<List<Select>> GetCategoriesForSelect(long? parentId);
     Task<ProductCategory> CreateCategory(ProductCategory productCategory);
     Task<ProductCategory> UpdateCategory(ProductCategory productCategory);
     Task<ProductCategory> GetByIdCategory(long Id);

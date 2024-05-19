@@ -43,7 +43,7 @@
             <pin:PinKodPage x:Name="pinkodpage" Width="800" Height="450"></pin:PinKodPage>
         </Viewbox>
         
-        <Viewbox x:Name="MenyuViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Hidden">
+        <Viewbox x:Name="MenyuViewBox" Grid.Row="0" Grid.Column="0" Grid.RowSpan="9" Grid.ColumnSpan="8" Visibility="Collapsed">
             <pin:MenyuPage x:Name="menyupage" Width="800" Height="450"></pin:MenyuPage>
         </Viewbox>
         

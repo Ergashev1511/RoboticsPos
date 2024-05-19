@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Windows.Documents;
+using Microsoft.EntityFrameworkCore;
 using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 
@@ -46,7 +47,15 @@ public class ClientRepository : IClientRepository
         if (Id < 0) throw new Exception("Id is low from 0!");
         return await _context.Clients.FirstOrDefaultAsync(a => !a.IsDeleted && a.Id == Id);
     }
-    
+
+    public async Task<List<Select>> GetClientForSelect()
+    {
+        return await _context.Clients.Select(s => new Common.DTOs.Select()
+        {
+            Id = s.Id,
+            Name = $"{s.Person.FirstName} {s.Person.LastName}" 
+        }).AsSplitQuery().ToListAsync();
+    }
 }
 
 public interface IClientRepository
@@ -56,5 +65,6 @@ public interface IClientRepository
     Task<List<Client>> GetAllClient();
     Task DeleteClient(Client client);
     Task<Client> GetById(long Id);
-  
+    Task<List<Select>> GetClientForSelect();
+
 }

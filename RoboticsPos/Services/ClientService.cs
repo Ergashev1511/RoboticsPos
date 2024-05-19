@@ -96,11 +96,27 @@ public class ClientService : IClientService
         return clientDto;
     }
 
-    public async Task<List<ClientSearchDTo>> GetSearchAll(string fullname)
+    public async Task<List<Select>> GetClientForSelect()
     {
-        
-        return null;
+        return await _repository.GetClientForSelect();
+    }
 
+    public async Task<DebtorDTO> CreateDebtor(DebtorDTO debtorDto)
+    {
+        Client client = new Client()
+        {
+            Person = new Person()
+            {
+                FirstName = debtorDto.FirstName,
+                LastName = debtorDto.LastName,
+                PhoneNumber = debtorDto.PhoneNumber,
+                Address = "",
+                FathersName = "",
+                BornDate = DateTime.MinValue,
+            }
+        };
+        await _repository.CreateClient(client);
+        return debtorDto;
     }
 }
 
@@ -112,5 +128,7 @@ public interface IClientService
     Task<List<ClientDTO>> GetAll();
     Task Delete(long Id);
     Task<ClientDTO> GetById(long Id);
-    Task<List<ClientSearchDTo>> GetSearchAll(string fullname);
+    Task<List<Select>> GetClientForSelect();
+    Task<DebtorDTO> CreateDebtor(DebtorDTO debtorDto);
+
 }

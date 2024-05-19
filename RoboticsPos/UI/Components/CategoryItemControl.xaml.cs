@@ -29,10 +29,9 @@ public partial class CategoryItemControl : UserControl
     {
         try
         {
-            var category =
-                _categoriesForKassaControl.categorylist.FirstOrDefault(a => a.Id == long.Parse(this.Tag.ToString()));
-            var haschild = await _categoryService.HasChildCategory(category.Id);
-            if (haschild)
+            var category = _categoriesForKassaControl.categorylist.FirstOrDefault(a => a.Id == long.Parse(this.Tag.ToString()));
+            var hasChild = await _categoryService.HasChildCategory(category.Id);
+            if (hasChild)
             {
                 _categoriesForKassaControl.GetChildCategories(category.Id);
             }
@@ -41,9 +40,9 @@ public partial class CategoryItemControl : UserControl
                 _categoriesForKassaControl.GetCategoryProducts(category.Id);
             }
         }
-        catch(Exception ex)
+        catch (Exception exception)
         {
-            MessageBox.Show(ex.Message);
+            MessageBox.Show(exception.Message);
         }
     }
 }

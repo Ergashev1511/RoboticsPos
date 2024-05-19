@@ -1,0 +1,42 @@
+﻿<Window x:Class="RoboticsPos.UI.Components.SelectPayment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:RoboticsPos.UI.Components"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="SelectPayment" Height="300" Width="250">
+    <Border BorderBrush="Black" BorderThickness="2" Opacity="2">
+    <Grid>
+        <StackPanel>
+            <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" Background="Blue" HorizontalAlignment="Right">
+                <md:PackIcon Kind="CloseThick"></md:PackIcon>
+            </Button>
+            <TextBlock x:Name="payment_sum" Foreground="Blue" Width="150"  TextAlignment="Center" Margin="0 20  0 0" FontSize="15"></TextBlock>
+            <StackPanel Height="2" Width="150" Background="Blue"></StackPanel>
+            <Button x:Name="naqd_btn" Click="Naqd_btn_OnClick" Background="Blue" Width="200" Height="40" Margin="0 20 0 0">
+                <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <md:PackIcon Kind="CashMultiple" Margin="0 0  16 0" Width="30" Height="30"></md:PackIcon>
+                    <TextBlock Text="Naqd to'lov" VerticalAlignment="Center" Margin="0 0 20 0"></TextBlock>
+                </DockPanel>
+            </Button>
+            <Button x:Name="cart_btn" Click="Cart_btn_OnClick" Background="Blue" Width="200" Height="40" Margin="0 20 0 0">
+                <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <md:PackIcon Kind="CreditCardMultipleOutline" Width="30" Height="30" Margin="0 0 20 0"></md:PackIcon>
+                    <TextBlock Text="Plastik orqali" VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+            </Button>
+            <Button x:Name="gbrid_btn" Click="Gbrid_btn_OnClick" Background="Blue" Width="200" Height="40" Margin="0 20 0 0">
+                <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <md:PackIcon Kind="CreditCardCheck" Width="30" Height="30" Margin="0 0 20 0"></md:PackIcon>
+                    <TextBlock Text="Gbrid To'lov" VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+    </Border>
+</Window>
