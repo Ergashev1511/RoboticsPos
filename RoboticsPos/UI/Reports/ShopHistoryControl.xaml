@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="RoboticsPos.UI.Reports.ShopHistoryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RoboticsPos.UI.Reports"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="600">
+    <Grid>
+        <!--Shop History-->
+        <StackPanel x:Name="shopHistory_panel" Visibility="Visible">
+            <TextBlock Text="Savdo tarixi" HorizontalAlignment="Center" FontSize="20" FontWeight="Heavy"></TextBlock>
+            <DockPanel>
+            <DataGrid x:Name="shophistory_datagrid"
+                      AutoGenerateColumns="False"
+                      Width="Auto"
+                      GridLinesVisibility="Horizontal"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="True"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      Background="#ffffff"
+                      Margin="10"
+                      BorderThickness="1"
+                      SelectionMode="Single"
+                      AlternationCount="2"
+                      HeadersVisibility="Column"
+                      ItemsSource="{Binding res, Mode=TwoWay}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ClientName" Binding="{Binding ClienName}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TotalSum" Binding="{Binding Totalsum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TotalPaysum" Binding="{Binding Totalpaysum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ShopPaymentDate" Binding="{Binding ShopCreateDate}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+
+                    <DataGridTemplateColumn Width="*">
+                     <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Products"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="products_btn" Click="Products_btn_OnClick"  Height="25" Content="Products" Background="#4D638C" Foreground="White"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.Header>
+                            <TextBlock Text="Payments"></TextBlock>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="payments_btn" Click="Payments_btn_OnClick" Height="25" Content="Payments" Background="#4D638C" Foreground="White"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+       
+        </StackPanel>
+        
+        
+        <!--Shop Products-->
+        <StackPanel x:Name="products_panel" Visibility="Collapsed">
+            <TextBlock Text="Products" HorizontalAlignment="Center" FontSize="20" FontWeight="Heavy"></TextBlock>
+            <DataGrid 
+                x:Name="shopproducts_datagrid"
+                      AutoGenerateColumns="False"
+                      Width="Auto"
+                      GridLinesVisibility="Horizontal"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="True"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      Background="#ffffff"
+                      Margin="10"
+                      BorderThickness="1"
+                      SelectionMode="Single"
+                      AlternationCount="2"
+                      HeadersVisibility="Column"
+                      ItemsSource="{Binding res, Mode=TwoWay}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="BarCode" Binding="{Binding Barcode}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TotalPrice" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        
+        <!--Paymentlar ro'yxati-->
+        <StackPanel x:Name="payments_panel" Visibility="Collapsed">
+            <TextBlock Text="Payments" HorizontalAlignment="Center" FontSize="20" FontWeight="Heavy"></TextBlock>
+            <DataGrid 
+                x:Name="paymetns_datagrid"
+                AutoGenerateColumns="False"
+                Width="Auto"
+                GridLinesVisibility="Horizontal"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                IsReadOnly="True"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
+                Background="#ffffff"
+                Margin="10"
+                BorderThickness="1"
+                SelectionMode="Single"
+                AlternationCount="2"
+                HeadersVisibility="Column"
+                ItemsSource="{Binding res, Mode=TwoWay}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Sum" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="PayedSum" Binding="{Binding Barcode}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="RemainingSum" Binding="{Binding Amount}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="CashSum" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                  <DataGridTextColumn Header="CardSum" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DebtSum" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RoboticsPos.UI.Reports"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -13,13 +14,24 @@
         </Grid.ColumnDefinitions>
         <Grid Column="0" Background="Blue">
             <StackPanel>
-                <Button Width="150" Margin="0 20 0 0 "></Button>
-                <Button Width="150" Margin="0 20 0 0 "></Button>
+                <Button x:Name="back_btn" Click="Back_btn_OnClick" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0">
+                    <md:PackIcon Kind="ArrowLeft" HorizontalAlignment="Left" ></md:PackIcon>
+                </Button>
+                <TextBlock Text="Hisobotlar" HorizontalAlignment="Center" Foreground="White" FontSize="20" FontWeight="Heavy"></TextBlock>
+              <StackPanel Height="2" Background="White" Width="110"></StackPanel>
+                <Button x:Name="debtor_btn" Click="Debtor_btn_OnClick" Background="Transparent" Content="Qarzdorlar" FontSize="15" Width="150" Margin="0 20 0 0 "></Button>
+                <Button x:Name="shophistory_btn" Click="Shophistory_btn_OnClick" Background="Transparent" Content="Savdo tarixi" FontSize="15" Width="150" Margin="0 20 0 0 "></Button>
                 <Button Width="150" Margin="0 20 0 0 "></Button>
             </StackPanel>
         </Grid>
-        <Grid Column="1">
+        <DockPanel Grid.Column="1">
+            <DockPanel x:Name="debtor_doc" Width="Auto" Height="Auto" Visibility="Visible">
+                <local:DebtorControl x:Name="debtor_control"></local:DebtorControl>
+            </DockPanel>
             
-        </Grid>
+            <DockPanel x:Name="shopHistory_doc" Width="Auto" Height="Auto" Visibility="Collapsed">
+                <local:ShopHistoryControl x:Name="shopHistory_control"></local:ShopHistoryControl>
+            </DockPanel>
+        </DockPanel>
     </Grid>
 </UserControl>

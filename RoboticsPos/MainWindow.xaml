@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RoboticsPos"
         xmlns:pin="clr-namespace:RoboticsPos.UI"
+        xmlns:page="clr-namespace:RoboticsPos.UI.Reports"
         mc:Ignorable="d"
       
         Height="450" Width="800">
@@ -67,14 +68,21 @@
         <DockPanel x:Name="Shaxsiy_kabinetViewBox" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Collapsed">
             <pin:ShaxsiyMalumotPage x:Name="shaxsiy_malPage" Width="Auto" Height="Auto"></pin:ShaxsiyMalumotPage>
         </DockPanel>
+        
          <DockPanel Grid.Column="0" Grid.Row="0 " Grid.ColumnSpan="8" Grid.RowSpan="9" x:Name="Store_doc" Visibility="Hidden">
              <pin:StoreControl x:Name="store_control" Width="Auto" Height="Auto"></pin:StoreControl>
          </DockPanel>
+        
         <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" x:Name="ProCreate_View" Visibility="Hidden">
             <pin:ProductCreatePage x:Name="procreate_page" Width="Auto" Height="Auto"></pin:ProductCreatePage>
         </Viewbox>
+        
         <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" x:Name="Prolist_View" Visibility="Hidden">
             <pin:ProductListPage x:Name="Prolist_page" Width="Auto" Height="Auto"></pin:ProductListPage>
         </Viewbox>
+        
+        <DockPanel x:Name="hisobot_doc"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="8" Grid.RowSpan="9" Visibility="Collapsed">
+            <page:ReportPage x:Name="hisobot_control" Width="Auto" Height="Auto"></page:ReportPage>
+        </DockPanel>
     </Grid> 
 </Window>

@@ -27,13 +27,19 @@ namespace RoboticsPos.UI
         private ShopDTO shopDto = new ShopDTO();
         public List<Select> clients = new List<Select>();
         public long ClientId { get; set; }
-        public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService,ICategoryService categoryService,IShopService shopService)
+
+        private DebtDTO _debtDto { get; set; } = new();
+        private DebtService _debtService { get; set; }
+        SelectPayment selectPayment = new SelectPayment();
+        
+        public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService,ICategoryService categoryService,IShopService shopService,DebtService debtService)
         {
             this.mainWindow = mainWindow;
             _productService = productService;
             _clientService = clientService;
             _categoryService = categoryService;
             _shopService = shopService;
+            _debtService = debtService;
         }
         public KassaPage()
         {
@@ -236,36 +242,6 @@ namespace RoboticsPos.UI
             categories_control.GetChildCategories(0);
         }
 
-
-
-        public async void SelectPaymentResult(PaymentType paymentType, decimal payedsum = 0)
-        {
-            if (shopDto.Payments == null) shopDto.Payments = new List<PaymentDTO>();
-            shopDto.Payments.Add(
-                new PaymentDTO()
-                {
-                    PaymentType = paymentType,
-                    Sum = shopDto.TotalPaySum,
-                    PayedSum = payedsum == 0 ? shopDto.TotalPaySum : payedsum,
-                    PaymentStatus = paymentType == PaymentType.Debt ? PaymentStatus.Debted : PaymentStatus.Payed,
-                    RemainingSum = 0,
-                }
-            );
-            
-            if (shopDto.Payments.Sum(a => a.PayedSum) == shopDto.TotalPaySum)
-            {
-                if(ClientId > 0) shopDto.ClientId = ClientId;
-                await _shopService.CreateShop(shopDto);
-                ClearCash();
-               // MessageBox.Show("Savdo muvaffaqiyatli yakunlandi!","Xabar", MessageBoxButton.OK);
-            }
-        }
-        public void ShowGibridPayment()
-        {
-            GbridPayment gibridPayment = new GbridPayment();
-            gibridPayment.SetVariablies(this, _clientService);
-            gibridPayment.ShowDialog();
-        }
         private void Payment_btn_OnClick(object sender, RoutedEventArgs e)
         {
             if (!productsCash.Any())
@@ -273,7 +249,14 @@ namespace RoboticsPos.UI
                 MessageBox.Show("Mahsulot tanlanmagan!");
                 return;
             }
-            
+             if (chegirmabn_txt.Text == "")
+             { 
+                 selectPayment.GetPaymentSum(productsCash.Sum(a=>a.TotalPrice).ToString());
+             }
+             else
+             {
+                 selectPayment.GetPaymentSum(chegirmabn_txt.Text);
+             }
             shopDto.TotalSum = decimal.Parse(summatxt.Text.ToString());
             shopDto.TotalPaySum = chegirmabn_txt.Text.ToString().Length > 0 ? decimal.Parse(chegirmabn_txt.Text.ToString()) : decimal.Parse(summatxt.Text.ToString());
             shopDto.Carts = productsCash.Select(a => new CardDTO()
@@ -284,17 +267,58 @@ namespace RoboticsPos.UI
                 SalePrice = a.Price,
                 TotalSum = a.TotalPrice,
             }).ToList();
-            SelectPayment selectPayment = new SelectPayment();
             selectPayment.SetVariablies(this);
-            if (chegirmabn_txt.Text == "")
-            {
-                selectPayment.GetPaymentSum(productsCash.Sum(a=>a.TotalPrice).ToString());
-            }
-            else
-            {
-                selectPayment.GetPaymentSum(chegirmabn_txt.Text);
-            }
             selectPayment.ShowDialog();
         }
+
+        public async void SelectPaymentResult(PaymentType paymentType, decimal payedsum = 0)
+        {
+         
+            if (shopDto.Payments == null) shopDto.Payments = new List<PaymentDTO>();
+            if (paymentType != PaymentType.Debt)
+            {
+                shopDto.Payments.Add(
+                    new PaymentDTO()
+                    {
+                        PaymentType = paymentType,
+                        Sum = shopDto.TotalPaySum,
+                        PayedSum = payedsum == 0 ? shopDto.TotalPaySum : payedsum,
+                        PaymentStatus = PaymentStatus.Payed,
+                        RemainingSum = shopDto.TotalSum - shopDto.Payments.Sum(a=>a.PayedSum) - payedsum,
+                    }
+                );
+            }
+            
+            if (paymentType == PaymentType.Debt)
+            {
+                _debtDto.ClientId = ClientId;
+                _debtDto.DebtSum = payedsum;
+                _debtDto.DebtStatus = DebtStatus.NotPaid;
+                _debtDto.Payment = new PaymentDTO()
+                {
+                    PaymentType = PaymentType.Debt,
+                    Sum = shopDto.TotalPaySum,
+                    PayedSum = 0,
+                    PaymentStatus = PaymentStatus.Debted,
+                    RemainingSum = payedsum,
+                };
+                await _debtService.CreateDebt(_debtDto);  
+            }
+            
+            if ((shopDto.Payments.Sum(a => a.PayedSum) + _debtDto.DebtSum)  == shopDto.TotalPaySum) 
+            {
+                if(ClientId > 0) shopDto.ClientId = ClientId;
+                await _shopService.CreateShop(shopDto);
+                ClearCash();
+                MessageBox.Show("Savdo muvaffaqiyatli yakunlandi!","Xabar", MessageBoxButton.OK);
+            }
+        }
+        public void ShowGibridPayment()
+        {
+            GbridPayment gibridPayment = new GbridPayment();
+            gibridPayment.SetVariablies(this, _clientService);
+            gibridPayment.ShowDialog();
+        }
+       
     }
 }

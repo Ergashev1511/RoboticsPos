@@ -29,10 +29,9 @@ public partial class DebtorAddForm : Window
     {
         if (firstname_txt.Text.Length == 0 || lastname_txt.Text.Length == 0 || phoneNumber_txt.Text.Length == 0)
         {
-            MessageBox.Show("Iltimos maydonlarni to'ldiring!");
+            MessageBox.Show("Iltimos, maydonlarni to'ldiring");
             return;
         }
-
         DebtorDTO debtorDto = new DebtorDTO()
         {
             FirstName = firstname_txt.Text,

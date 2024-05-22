@@ -8,6 +8,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using AutoMapper;
+using RoboticsPos.Data.Models;
 using RoboticsPos.Services;
 using RoboticsPos.UI;
 
@@ -68,6 +69,13 @@ namespace RoboticsPos
                 services.AddScoped<ICategoryService,CategoryService>();
                 services.AddScoped<IShopRepository, ShopRepository >();
                 services.AddScoped<IShopService, ShopService>();
+                services.AddScoped<IDebtRepository, DebtRepository>();
+                services.AddScoped<DebtService>();
+                services.AddScoped<IDebtorRepository, DebtorRepository>();
+                services.AddScoped<DebtorService>();
+                services.AddScoped<IDebtPaymentRepository, DebtPaymentRepository>();
+                services.AddScoped<IDebtPaymentSevice,DebtPaymentService>();
+                
                 
                 services.AddAutoMapper(typeof(IMapper));
                 services.AddTransient<MainWindow>();

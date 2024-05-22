@@ -1,4 +1,5 @@
-﻿using RoboticsPos.Common.DTOs;
+﻿using System.Runtime.InteropServices.JavaScript;
+using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 using RoboticsPos.Data.Repositories;
 
@@ -38,11 +39,24 @@ public class ShopService : IShopService
             DiscountId = a.DiscountId,
         }).ToList();
 
-        await _shopRepository.CreateShop(shop);
+        await _shopRepository.AddAsync(shop);
+    }
+
+    public async Task<List<ShopHistoryForTable>> GetAllShops()
+    {
+        return await _shopRepository.GetAllShop();
+    }
+
+    public async Task<List<ShopProductForTable>> GetAllShopProducts()
+    {
+        return await _shopRepository.GetAllShopProducts();
     }
 }
 
 public interface IShopService
 {
     Task CreateShop(ShopDTO shopDto);
+    Task<List<ShopHistoryForTable>> GetAllShops();
+    Task<List<ShopProductForTable>> GetAllShopProducts();
+
 }

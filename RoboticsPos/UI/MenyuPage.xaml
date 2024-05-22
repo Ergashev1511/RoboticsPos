@@ -133,7 +133,7 @@
         </Grid>
         <Grid Row="1" Column="2">
             <StackPanel>
-                <Button Background="DodgerBlue"
+                <Button x:Name="report_btn" Click="Report_btn_OnClick" Background="DodgerBlue"
                 Style="{DynamicResource RoundButton}"
                 Width="210"
                 Foreground="Snow"

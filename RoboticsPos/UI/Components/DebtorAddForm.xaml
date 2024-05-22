@@ -10,7 +10,7 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         Title="DebtorAddForm" Height="350" Width="400">
-    <Grid>
+    <Border BorderBrush="Black" BorderThickness="2">
         <StackPanel>
             <Button x:Name="close_btn" Click="Close_btn_OnClick" Background="Blue" HorizontalAlignment="Right" Margin="8">
                 <md:PackIcon Kind="Close" FontWeight="Heavy"></md:PackIcon>
@@ -29,5 +29,5 @@
             </DockPanel>
           <Button x:Name="debtorAdd_btn" Click="DebtorAdd_btn_OnClick" Width="200" Background="Blue" Margin="0 50 0 0" Content="Qarzdor qo'shish" FontSize="15"></Button>
         </StackPanel>
-    </Grid>
+    </Border>
 </Window>

@@ -10,7 +10,7 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         Title="GbridPayment" Height="400" Width="300">
-    <Border BorderThickness="2">
+    <Border BorderThickness="2" BorderBrush="Black">
     <StackPanel>
         <Button x:Name="cansel_btn" Click="Cansel_btn_OnClick" HorizontalAlignment="Right" Background="Blue">
             <md:PackIcon Kind="Close"></md:PackIcon>
@@ -20,12 +20,12 @@
             <TextBox  x:Name="paysum_txt" Foreground="Blue" VerticalAlignment="Bottom" Padding="10 0 0 0" FontSize="13" Width="150"></TextBox>
         </DockPanel>
         <DockPanel HorizontalAlignment="Right" Margin="0 40 80 0">
-            <CheckBox x:Name="naqd_checkbox"  Margin="0 0 5 0"></CheckBox>
+            <CheckBox x:Name="naqd_checkbox" Checked="Naqd_checkbox_OnChecked"  Margin="0 0 5 0"></CheckBox>
             <TextBlock Text="Naqd:" Foreground="Blue" FontSize="15"></TextBlock>
             <TextBox x:Name="naqd_txt" KeyUp="Naqd_txt_OnKeyUp" Width="150"  Foreground="Blue " Padding="10 0 0 0" FontSize="13"></TextBox>
         </DockPanel>
         <DockPanel HorizontalAlignment="Right" Margin="0 40 80 0">
-            <CheckBox  x:Name="plastic_checkbox"  Margin="0 0 5 0"></CheckBox>
+            <CheckBox  x:Name="plastic_checkbox" Checked="Card_checkbox_OnChecked"  Margin="0 0 5 0"></CheckBox>
             <TextBlock Text="Plastik" Foreground="Blue" FontSize="15"></TextBlock>
             <TextBox x:Name="plastic_txt" KeyUp="Plastic_txt_OnKeyUp" Foreground="Blue" FontSize="13" Padding="10 0 0 0" Width="150"></TextBox>
         </DockPanel>
@@ -33,7 +33,7 @@
             <TextBlock Text="Qaytim" Foreground="Blue" FontSize="15"></TextBlock>
             <TextBox x:Name="qaytim_txt" Foreground="Blue" FontSize="13" Padding="10 0 0 0" Width="150"></TextBox>
         </DockPanel>
-        <StackPanel x:Name="debt_doc" Visibility="Collapsed">
+        <StackPanel x:Name="debt_doc" Visibility="Visible ">
             <DockPanel HorizontalAlignment="Right" Margin="0 40 20 0 ">
                 <TextBlock Text="Qarzdor:" Foreground="Blue" FontSize="15"></TextBlock>
                 <ComboBox x:Name="client_combo" SelectionChanged="Client_combo_OnSelectionChanged" Margin="0 0 10 0"  Foreground="Blue" FontSize="13" Padding="10 0 0 0" Width="150"></ComboBox>

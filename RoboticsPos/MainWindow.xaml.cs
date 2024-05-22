@@ -40,13 +40,16 @@ namespace RoboticsPos
         private ICompanyService _companyService { get; set; }
         private ICategoryService _categoryService { get; set; }
         private IShopService _shopService { get; set; }
-        
+        private DebtService _debtService { get; set; }
+        private DebtorService _debtorService;
+        private IDebtPaymentSevice _debtPaymentSevice;
         public MainWindow(IUserService userService,IRepository<User> userRepository,AppDbContext context,
             EmployeeService employeeService,XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
             ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService,
             CheckForm checkForm,CheckCreatePage checkCreate,ICheckPrinterService checkservice,
             ClientForm clientForm,ClientCreatePagae clientCreatePagae,IClientService clientService,
-            IDiscountService discountService,ICompanyService companyService,ICategoryService categoryService,IShopService shopService)
+            IDiscountService discountService,ICompanyService companyService,ICategoryService categoryService,IShopService shopService, DebtService debtService,DebtorService debtorService,
+            IDebtPaymentSevice debtPaymentSevice)
         {
             this.userService = userService;
             this.userRepository = userRepository;
@@ -67,7 +70,9 @@ namespace RoboticsPos
             _companyService = companyService;
             _categoryService = categoryService;
             _shopService = shopService;
-            
+            _debtService = debtService;
+            _debtorService = debtorService;
+            _debtPaymentSevice = debtPaymentSevice;
             
             InitializeComponent();
             
@@ -75,7 +80,7 @@ namespace RoboticsPos
             kirishpage.SetMainWinndow(this);
             pinkodpage.SetMainWinndow(this,userService);
             menyupage.SetMainWinndow(this);
-            kassapage.SetMainWinndow(this,productService,clientService,categoryService,shopService);
+            kassapage.SetMainWinndow(this,productService,clientService,categoryService,shopService,debtService);
             shaxsiy_malPage.SetMainWindow(this);
             loginpage.SetVariablies(userService,this);
             store_control.SetMainWindow(this,_productCreatePage,_productListPage,_productService,_categoryService,_discountService,_companyService);
@@ -97,6 +102,8 @@ namespace RoboticsPos
             store_control.SetMainWindow(this,productCreatePage,productListPage,productService,categoryService,discountService,companyService);
             productCreatePage.SetVariablies(this,store_control,productListPage,productService,categoryService,discountService,companyService);
             productListPage.SetVariablies(this,store_control,productCreatePage,productService,categoryService,discountService,companyService);
+            
+            hisobot_control.SetVariablies(this,debtorService,shopService,debtPaymentSevice);
         }
     }
 }

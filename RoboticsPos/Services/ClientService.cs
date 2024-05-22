@@ -118,6 +118,13 @@ public class ClientService : IClientService
         await _repository.CreateClient(client);
         return debtorDto;
     }
+
+    public async Task<List<DebtorForTable>> GetAllDebtor()
+    {
+        var clients = await GetAll();
+       // var debtor=clients.Select(a=>a.)
+       return new List<DebtorForTable>();   // Service hali yozilmadi
+    }
 }
 
 
@@ -130,5 +137,6 @@ public interface IClientService
     Task<ClientDTO> GetById(long Id);
     Task<List<Select>> GetClientForSelect();
     Task<DebtorDTO> CreateDebtor(DebtorDTO debtorDto);
+    Task<List<DebtorForTable>> GetAllDebtor();
 
 }

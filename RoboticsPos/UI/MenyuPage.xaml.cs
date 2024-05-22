@@ -36,7 +36,7 @@ namespace RoboticsPos.UI
         private void Button_Sozlama(object sender, RoutedEventArgs e)
         {
             mainWindow.SettingsViewBox.Visibility = Visibility.Visible;
-            mainWindow.MenyuViewBox.Visibility = Visibility.Hidden;
+            mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
         }
 
 
@@ -56,13 +56,13 @@ namespace RoboticsPos.UI
 
         private void Button_ShaxsiyMal(object sender, RoutedEventArgs e)
         {
-            mainWindow.MenyuViewBox.Visibility = Visibility.Hidden;
+            mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
             mainWindow.Shaxsiy_kabinetViewBox.Visibility = Visibility.Visible;
         }
 
         private void Button_Logout(object sender, RoutedEventArgs e)
         {
-            mainWindow.MenyuViewBox.Visibility = Visibility.Hidden;
+            mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
             mainWindow.KirishViewBox.Visibility = Visibility.Visible;
             ClearForm();
         }
@@ -84,5 +84,10 @@ namespace RoboticsPos.UI
         // {
         //     usernametxt.Text = StaticVariablies.CurrentUsername;
         // }
+        private void Report_btn_OnClick(object sender, RoutedEventArgs e)
+        {
+            mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
+            mainWindow.hisobot_doc.Visibility = Visibility.Visible;
+        }
     }
 }

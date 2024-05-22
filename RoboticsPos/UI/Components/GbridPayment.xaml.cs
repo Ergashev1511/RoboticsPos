@@ -94,7 +94,60 @@ public partial class GbridPayment : Window
 
     private void Payment_btn_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (client_combo.Items.Count == 0)
+        {
+            RefreshClients();
+        }
+        
+        decimal cash_sum =naqd_txt.Text.Length > 0 ? decimal.Parse(naqd_txt.Text) : 0;
+        decimal card_sum = plastic_txt.Text.Length > 0 ? decimal.Parse(plastic_txt.Text) : 0;
+
+        if (cash_sum >= decimal.Parse(paysum_txt.Text))
+        {
+            _kassaPage.SelectPaymentResult(PaymentType.Cash, cash_sum);
+            CloseForm();
+        }
+        else if (card_sum >= decimal.Parse(paysum_txt.Text))
+        {
+            _kassaPage.SelectPaymentResult(PaymentType.Card, card_sum);
+            CloseForm();
+        }
+        else if ((cash_sum + card_sum) >= decimal.Parse(paysum_txt.Text))
+        {
+            _kassaPage.SelectPaymentResult(PaymentType.Cash, cash_sum);
+            _kassaPage.SelectPaymentResult(PaymentType.Card, card_sum);
+            CloseForm();
+        }
+        else
+        {
+            decimal debtSum = decimal.Parse(paysum_txt.Text) - (cash_sum + card_sum);
+            var messageBoxResult = MessageBox.Show("To'lov summasi yetarli emas, qarzga yozishni istaysizmi","Ogohlantirish!", MessageBoxButton.OKCancel);
+           
+            if (messageBoxResult == MessageBoxResult.OK)
+            {
+                if (_kassaPage.ClientId == 0)
+                {
+                    MessageBox.Show("Client tanlanmadi, Klientni tanlang!");
+                    debt_doc.Visibility = Visibility.Visible;
+                    payment_btn.IsEnabled = false;
+                    return;
+                }
+
+                if (cash_sum > 0)
+                {
+                    _kassaPage.SelectPaymentResult( PaymentType.Cash, cash_sum);
+                }
+
+                if (card_sum > 0)
+                {
+                    _kassaPage.SelectPaymentResult( PaymentType.Card, card_sum);
+                }
+                
+                _kassaPage.SelectPaymentResult( PaymentType.Debt, debtSum);
+
+            }
+        }
+        CloseForm();
     }
 
     private void Client_combo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -109,59 +162,10 @@ public partial class GbridPayment : Window
 
     private void Newdebtor_btn_OnClick(object sender, RoutedEventArgs e)
     {
-        if (client_combo.Items.Count == 0)
-        {
-            RefreshClients();
-        }
-
-        decimal cash_sum = naqd_txt.Text.Length > 0 ? decimal.Parse(naqd_txt.Text) : 0;
-        decimal card_sum=plastic_txt.Text.Length>0 ? decimal.Parse(plastic_txt.Text) : 0;
-
-        if (cash_sum >= decimal.Parse(paysum_txt.Text))
-        {
-            _kassaPage.SelectPaymentResult(PaymentType.Cash,cash_sum);
-            CloseForm();
-        }
-        else if(card_sum>=decimal.Parse(plastic_txt.Text))
-        {
-            _kassaPage.SelectPaymentResult(PaymentType.Card,card_sum);
-            CloseForm();
-        }
-        else if((cash_sum + card_sum) >= (decimal.Parse(paysum_txt.Text)))
-        {
-            _kassaPage.SelectPaymentResult(PaymentType.Cash,cash_sum);
-            _kassaPage.SelectPaymentResult(PaymentType.Card,card_sum);
-            CloseForm();
-        }
-        else
-        {
-            var debtsum = decimal.Parse(paysum_txt.Text) - (cash_sum + card_sum);
-            var message = MessageBox.Show("To'lov yetarli emas,qarzga yozishni istaysizmi!", "Ogohlantirish!",
-                MessageBoxButton.OKCancel);
-            if (message == MessageBoxResult.OK)
-            {
-                if (_kassaPage.ClientId == 0)
-                {
-                    MessageBox.Show("Client tanlanmadi, Clientni tanlang!");
-                    debt_doc.Visibility = Visibility.Visible;
-                    payment_btn.IsEnabled = false;
-                    return;
-                }
-
-                if (cash_sum > 0)
-                {
-                    _kassaPage.SelectPaymentResult(PaymentType.Cash,cash_sum);
-                    CloseForm();
-                }
-
-                if (card_sum > 0)
-                {
-                    _kassaPage.SelectPaymentResult(PaymentType.Card,card_sum);
-                    CloseForm();
-                }
-                _kassaPage.SelectPaymentResult(PaymentType.Debt,debtsum);
-                CloseForm();
-            }
-        }
+        DebtorAddForm debtorAddForm = new DebtorAddForm();
+        debtorAddForm.SetVariablies(this, _clientService);
+        debtorAddForm.ShowDialog();
     }
+
+  
 }
