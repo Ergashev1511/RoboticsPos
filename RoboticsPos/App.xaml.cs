@@ -75,6 +75,8 @@ namespace RoboticsPos
                 services.AddScoped<DebtorService>();
                 services.AddScoped<IDebtPaymentRepository, DebtPaymentRepository>();
                 services.AddScoped<IDebtPaymentSevice,DebtPaymentService>();
+                services.AddScoped<IPaymentRepository, PaymentRepository>();
+                services.AddScoped<IPaymentService,PaymentService>();
                 
                 
                 services.AddAutoMapper(typeof(IMapper));

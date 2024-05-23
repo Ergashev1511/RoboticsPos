@@ -12,6 +12,7 @@ using RoboticsPos.Data.Models;
 using RoboticsPos.Data.Repositories;
 using RoboticsPos.Services;
 using RoboticsPos.UI;
+using RoboticsPos.UI.Reports;
 
 namespace RoboticsPos
 {
@@ -43,13 +44,14 @@ namespace RoboticsPos
         private DebtService _debtService { get; set; }
         private DebtorService _debtorService;
         private IDebtPaymentSevice _debtPaymentSevice;
+        private IPaymentService _paymentService;
         public MainWindow(IUserService userService,IRepository<User> userRepository,AppDbContext context,
             EmployeeService employeeService,XodimCrudPage xodimCrudPage,XodimCreatePage xodimCreatePage,
             ProductCreatePage productCreatePage,ProductListPage productListPage,IProductService productService,
             CheckForm checkForm,CheckCreatePage checkCreate,ICheckPrinterService checkservice,
             ClientForm clientForm,ClientCreatePagae clientCreatePagae,IClientService clientService,
             IDiscountService discountService,ICompanyService companyService,ICategoryService categoryService,IShopService shopService, DebtService debtService,DebtorService debtorService,
-            IDebtPaymentSevice debtPaymentSevice)
+            IDebtPaymentSevice debtPaymentSevice,IPaymentService paymentService)
         {
             this.userService = userService;
             this.userRepository = userRepository;
@@ -73,6 +75,7 @@ namespace RoboticsPos
             _debtService = debtService;
             _debtorService = debtorService;
             _debtPaymentSevice = debtPaymentSevice;
+            _paymentService = paymentService;
             
             InitializeComponent();
             
@@ -103,7 +106,8 @@ namespace RoboticsPos
             productCreatePage.SetVariablies(this,store_control,productListPage,productService,categoryService,discountService,companyService);
             productListPage.SetVariablies(this,store_control,productCreatePage,productService,categoryService,discountService,companyService);
             
-            hisobot_control.SetVariablies(this,debtorService,shopService,debtPaymentSevice);
+            hisobot_control.SetVariablies(this,debtorService,shopService,debtPaymentSevice,productService,paymentService,kassapage);
+           
         }
     }
 }

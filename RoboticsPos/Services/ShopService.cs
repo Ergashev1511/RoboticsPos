@@ -47,16 +47,12 @@ public class ShopService : IShopService
         return await _shopRepository.GetAllShop();
     }
 
-    public async Task<List<ShopProductForTable>> GetAllShopProducts()
-    {
-        return await _shopRepository.GetAllShopProducts();
-    }
+    
 }
 
 public interface IShopService
 {
     Task CreateShop(ShopDTO shopDto);
     Task<List<ShopHistoryForTable>> GetAllShops();
-    Task<List<ShopProductForTable>> GetAllShopProducts();
 
 }

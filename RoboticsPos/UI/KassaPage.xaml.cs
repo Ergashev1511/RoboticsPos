@@ -6,6 +6,7 @@ using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Enum;
 using RoboticsPos.Services;
 using RoboticsPos.UI.Components;
+using RoboticsPos.UI.Reports;
 
 namespace RoboticsPos.UI
 {
@@ -31,6 +32,7 @@ namespace RoboticsPos.UI
         private DebtDTO _debtDto { get; set; } = new();
         private DebtService _debtService { get; set; }
         SelectPayment selectPayment = new SelectPayment();
+      
         
         public void SetMainWinndow(MainWindow mainWindow, IProductService productService,IClientService clientService,ICategoryService categoryService,IShopService shopService,DebtService debtService)
         {
@@ -40,6 +42,7 @@ namespace RoboticsPos.UI
             _categoryService = categoryService;
             _shopService = shopService;
             _debtService = debtService;
+
         }
         public KassaPage()
         {

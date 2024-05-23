@@ -10,19 +10,25 @@ public partial class ReportPage : UserControl
     private DebtorService _debtorService;
     private IShopService _shopService;
     private IDebtPaymentSevice _debtPaymentSevice;
+    private IProductService _productService;
+    private IPaymentService _paymentService;
+    private KassaPage _kassaPage { get; set; }
     public ReportPage()
     {
         InitializeComponent();
     }
 
-    public void SetVariablies(MainWindow mainWindow,DebtorService debtorService,IShopService shopService,IDebtPaymentSevice debtPaymentSevice)
+    public void SetVariablies(MainWindow mainWindow,DebtorService debtorService,IShopService shopService,IDebtPaymentSevice debtPaymentSevice,IProductService productService,IPaymentService paymentService,KassaPage kassaPage)
     {
         _mainWindow = mainWindow;
         _debtorService = debtorService;
         _shopService = shopService;
         _debtPaymentSevice = debtPaymentSevice;
-        debtor_control.SetVariablies(this,debtorService,debtPaymentSevice);
-        shopHistory_control.SetVariablies(this,shopService);
+        _productService = productService;
+        _paymentService = paymentService;
+        _kassaPage = kassaPage;
+
+
     }
     private void Back_btn_OnClick(object sender, RoutedEventArgs e)
     {
@@ -34,6 +40,7 @@ public partial class ReportPage : UserControl
     {
         debtor_doc.Visibility = Visibility.Visible;
         shopHistory_doc.Visibility = Visibility.Collapsed;
+        debtor_control.SetVariablies(this,_debtorService,_debtPaymentSevice);
         debtor_control.GetAllDebtors();
     }
 
@@ -41,6 +48,7 @@ public partial class ReportPage : UserControl
     {
         debtor_doc.Visibility = Visibility.Collapsed;
         shopHistory_doc.Visibility = Visibility.Visible;
+        shopHistory_control.SetVariablies(this,_shopService,_productService,_paymentService,_kassaPage);
         shopHistory_control.GetAllshops();
     }
 }

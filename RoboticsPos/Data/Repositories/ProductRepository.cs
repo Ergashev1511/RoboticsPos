@@ -74,8 +74,24 @@ public class ProductRepository  : IProductRepository
       }).AsSplitQuery();
       return await products.Take(10).ToListAsync();
    }
-}
 
+   public async Task<List<ShopProductForTable>> GetAllShopProducts(long shopId)
+   {
+      var products =await _context.Carts.Where(a => a.ShopId == shopId).Include(s => s.Product).ToListAsync();
+      var product = products.Select(a => new ShopProductForTable()
+      {
+         Id = a.Product.Id,
+         Name = a.Product.Name,
+         BarCode = a.Product.BarCode,
+         Amount = a.Count,
+        TotalPrice = a.TotalSum,
+         Price = a.Product.Price,
+       
+      }).ToList();
+
+      return product;
+   }
+}
 
 
 public interface IProductRepository
@@ -87,4 +103,5 @@ public interface IProductRepository
    public Task<Product> UpdateProduct(Product product);
    public Task<Product> GetByIdProduct(long Id);
    public Task<List<ProductSearchDTO>> ProductByName(string Name);
+   public Task<List<ShopProductForTable>> GetAllShopProducts(long shopId);
 }

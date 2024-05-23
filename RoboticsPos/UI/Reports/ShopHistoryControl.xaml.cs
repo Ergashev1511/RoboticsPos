@@ -10,16 +10,24 @@ public partial class ShopHistoryControl : UserControl
     private ReportPage _reportPage;
     private IShopService _shopService;
     private List<ShopHistoryForTable> shopHistoryForTable = new();
-    private List<ShopProductForTable> _shopProductForTables = new();
+    private IProductService _productService;
+    private IPaymentService _paymentService;
+    private List<ProductDTO> ProductDtos = new();
+    private List<ShopProductForTable> ShopProductForTables = new();
+    private KassaPage _kassaPage { get; set; }
+    private ShopProductForTable shopProductForTable = new ShopProductForTable();
     public ShopHistoryControl()
     {
         InitializeComponent();
     }
 
-    public void SetVariablies(ReportPage reportPage, IShopService shopService)
+    public void SetVariablies(ReportPage reportPage, IShopService shopService,IProductService productService,IPaymentService paymentService,KassaPage kassaPage)
     {
         _reportPage = reportPage;
         _shopService = shopService;
+        _productService = productService;
+        _paymentService = paymentService;
+        _kassaPage = kassaPage;
         GetAllshops();
         
     }
@@ -36,11 +44,31 @@ public partial class ShopHistoryControl : UserControl
 
     public async void GetAllShopProducts()
     {
-        _shopProductForTables = await _shopService.GetAllShopProducts();
-        if(_shopProductForTables.Any())
+      var productDto = shopHistoryForTable[shophistory_datagrid.SelectedIndex];
+      if (productDto != null)
+      {
+          var newproducts = await _productService.GetAllShopProducts(productDto.Id);
+          if (newproducts.Any())
+          {
+              shopproducts_datagrid.ItemsSource = newproducts;
+              shopproducts_datagrid.Items.Refresh();
+          }
+      }
+    }
+
+  
+
+    public async void GetAllPaymens()
+    {
+        var productDto = shopHistoryForTable[shophistory_datagrid.SelectedIndex];
+        if (productDto != null)
         {
-            shopproducts_datagrid.ItemsSource = _shopProductForTables;
-            shopproducts_datagrid.Items.Refresh();
+            var payments = await _paymentService.GetAllPayments(productDto.Id);
+            if (payments.Any())
+            {
+                paymetns_datagrid.ItemsSource = payments;
+                paymetns_datagrid.Items.Refresh();
+            }
         }
     }
 
@@ -57,5 +85,22 @@ public partial class ShopHistoryControl : UserControl
         payments_panel.Visibility = Visibility.Visible;
         shopHistory_panel.Visibility = Visibility.Collapsed;
         products_panel.Visibility = Visibility.Collapsed;
+        GetAllPaymens();
+    }
+
+    private void Exit_btn_OnClick(object sender, RoutedEventArgs e)
+    {
+        products_panel.Visibility = Visibility.Collapsed;
+        shopHistory_panel.Visibility = Visibility.Visible;
+        payments_panel.Visibility = Visibility.Collapsed;
+        shopproducts_datagrid.ItemsSource = null;
+    }
+
+    private void Back_btn_OnClick(object sender, RoutedEventArgs e)
+    {
+        products_panel.Visibility = Visibility.Collapsed;
+        shopHistory_panel.Visibility = Visibility.Visible;
+        payments_panel.Visibility = Visibility.Collapsed;
+        paymetns_datagrid.ItemsSource = null;
     }
 }

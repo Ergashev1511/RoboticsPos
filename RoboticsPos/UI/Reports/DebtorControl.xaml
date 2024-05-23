@@ -4,10 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RoboticsPos.UI.Reports"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
-        <Grid.RowDefinitions>
+        <StackPanel x:Name="debtors_panel" Visibility="Visible">
+        <Grid>
+            
+            <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -65,5 +69,50 @@
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
+    </Grid>
+        </StackPanel>
+        <StackPanel x:Name="debtPayments_panel" Visibility="Collapsed">
+             <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <TextBlock Text="DebtPayments" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Heavy" FontSize="30"></TextBlock>
+            <Button x:Name="close_btn" Click="Close_btn_OnClick" Background="Blue" HorizontalAlignment="Right" Margin="5">
+                <md:PackIcon Kind="Close" HorizontalAlignment="Right"></md:PackIcon>
+            </Button>
+        </DockPanel>
+        <DockPanel Grid.Row="1">
+            <DataGrid
+                x:Name="debtPayments_datagrid"
+                      AutoGenerateColumns="False"
+                      Width="Auto"
+                      GridLinesVisibility="Horizontal"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="True"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      Background="#ffffff"
+                      Margin="10"
+                      BorderThickness="1"
+                      SelectionMode="Single"
+                      AlternationCount="2"
+                      HeadersVisibility="Column"
+                      ItemsSource="{Binding res, Mode=TwoWay}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DebtSum" Binding="{Binding DebtSum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="PayedSum" Binding="{Binding PayedSum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="RemainingSum" Binding="{Binding RemainingSum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="PayDebtDate" Binding="{Binding PayDebtDate}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+    </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>

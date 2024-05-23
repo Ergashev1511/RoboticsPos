@@ -148,6 +148,11 @@ public class ProductService : IProductService
 
         return new List<ProductForSelect>();
     }
+
+    public async Task<List<ShopProductForTable>> GetAllShopProducts(long shopId)
+    {
+        return await _repository.GetAllShopProducts(shopId);
+    }
 }
 public interface IProductService
      {
@@ -161,6 +166,5 @@ public interface IProductService
  
          public Task<ProductDTO> GetProductById(long Id);
          public Task<List<ProductForSelect>> GetAllForSelect();
-
-
+         public Task<List<ShopProductForTable>> GetAllShopProducts(long shopId);
      }

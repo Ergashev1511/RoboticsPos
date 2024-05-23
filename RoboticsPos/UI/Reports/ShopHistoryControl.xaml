@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:RoboticsPos.UI.Reports"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
@@ -67,6 +68,9 @@
         <!--Shop Products-->
         <StackPanel x:Name="products_panel" Visibility="Collapsed">
             <TextBlock Text="Products" HorizontalAlignment="Center" FontSize="20" FontWeight="Heavy"></TextBlock>
+           <Button x:Name="exit_btn" Click="Exit_btn_OnClick" HorizontalAlignment="Right" Margin="5" Background="Blue">
+               <md:PackIcon Kind="Close"></md:PackIcon>
+           </Button>
             <DataGrid 
                 x:Name="shopproducts_datagrid"
                       AutoGenerateColumns="False"
@@ -85,11 +89,13 @@
                       AlternationCount="2"
                       HeadersVisibility="Column"
                       ItemsSource="{Binding res, Mode=TwoWay}" >
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="BarCode" Binding="{Binding Barcode}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="BarCode" Binding="{Binding BarCode}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
                     <DataGridTextColumn Header="TotalPrice" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
@@ -98,6 +104,9 @@
         <!--Paymentlar ro'yxati-->
         <StackPanel x:Name="payments_panel" Visibility="Collapsed">
             <TextBlock Text="Payments" HorizontalAlignment="Center" FontSize="20" FontWeight="Heavy"></TextBlock>
+          <Button x:Name="back_btn" Click="Back_btn_OnClick" HorizontalAlignment="Right" Margin="5" Background="Blue">
+              <md:PackIcon Kind="Close"></md:PackIcon>
+          </Button>
             <DataGrid 
                 x:Name="paymetns_datagrid"
                 AutoGenerateColumns="False"
@@ -116,15 +125,13 @@
                 AlternationCount="2"
                 HeadersVisibility="Column"
                 ItemsSource="{Binding res, Mode=TwoWay}" >
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Id}" IsReadOnly="True" Width="0.5*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Sum" Binding="{Binding Name}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="PayedSum" Binding="{Binding Barcode}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="RemainingSum" Binding="{Binding Amount}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="CashSum" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
-                  <DataGridTextColumn Header="CardSum" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="DebtSum" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
-                </DataGrid.Columns>
+                    <DataGridTextColumn Header="Sum" Binding="{Binding Sum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="PayedSum" Binding="{Binding PayedSum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="RemainingSum" Binding="{Binding RemainingSum}" IsReadOnly="True" Width="1.5*"></DataGridTextColumn>
+                      </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
     </Grid>

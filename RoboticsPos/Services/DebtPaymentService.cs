@@ -30,9 +30,15 @@ public class DebtPaymentService : IDebtPaymentSevice
         await _debtPaymentRepository.AddAsync(debtPayment);
         return debtPaymentDto;
     }
+
+    public async Task<List<DebtPaymentForTable>> GetAllDebtPayments(long shopId)
+    {
+        return await _debtPaymentRepository.GetAllDebtPayments(shopId);
+    }
 }
 
 public interface IDebtPaymentSevice
 {
     public Task<DebtPaymentDTO> CreateDebtPayment(DebtPaymentDTO debtPaymentDto);
+    public Task<List<DebtPaymentForTable>> GetAllDebtPayments(long shopId);
 }

@@ -12,6 +12,7 @@ public partial class DebtorControl : UserControl
     private DebtorService _debtorService { get; set; }
     private IDebtPaymentSevice _debtPaymentSevice;
     private List<DebtorForTable> DebtorListDtos { get; set; }
+    
     public DebtorControl()
     {
         InitializeComponent();
@@ -26,6 +27,19 @@ public partial class DebtorControl : UserControl
     }
 
 
+    public async void GetAllDebtPaymentds()
+    {
+        var debtpay = debtors_datagrid.SelectedItem as DebtorForTable;
+        if (debtpay != null)
+        {
+            var debtpaymetns = await _debtPaymentSevice.GetAllDebtPayments(debtpay.Id);
+            if (debtpaymetns.Any())
+            {
+                
+            }
+        }
+    }
+
     public async void GetAllDebtors()
     {
           DebtorListDtos = await _debtorService.GetAllDebtors();
@@ -34,9 +48,30 @@ public partial class DebtorControl : UserControl
               debtors_datagrid.ItemsSource = DebtorListDtos;
           }
     }
+
+       public async void GetAllDebtPayments()
+        {
+           var debtpay = debtors_datagrid.SelectedItem as DebtorForTable;
+           if(debtpay!=null)
+           {
+              var debtpayments = await _debtPaymentSevice.GetAllDebtPayments(debtpay.Id);
+               if(debtpayments.Any())
+             {
+                 debtPayments_datagrid.ItemsSource = debtpayments;
+                 debtPayments_datagrid.Items.Refresh();
+              }
+               else
+               {
+                   debtPayments_datagrid.ItemsSource = null;
+                   debtPayments_datagrid.Items.Refresh();
+               }
+           }
+         }
     private void ShopHistory_btn_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        debtors_panel.Visibility = Visibility.Collapsed;
+        debtPayments_panel.Visibility = Visibility.Visible;
+        GetAllDebtPayments();
     }
 
     private void DebtPay_btn_OnClick(object sender, RoutedEventArgs e)
@@ -50,5 +85,12 @@ public partial class DebtorControl : UserControl
                     debtForPayment.ShowDialog();
         }
        
+    }
+
+    private void Close_btn_OnClick(object sender, RoutedEventArgs e)
+    {
+        debtors_panel.Visibility = Visibility.Visible;
+        debtPayments_panel.Visibility = Visibility.Collapsed;
+        debtPayments_datagrid.ItemsSource = null;
     }
 }
