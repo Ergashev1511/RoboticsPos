@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;

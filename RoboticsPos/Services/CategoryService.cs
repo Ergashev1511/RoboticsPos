@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows;
 using RoboticsPos.Common.DTOs;
 using RoboticsPos.Data.Models;
 using RoboticsPos.Data.Repositories;

@@ -1,4 +1,5 @@
-﻿using RoboticsPos.Data.Enum;
+﻿using System;
+using RoboticsPos.Data.Enum;
 
 namespace RoboticsPos.Common.DTOs;
 
