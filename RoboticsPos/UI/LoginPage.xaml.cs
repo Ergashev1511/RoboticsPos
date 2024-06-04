@@ -28,20 +28,19 @@ public partial class LoginPage : UserControl
 
     private async void Button_Kirish(object sender, RoutedEventArgs e)
     {
-        if (txtlogin.Text == "" || txtPassword.Password == "")
-        {
-            MessageBox.Show("Username yoki parol kirtilmagan!");
-        }
-        else
+        
+        if(txtlogin.Text != "" || txtPassword.Password != "")
         {
             try
             {
                 if (await userService.LoginByUsername(txtlogin.Text, txtPassword.Password))
                 {
+                    _mainWindow.menyupage.GetUserName(txtlogin.Text,txtPassword.Password);
                     _mainWindow.MenyuViewBox.Visibility = Visibility.Visible;
                     _mainWindow.LoginViewbox.Visibility = Visibility.Hidden;
-                    txtlogin.Text = "";
-                    txtPassword.Password = "";
+                    txtlogin.Text=string.Empty;
+                    txtPassword.Password =string.Empty;
+                    
                 }
                 else
                 {
@@ -50,11 +49,16 @@ public partial class LoginPage : UserControl
             }
             catch (NullReferenceException exception)
             {
-                MessageBox.Show(exception.Message);
-                txtlogin.Text = "";
-                txtPassword.Password = "";
+                MessageBox.Show("Username yoki parol xato!");
+                txtlogin.Text=string.Empty;
+                txtPassword.Password =string.Empty;
             }
         }
+        else 
+        {
+            MessageBox.Show("Username yoki parol kirtilmagan!");
+        }
+        
     }
 
     private void Button_Back(object sender, RoutedEventArgs e)

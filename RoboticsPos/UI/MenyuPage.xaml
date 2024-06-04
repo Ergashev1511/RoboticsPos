@@ -35,12 +35,12 @@
            />
                 </DockPanel>
                 <DockPanel>
-                    <TextBlock Text="ID:"
+                    <TextBlock Text="Parol:"
                        FontSize="15"
                        Margin="10 10  0 0"
                        Foreground="DodgerBlue"
                        />
-                    <TextBlock x:Name="txtId" 
+                    <TextBlock x:Name="txt_parol" 
                        FontSize="15"
                        Margin="10 10  0 0"
                        Foreground="DodgerBlue"

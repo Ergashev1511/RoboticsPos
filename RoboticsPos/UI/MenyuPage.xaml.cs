@@ -77,7 +77,7 @@ namespace RoboticsPos.UI
         public void ClearForm()
         {
             usernametxt.Text = "";
-            txtId.Text = "";
+            txt_parol.Text = "";
         }
 
         // private void MenyuPage_OnLoaded(object sender, RoutedEventArgs e)
@@ -88,6 +88,12 @@ namespace RoboticsPos.UI
         {
             mainWindow.MenyuViewBox.Visibility = Visibility.Collapsed;
             mainWindow.hisobot_doc.Visibility = Visibility.Visible;
+        }
+
+        public void GetUserName(string username, string parol)
+        {
+            usernametxt.Text = username;
+            txt_parol.Text = parol;
         }
     }
 }

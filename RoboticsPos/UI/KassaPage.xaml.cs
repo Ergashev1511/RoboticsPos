@@ -313,7 +313,6 @@ namespace RoboticsPos.UI
                 if(ClientId > 0) shopDto.ClientId = ClientId;
                 await _shopService.CreateShop(shopDto);
                 ClearCash();
-                MessageBox.Show("Savdo muvaffaqiyatli yakunlandi!","Xabar", MessageBoxButton.OK);
             }
         }
         public void ShowGibridPayment()
